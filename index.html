@@ -869,13 +869,8 @@
 })();
 
 /* ══════════════════════════════════════════════════════════
-   COUNTRIES DATA  — inline curated dataset (no API key needed)
-   Uses flagcdn.com for flag images + restcountries.com v3.1 emoji
+   COUNTRIES DATA  — inline curated dataset
 ══════════════════════════════════════════════════════════ */
-
-// We'll fetch from the free public endpoint (no key needed for browser,
-// it's the open source version at flagcdn.com + country data cached)
-const API_BASE = 'https://restcountries.com/v3.1';
 
 let allCountries = [];
 let gameCountries = []; // pool for the session
@@ -964,79 +959,12 @@ function comboToast(n) {
 }
 
 /* ══════════════════════════════════════════════════════════
-   DATA LOADING — Uses legacy v3.1 public free endpoint
-   Falls back to built-in dataset if fetch fails
+   DATA LOADING
 ══════════════════════════════════════════════════════════ */
-async function loadCountries() {
-  // Use fallback immediately for fast start, try API in background
+function loadCountries() {
   allCountries = FALLBACK_COUNTRIES;
-  showScreen('loading-screen');
-  document.getElementById('loading-msg').textContent = 'Carregando países...';
-
-  try {
-    const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 4000);
-    const res = await fetch(
-      `${API_BASE}/all?fields=name,flags,capital,cca2,region,subregion,population,currencies,languages`,
-      { cache: 'force-cache', signal: controller.signal }
-    );
-    clearTimeout(timeout);
-    if (!res.ok) throw new Error('fetch failed');
-    const data = await res.json();
-    if (!Array.isArray(data) || data.length < 50) throw new Error('bad data');
-    const mapped = data.filter(c =>
-      c.name?.common && c.flags?.png && c.capital?.length && c.cca2
-    ).map(c => ({
-      name:      c.name.common,
-      namePt:    c.name.translations?.por?.common || c.name.common,
-      flag:      c.flags.png,
-      flagEmoji: c.flags.emoji || flagEmojiFromCca2(c.cca2),
-      capital:   c.capital?.[0] || '—',
-      cca2:      c.cca2.toLowerCase(),
-      region:    c.region || '—',
-      subregion: c.subregion || '',
-      population:c.population || 0,
-      currency:  translateCurrency(Object.values(c.currencies || {})[0]?.name) || null,
-      languages: Object.values(c.languages || {}).slice(0, 2).map(translateLanguage),
-    }));
-    if (mapped.length > 50) {
-      allCountries = mapped;
-      document.getElementById('loading-msg').textContent = `${allCountries.length} países carregados!`;
-      await new Promise(r => setTimeout(r, 400));
-    }
-  } catch (e) {
-    // Keep fallback, no message needed
-    await new Promise(r => setTimeout(r, 300));
-  }
-
-  // Update home stats
   refreshHomeStats();
-  showScreen('home-screen');
 }
-
-function flagEmojiFromCca2(cca2) {
-  if (!cca2 || cca2.length !== 2) return '🏳️';
-  const offset = 0x1F1E6;
-  return String.fromCodePoint(offset + cca2.toUpperCase().charCodeAt(0) - 65) +
-         String.fromCodePoint(offset + cca2.toUpperCase().charCodeAt(1) - 65);
-}
-
-const LANG_PT = {
-  'English':'Inglês','Portuguese':'Português','Spanish':'Espanhol','French':'Francês',
-  'German':'Alemão','Italian':'Italiano','Dutch':'Holandês','Russian':'Russo',
-  'Arabic':'Árabe','Chinese':'Chinês','Japanese':'Japonês','Korean':'Coreano',
-  'Hindi':'Hindi','Turkish':'Turco','Persian':'Persa','Polish':'Polonês',
-  'Swedish':'Sueco','Norwegian':'Norueguês','Danish':'Dinamarquês','Finnish':'Finlandês',
-  'Ukrainian':'Ucraniano','Greek':'Grego','Thai':'Tailandês','Vietnamese':'Vietnamita',
-  'Indonesian':'Indonésio','Filipino':'Filipino','Malay':'Malaio','Swahili':'Suaíli',
-  'Amharic':'Amárico','Zulu':'Zulu','Urdu':'Urdu','Bengali':'Bengali','Mandarin Chinese':'Mandarim',
-  'Mandarin':'Mandarim','Cantonese':'Cantonês','Hebrew':'Hebraico',
-  'Romanian':'Romeno','Hungarian':'Húngaro','Czech':'Tcheco','Slovak':'Eslovaco',
-  'Serbian':'Sérvio','Croatian':'Croata','Bulgarian':'Búlgaro','Catalan':'Catalão',
-  'Māori':'Maori','Romansh':'Romanche','Berber':'Berbere','Kurdish':'Curdo',
-};
-function translateLanguage(lang) { return LANG_PT[lang] || lang; }
-function translateCurrency(name) { return name || null; }
 
 function refreshHomeStats() {
   if (highScore > 0 || gamesPlayed > 0) {
