@@ -360,57 +360,110 @@
     /* ══════════════════════════════════════════════════════════
        SCREEN: RESULT
     ══════════════════════════════════════════════════════════ */
-    #result-screen { align-items: center; text-align: center; gap: 16px; }
+    #result-screen { align-items: center; text-align: center; gap: 14px; }
 
-    .result-trophy { font-size: 4rem; animation: popIn .5s .1s ease both; }
+    .result-trophy {
+      font-size: 4.5rem;
+      animation: popIn .5s .1s ease both;
+      filter: drop-shadow(0 0 24px rgba(245,200,66,.4));
+    }
 
     .result-title {
-      font-size: clamp(1.5rem, 5vw, 2.2rem);
+      font-size: clamp(1.6rem, 5vw, 2.4rem);
       font-weight: 900;
-      background: linear-gradient(135deg, var(--gold), #fff, var(--cyan));
+      background: linear-gradient(135deg, var(--gold) 0%, #fff 50%, var(--cyan) 100%);
       -webkit-background-clip: text; background-clip: text;
       -webkit-text-fill-color: transparent;
+      letter-spacing: -.5px;
     }
 
+    /* ── Premium result card ── */
     .result-card {
-      width: 100%; padding: 20px;
+      width: 100%;
+      padding: 24px 20px 20px;
+      position: relative; overflow: hidden;
+      background: linear-gradient(160deg,
+        rgba(124,58,237,.12) 0%,
+        rgba(0,229,255,.06) 50%,
+        rgba(245,200,66,.05) 100%);
+      border: 1px solid rgba(124,58,237,.3);
+    }
+    .result-card::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 50% -20%, rgba(0,229,255,.15) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .result-score-wrap {
+      position: relative;
+      display: inline-flex; flex-direction: column; align-items: center;
+      margin-bottom: 18px;
+    }
+    .result-score-ring {
+      position: absolute; inset: -12px;
+      border-radius: 50%;
+      background: conic-gradient(var(--gold) 0deg, rgba(245,200,66,.1) 0deg);
+      animation: none;
     }
     .result-big-num {
-      font-size: 3.5rem; font-weight: 900;
-      color: var(--gold);
+      font-size: 4rem; font-weight: 900;
+      background: linear-gradient(135deg, #ffe066, var(--gold), #e07b00);
+      -webkit-background-clip: text; background-clip: text;
+      -webkit-text-fill-color: transparent;
       line-height: 1;
+      position: relative;
     }
-    .result-label { color: var(--text-dim); font-size: .85rem; margin-top: 2px; }
+    .result-label {
+      color: var(--text-dim); font-size: .8rem;
+      letter-spacing: 2px; text-transform: uppercase;
+      margin-top: 4px;
+    }
+
+    .result-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
+      margin: 16px 0;
+    }
 
     .result-stats {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;
-      margin-top: 16px;
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;
     }
-    .rs { text-align: center; }
-    .rs-num { font-size: 1.4rem; font-weight: 800; }
-    .rs-lbl { font-size: .72rem; color: var(--text-dim); margin-top: 1px; }
+    .rs {
+      text-align: center;
+      padding: 12px 6px;
+      border-radius: var(--radius-sm);
+      background: rgba(255,255,255,.04);
+      border: 1px solid var(--border);
+      transition: transform .2s;
+    }
+    .rs:hover { transform: translateY(-2px); }
+    .rs-icon { font-size: 1.3rem; display: block; }
+    .rs-num { font-size: 1.35rem; font-weight: 800; line-height: 1.2; margin-top: 4px; }
+    .rs-lbl { font-size: .68rem; color: var(--text-dim); margin-top: 3px; letter-spacing: .5px; text-transform: uppercase; }
 
     .rank-badge {
-      padding: 10px 24px;
-      border-radius: 50px;
-      background: linear-gradient(135deg, rgba(124,58,237,.2), rgba(0,229,255,.15));
-      border: 1px solid rgba(124,58,237,.4);
-      font-size: .9rem; color: var(--cyan);
+      width: 100%;
+      padding: 12px 24px;
+      border-radius: var(--radius-sm);
+      background: linear-gradient(135deg, rgba(124,58,237,.18), rgba(0,229,255,.12));
+      border: 1px solid rgba(124,58,237,.35);
+      font-size: .9rem; color: var(--text);
       font-weight: 600;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
     }
 
-    .share-text-box {
-      background: rgba(0,0,0,.3);
-      border: 1px solid var(--border);
+    /* ── Card preview (canvas) ── */
+    .share-preview-wrap {
+      width: 100%;
       border-radius: var(--radius-sm);
-      padding: 14px;
-      font-family: 'Space Grotesk', monospace;
-      font-size: .85rem;
-      color: var(--text);
-      text-align: left;
-      white-space: pre-wrap;
-      line-height: 1.6;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      cursor: pointer;
+      transition: transform .2s, box-shadow .2s;
     }
+    .share-preview-wrap:hover { transform: scale(1.02); box-shadow: 0 8px 32px rgba(0,229,255,.15); }
+    #share-canvas { display: block; width: 100%; height: auto; }
 
     .result-actions { display: flex; flex-direction: column; gap: 10px; width: 100%; }
 
@@ -555,22 +608,40 @@
     <h2 class="result-title" id="r-title">Fim de Jogo!</h2>
 
     <div class="result-card card">
-      <div class="result-big-num" id="r-score">0</div>
-      <div class="result-label">pontos</div>
+      <div class="result-score-wrap">
+        <div class="result-big-num" id="r-score">0</div>
+        <div class="result-label">pontos</div>
+      </div>
+      <div class="result-divider"></div>
       <div class="result-stats">
-        <div class="rs"><div class="rs-num" id="r-correct">0</div><div class="rs-lbl">✅ Acertos</div></div>
-        <div class="rs"><div class="rs-num" id="r-streak">0</div><div class="rs-lbl">🔥 Maior Sequência</div></div>
-        <div class="rs"><div class="rs-num" id="r-accuracy">0%</div><div class="rs-lbl">🎯 Precisão</div></div>
+        <div class="rs">
+          <span class="rs-icon">✅</span>
+          <div class="rs-num" id="r-correct">0</div>
+          <div class="rs-lbl">Acertos</div>
+        </div>
+        <div class="rs">
+          <span class="rs-icon">🔥</span>
+          <div class="rs-num" id="r-streak">0</div>
+          <div class="rs-lbl">Sequência</div>
+        </div>
+        <div class="rs">
+          <span class="rs-icon">🎯</span>
+          <div class="rs-num" id="r-accuracy">0%</div>
+          <div class="rs-lbl">Precisão</div>
+        </div>
       </div>
     </div>
 
     <div class="rank-badge" id="r-rank">🌎 Você está entre os melhores!</div>
 
-    <div class="share-text-box" id="r-share-text"></div>
+    <!-- Canvas preview do card de compartilhamento -->
+    <div class="share-preview-wrap" onclick="downloadResultImage()" title="Clique para baixar">
+      <canvas id="share-canvas" width="560" height="300"></canvas>
+    </div>
 
     <div class="result-actions">
-      <button class="btn btn-primary btn-full" onclick="copyResult()" id="btn-copy">
-        📋 Copiar Resultado
+      <button class="btn btn-primary btn-full" onclick="downloadResultImage()" id="btn-download">
+        📥 Baixar Imagem
       </button>
       <button class="btn btn-gold btn-full" onclick="startGame()">
         🔄 Jogar Novamente
@@ -1219,32 +1290,213 @@ function endGame() {
   else                        rank = '🎯 Continue praticando para melhorar!';
   document.getElementById('r-rank').innerHTML = rank;
 
-  // Share text
-  const diffEmoji = { easy: '🌱', medium: '⚡', hard: '🔥' }[state.diff];
-  const shareText = `🌍 *Qual é o País?* ${diffEmoji}
-
-${trophy} ${title}
-⭐ Pontuação: ${state.score} pts
-✅ Acertos: ${state.correct}/${state.answered}
-🔥 Maior sequência: ${state.maxStreak}
-🎯 Precisão: ${accuracy}%
-
-Você consegue me superar?
-👉 Jogue agora!`;
-
-  document.getElementById('r-share-text').textContent = shareText;
-  window._shareText = shareText;
+  // Store result data for canvas rendering
+  window._resultData = {
+    trophy, title,
+    score: state.score,
+    correct: state.correct,
+    answered: state.answered,
+    maxStreak: state.maxStreak,
+    accuracy,
+    diff: state.diff,
+  };
 
   showScreen('result-screen');
+
+  // Render preview canvas after screen transition
+  requestAnimationFrame(() => requestAnimationFrame(() => buildShareCanvas()));
 }
 
 /* ══════════════════════════════════════════════════════════
-   COPY RESULT
+   SHARE CARD CANVAS
 ══════════════════════════════════════════════════════════ */
-function copyResult() {
-  navigator.clipboard.writeText(window._shareText || '')
-    .then(() => tooltip('✅ Resultado copiado!'))
-    .catch(() => tooltip('❌ Não foi possível copiar'));
+function buildShareCanvas() {
+  const canvas = document.getElementById('share-canvas');
+  const W = 560, H = 300;
+  canvas.width = W * 2; canvas.height = H * 2; // retina
+  canvas.style.width  = W + 'px';
+  canvas.style.height = H + 'px';
+  const ctx = canvas.getContext('2d');
+  ctx.scale(2, 2); // retina scale
+
+  const data = window._resultData || {};
+  const { trophy='🏆', title='Fim de Jogo!', score=0, correct=0, answered=0, maxStreak=0, accuracy=0, diff='easy' } = data;
+  const diffEmoji = { easy:'🌱', medium:'⚡', hard:'🔥' }[diff] || '🌱';
+
+  // ── Background deep space ──────────────────────────
+  const bg = ctx.createLinearGradient(0, 0, W, H);
+  bg.addColorStop(0, '#06080f');
+  bg.addColorStop(1, '#0d1220');
+  ctx.fillStyle = bg; ctx.fillRect(0, 0, W, H);
+
+  // Subtle radial glow top-left
+  const g1 = ctx.createRadialGradient(W*.15, H*.1, 0, W*.15, H*.1, 180);
+  g1.addColorStop(0, 'rgba(124,58,237,.22)'); g1.addColorStop(1, 'transparent');
+  ctx.fillStyle = g1; ctx.fillRect(0, 0, W, H);
+
+  // Subtle radial glow bottom-right
+  const g2 = ctx.createRadialGradient(W*.85, H*.9, 0, W*.85, H*.9, 160);
+  g2.addColorStop(0, 'rgba(0,229,255,.14)'); g2.addColorStop(1, 'transparent');
+  ctx.fillStyle = g2; ctx.fillRect(0, 0, W, H);
+
+  // Stars sprinkle
+  ctx.save();
+  for (let i = 0; i < 60; i++) {
+    const sx = Math.sin(i * 137.5) * W * .5 + W * .5;
+    const sy = Math.cos(i * 97.3) * H * .5 + H * .5;
+    const sr = Math.random() * .9 + .3;
+    ctx.globalAlpha = Math.random() * .5 + .15;
+    ctx.fillStyle = '#fff';
+    ctx.beginPath(); ctx.arc(sx, sy, sr, 0, Math.PI*2); ctx.fill();
+  }
+  ctx.restore();
+
+  // ── Border frame ──────────────────────────────────
+  const borderGrad = ctx.createLinearGradient(0, 0, W, H);
+  borderGrad.addColorStop(0,   'rgba(124,58,237,.6)');
+  borderGrad.addColorStop(.5,  'rgba(0,229,255,.4)');
+  borderGrad.addColorStop(1,   'rgba(245,200,66,.3)');
+  ctx.strokeStyle = borderGrad;
+  ctx.lineWidth = 1.5;
+  roundRect(ctx, 1, 1, W-2, H-2, 18);
+  ctx.stroke();
+
+  // ── Inner glass panel (center) ─────────────────────
+  ctx.save();
+  ctx.globalAlpha = .07;
+  ctx.fillStyle = '#fff';
+  roundRect(ctx, 14, 14, W-28, H-28, 12);
+  ctx.fill();
+  ctx.restore();
+
+  // ── Trophy + Title ─────────────────────────────────
+  ctx.font = '38px serif';
+  ctx.textAlign = 'left';
+  ctx.fillText(trophy, 28, 58);
+
+  // Title
+  const titleGrad = ctx.createLinearGradient(72, 0, 320, 0);
+  titleGrad.addColorStop(0, '#f5c842');
+  titleGrad.addColorStop(.5, '#ffffff');
+  titleGrad.addColorStop(1, '#00e5ff');
+  ctx.fillStyle = titleGrad;
+  ctx.font = 'bold 26px Outfit, sans-serif';
+  ctx.textAlign = 'left';
+  ctx.fillText(title, 76, 50);
+
+  // Game name + diff
+  ctx.fillStyle = 'rgba(255,255,255,.38)';
+  ctx.font = '12px Outfit, sans-serif';
+  ctx.fillText('🌍 Qual é o País?  ' + diffEmoji, 76, 68);
+
+  // ── Divider line ─────────────────────────────────
+  const dvGrad = ctx.createLinearGradient(28, 0, W-28, 0);
+  dvGrad.addColorStop(0, 'transparent');
+  dvGrad.addColorStop(.3, 'rgba(255,255,255,.15)');
+  dvGrad.addColorStop(.7, 'rgba(255,255,255,.15)');
+  dvGrad.addColorStop(1, 'transparent');
+  ctx.strokeStyle = dvGrad; ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(28, 82); ctx.lineTo(W-28, 82); ctx.stroke();
+
+  // ── Score (big center-left) ───────────────────────
+  const scoreGrad = ctx.createLinearGradient(28, 90, 28, 150);
+  scoreGrad.addColorStop(0, '#ffe566');
+  scoreGrad.addColorStop(1, '#e07b00');
+  ctx.fillStyle = scoreGrad;
+  ctx.font = 'bold 62px Outfit, sans-serif';
+  ctx.textAlign = 'left';
+  ctx.fillText(score, 28, 152);
+
+  // pts label
+  ctx.fillStyle = 'rgba(255,255,255,.4)';
+  ctx.font = '13px Outfit, sans-serif';
+  ctx.fillText('PONTOS', 32, 170);
+
+  // ── Stats boxes (right side) ──────────────────────
+  const stats = [
+    { icon: '✅', val: correct + '/' + answered, lbl: 'Acertos' },
+    { icon: '🔥', val: maxStreak,                lbl: 'Sequência' },
+    { icon: '🎯', val: accuracy + '%',           lbl: 'Precisão'  },
+  ];
+
+  const bx = W - 260, bw = 76, bh = 72, gap = 10, by = 92;
+  stats.forEach((s, i) => {
+    const x = bx + i * (bw + gap);
+    // Box bg
+    ctx.save();
+    ctx.globalAlpha = .12;
+    ctx.fillStyle = '#fff';
+    roundRect(ctx, x, by, bw, bh, 10);
+    ctx.fill();
+    ctx.restore();
+    // Border
+    ctx.strokeStyle = 'rgba(255,255,255,.08)';
+    ctx.lineWidth = 1;
+    roundRect(ctx, x, by, bw, bh, 10);
+    ctx.stroke();
+    // Icon
+    ctx.font = '20px serif';
+    ctx.textAlign = 'center';
+    ctx.fillText(s.icon, x + bw/2, by + 22);
+    // Value
+    ctx.fillStyle = '#fff';
+    ctx.font = 'bold 16px Outfit, sans-serif';
+    ctx.fillText(s.val, x + bw/2, by + 44);
+    // Label
+    ctx.fillStyle = 'rgba(255,255,255,.4)';
+    ctx.font = '9.5px Outfit, sans-serif';
+    ctx.fillText(s.lbl.toUpperCase(), x + bw/2, by + 59);
+  });
+
+  // ── Rank message ──────────────────────────────────
+  const rankEl = document.getElementById('r-rank');
+  const rankText = rankEl ? rankEl.textContent.replace(/[<>]/g,'') : '';
+
+  // Pill background
+  const rankX = bx, rankY = by + bh + 10, rankW = (bw*3+gap*2), rankH = 28;
+  const pillGrad = ctx.createLinearGradient(rankX, 0, rankX + rankW, 0);
+  pillGrad.addColorStop(0, 'rgba(124,58,237,.25)');
+  pillGrad.addColorStop(1, 'rgba(0,229,255,.18)');
+  ctx.fillStyle = pillGrad;
+  ctx.strokeStyle = 'rgba(124,58,237,.4)'; ctx.lineWidth = 1;
+  roundRect(ctx, rankX, rankY, rankW, rankH, 8);
+  ctx.fill(); ctx.stroke();
+
+  ctx.fillStyle = '#00e5ff';
+  ctx.font = '11px Outfit, sans-serif';
+  ctx.textAlign = 'center';
+  ctx.fillText(rankText, rankX + rankW/2, rankY + 18);
+
+  // ── Bottom CTA ─────────────────────────────────────
+  ctx.fillStyle = 'rgba(255,255,255,.2)';
+  ctx.font = '11px Outfit, sans-serif';
+  ctx.textAlign = 'left';
+  ctx.fillText('Você consegue me superar? 👉 qualopaís.com', 28, H - 16);
+
+  return canvas;
+}
+
+function roundRect(ctx, x, y, w, h, r) {
+  ctx.beginPath();
+  ctx.moveTo(x + r, y);
+  ctx.lineTo(x + w - r, y);
+  ctx.arcTo(x + w, y, x + w, y + r, r);
+  ctx.lineTo(x + w, y + h - r);
+  ctx.arcTo(x + w, y + h, x + w - r, y + h, r);
+  ctx.lineTo(x + r, y + h);
+  ctx.arcTo(x, y + h, x, y + h - r, r);
+  ctx.lineTo(x, y + r);
+  ctx.arcTo(x, y, x + r, y, r);
+  ctx.closePath();
+}
+
+function downloadResultImage() {
+  const canvas = buildShareCanvas();
+  const link = document.createElement('a');
+  link.download = 'qual-e-o-pais-resultado.png';
+  link.href = canvas.toDataURL('image/png');
+  link.click();
+  tooltip('✅ Imagem salva!');
 }
 
 /* ══════════════════════════════════════════════════════════
