@@ -36,7 +36,9 @@
       background: var(--bg-deep);
       color: var(--text);
       font-family: 'Outfit', sans-serif;
-      overflow: hidden;
+      /* allow scroll on short screens / mobile */
+      overflow-x: hidden;
+      overflow-y: auto;
     }
 
     /* ── Animated BG ────────────────────────────────────────── */
@@ -49,20 +51,26 @@
     /* ── App Container ──────────────────────────────────────── */
     #app {
       position: relative; z-index: 1;
-      height: 100dvh;
+      min-height: 100dvh;
       display: flex; flex-direction: column;
       align-items: center; justify-content: center;
-      padding: 16px;
-      overflow-y: auto;
+      padding: clamp(12px, 4vw, 24px);
+      padding-bottom: max(clamp(12px, 4vw, 24px), env(safe-area-inset-bottom));
     }
 
     /* ── Screen utility ─────────────────────────────────────── */
     .screen {
       display: none;
-      width: 100%; max-width: 560px;
-      animation: fadeUp 0.45s ease both;
+      width: 100%;
+      max-width: min(560px, 100%);
+      animation: fadeUp 0.4s ease both;
     }
-    .screen.active { display: flex; flex-direction: column; gap: 16px; }
+    .screen.active { display: flex; flex-direction: column; gap: clamp(10px, 2vh, 16px); }
+
+    /* Desktop: wider screens get more room */
+    @media (min-width: 641px) {
+      .screen { max-width: 600px; }
+    }
 
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(24px); }
@@ -103,14 +111,18 @@
     .btn {
       display: inline-flex; align-items: center; justify-content: center;
       gap: 8px;
-      padding: 14px 28px;
+      padding: clamp(12px, 2vh, 16px) clamp(20px, 4vw, 32px);
       border-radius: 50px;
       font-family: 'Outfit', sans-serif;
-      font-size: 1rem; font-weight: 700;
+      font-size: clamp(.9rem, 2.5vw, 1rem); font-weight: 700;
       border: none; cursor: pointer;
       transition: transform .15s, box-shadow .2s, filter .15s;
       text-decoration: none;
       user-select: none;
+      /* Better touch targets on mobile */
+      min-height: 48px;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
     }
     .btn:hover  { transform: translateY(-2px); filter: brightness(1.15); }
     .btn:active { transform: scale(.96); }
@@ -174,19 +186,21 @@
       display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;
     }
     .diff-card {
-      padding: 16px 10px;
+      padding: clamp(12px, 2vw, 18px) 10px;
       border-radius: var(--radius-sm);
       border: 2px solid transparent;
       background: var(--bg-glass);
       cursor: pointer;
       text-align: center;
       transition: border-color .2s, transform .15s, background .2s;
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: transparent;
     }
     .diff-card:hover { transform: translateY(-3px); background: rgba(255,255,255,.07); }
     .diff-card.selected { border-color: var(--cyan); background: rgba(0,229,255,.08); }
-    .diff-card .diff-icon { font-size: 1.8rem; display: block; }
-    .diff-card .diff-name { font-weight: 700; font-size: .9rem; margin-top: 4px; }
-    .diff-card .diff-desc { font-size: .7rem; color: var(--text-dim); margin-top: 2px; }
+    .diff-card .diff-icon { font-size: clamp(1.4rem, 4vw, 1.8rem); display: block; }
+    .diff-card .diff-name { font-weight: 700; font-size: clamp(.8rem, 2.5vw, .9rem); margin-top: 4px; }
+    .diff-card .diff-desc { font-size: clamp(.65rem, 2vw, .72rem); color: var(--text-dim); margin-top: 2px; }
 
     /* ══════════════════════════════════════════════════════════
        SCREEN: LOADING
@@ -202,29 +216,27 @@
     }
     .loading-text { color: var(--text-dim); }
 
-    /* ══════════════════════════════════════════════════════════
-       SCREEN: GAME
-    ══════════════════════════════════════════════════════════ */
-    #game-screen { gap: 14px; }
+    /* ── Game Screen (mobile default: single column) ── */
+    #game-screen { gap: clamp(8px, 1.5vh, 14px); }
 
     /* ── HUD ── */
     .hud {
       display: flex; align-items: center; justify-content: space-between;
-      gap: 10px;
+      gap: 8px;
     }
     .hud-score {
-      font-weight: 800; font-size: 1.1rem;
-      display: flex; align-items: center; gap: 6px;
-    }
-    .hud-score .score-num { color: var(--gold); font-size: 1.4rem; }
-    .hud-streak {
+      font-weight: 800; font-size: clamp(.95rem, 2.5vw, 1.1rem);
       display: flex; align-items: center; gap: 5px;
-      font-size: .85rem; color: var(--text-dim);
+    }
+    .hud-score .score-num { color: var(--gold); font-size: clamp(1.15rem, 3vw, 1.4rem); }
+    .hud-streak {
+      display: flex; align-items: center; gap: 4px;
+      font-size: clamp(.75rem, 2vw, .85rem); color: var(--text-dim);
     }
     .hud-streak .streak-num { color: var(--cyan); font-weight: 700; }
 
     /* ── Timer ── */
-    .timer-wrap { position: relative; width: 52px; height: 52px; flex-shrink: 0; }
+    .timer-wrap { position: relative; width: clamp(44px, 8vw, 52px); height: clamp(44px, 8vw, 52px); flex-shrink: 0; }
     .timer-svg { position: absolute; inset: 0; transform: rotate(-90deg); }
     .timer-track { fill: none; stroke: rgba(255,255,255,.08); stroke-width: 3.5; }
     .timer-bar   { fill: none; stroke-width: 3.5; stroke-linecap: round;
@@ -232,7 +244,7 @@
     .timer-num {
       position: absolute; inset: 0;
       display: flex; align-items: center; justify-content: center;
-      font-weight: 800; font-size: 1rem;
+      font-weight: 800; font-size: clamp(.85rem, 2.5vw, 1rem);
     }
 
     /* ── Progress ── */
@@ -242,22 +254,22 @@
     /* ── Round type badge ── */
     .round-badge {
       display: inline-flex; align-items: center; gap: 6px;
-      padding: 5px 14px;
+      padding: 5px 12px;
       border-radius: 50px;
       background: var(--bg-glass);
       border: 1px solid var(--border);
-      font-size: .8rem; color: var(--text-dim);
+      font-size: clamp(.72rem, 2vw, .8rem); color: var(--text-dim);
       align-self: flex-start;
     }
-    .round-badge .badge-icon { font-size: 1rem; }
+    .round-badge .badge-icon { font-size: .95rem; }
 
     /* ── Question card ── */
     .question-card {
-      padding: 24px 20px;
+      padding: clamp(16px, 3vw, 24px) 20px;
       border-radius: var(--radius-lg);
-      min-height: 210px;
+      min-height: clamp(160px, 28vh, 210px);
       display: flex; flex-direction: column; align-items: center; justify-content: center;
-      gap: 14px;
+      gap: clamp(10px, 2vh, 14px);
       text-align: center;
       position: relative; overflow: hidden;
     }
@@ -270,40 +282,44 @@
 
     /* Flag display */
     .flag-display {
-      width: 200px; height: 120px;
+      width: clamp(140px, 40vw, 220px);
+      height: clamp(85px, 24vw, 130px);
       border-radius: 10px;
       object-fit: cover;
       box-shadow: 0 8px 32px rgba(0,0,0,.6), 0 0 0 1px rgba(255,255,255,.08);
       animation: popIn .4s ease both;
     }
     /* Text clue */
-    .clue-emoji { font-size: 3rem; animation: popIn .4s ease both; }
+    .clue-emoji { font-size: clamp(2.2rem, 7vw, 3rem); animation: popIn .4s ease both; }
     .clue-text  {
-      font-size: 1.5rem; font-weight: 700;
+      font-size: clamp(1.2rem, 4vw, 1.5rem); font-weight: 700;
       background: linear-gradient(135deg, #fff 0%, var(--cyan) 100%);
       -webkit-background-clip: text; background-clip: text;
       -webkit-text-fill-color: transparent;
       animation: popIn .4s ease both;
     }
-    .clue-sub   { font-size: .85rem; color: var(--text-dim); }
+    .clue-sub   { font-size: clamp(.78rem, 2vw, .85rem); color: var(--text-dim); }
 
     /* ── Answers grid ── */
-    .answers-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .answers-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(7px, 1.5vw, 10px); }
     @media (max-width: 380px) { .answers-grid { grid-template-columns: 1fr; } }
 
     .ans-btn {
-      padding: 13px 12px;
+      padding: clamp(11px, 2vh, 14px) 12px;
       border-radius: var(--radius-sm);
       background: var(--bg-glass);
       border: 1.5px solid var(--border);
       color: var(--text);
       font-family: 'Outfit', sans-serif;
-      font-size: .88rem; font-weight: 600;
+      font-size: clamp(.82rem, 2.2vw, .9rem); font-weight: 600;
       text-align: left;
       cursor: pointer;
       transition: border-color .15s, background .15s, transform .15s;
-      display: flex; align-items: center; gap: 10px;
+      display: flex; align-items: center; gap: 9px;
       position: relative; overflow: hidden;
+      min-height: 52px;
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: transparent;
     }
     .ans-btn::before {
       content: '';
@@ -467,6 +483,123 @@
 
     .result-actions { display: flex; flex-direction: column; gap: 10px; width: 100%; }
 
+    /* ══════════════════════════════════════════════════════════
+       DESKTOP: 2-column layout for game screen (≥1025px)
+    ══════════════════════════════════════════════════════════ */
+    @media (min-width: 1025px) {
+      #app { padding: 24px 40px; }
+
+      /* Game screen goes wide */
+      #game-screen {
+        max-width: 900px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto auto auto 1fr auto;
+        gap: 14px 24px;
+        align-items: start;
+      }
+
+      /* HUD spans full width */
+      #game-screen .hud           { grid-column: 1 / -1; }
+      #game-screen .progress-wrap { grid-column: 1 / -1; }
+
+      /* Badge + timer row spans full width */
+      #game-screen .badge-timer-row { grid-column: 1 / -1; }
+
+      /* Question card — left column, 2 rows */
+      #game-screen .question-card {
+        grid-column: 1;
+        grid-row: 3 / 6;
+        min-height: 300px;
+      }
+
+      /* Answers right column */
+      #game-screen .answers-grid {
+        grid-column: 2;
+        grid-row: 3;
+        grid-template-columns: 1fr;
+      }
+
+      /* Fact banner right col */
+      #game-screen .fact-banner {
+        grid-column: 2;
+        grid-row: 4;
+      }
+
+      /* Wider flag */
+      .flag-display { width: 260px; height: 155px; }
+
+      /* Result screen wider */
+      #result-screen { max-width: 680px; }
+
+      /* Result card 2-col */
+      .result-card {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 0 28px;
+        align-items: center;
+      }
+      .result-score-wrap { margin-bottom: 0; }
+      .result-big-num { font-size: 5rem; }
+      .result-divider { display: none; }
+      .result-stats {
+        grid-column: 2;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+      }
+
+      /* Home screen wider */
+      #home-screen { max-width: 520px; }
+
+    /* Canvas wider on desktop */
+      #share-canvas { width: 100% !important; }
+    }
+
+    /* ══════════════════════════════════════════════════════════
+       MOBILE: portrait small phones (≤ 480px)
+    ══════════════════════════════════════════════════════════ */
+    @media (max-width: 480px) {
+      .home-globe { font-size: 3.5rem; }
+      .home-title { font-size: 1.8rem; }
+
+      /* Compact result screen so it fits one screen */
+      #result-screen { gap: 8px; }
+      .result-trophy { font-size: 3rem; }
+      .result-title  { font-size: 1.5rem; }
+      .result-big-num{ font-size: 2.8rem; }
+      .result-score-wrap { margin-bottom: 10px; }
+      .result-card { padding: 16px 14px 14px; }
+
+      .rs { padding: 9px 4px; }
+      .rs-icon { font-size: 1.1rem; }
+      .rs-num { font-size: 1.1rem; }
+      .rs-lbl { font-size: .62rem; }
+
+      .rank-badge { padding: 9px 14px; font-size: .82rem; }
+      .result-actions { gap: 8px; }
+      .result-actions .btn { font-size: .88rem; padding: 11px 18px; min-height: 44px; }
+
+      /* Canvas on mobile: use smaller canvas so it doesn't overflow */
+      .share-preview-wrap { display: none; } /* hide preview on very small screens */
+    }
+
+    @media (max-width: 390px) {
+      .result-big-num { font-size: 2.4rem; }
+    }
+
+    /* ══════════════════════════════════════════════════════════
+       LANDSCAPE MOBILE (short height)
+    ══════════════════════════════════════════════════════════ */
+    @media (max-height: 600px) and (orientation: landscape) {
+      #app { justify-content: flex-start; padding-top: 10px; }
+      .home-globe { font-size: 2.5rem; }
+      .result-trophy { font-size: 2.5rem; margin-top: 8px; }
+      .question-card { min-height: 140px; padding: 12px; }
+      .flag-display { width: 120px; height: 72px; }
+      #game-screen { gap: 7px; }
+      .screen.active { gap: 8px; }
+    }
+
     /* ── Tooltip ── */
     #tooltip {
       position: fixed; bottom: 20px; left: 50%;
@@ -479,6 +612,20 @@
       z-index: 9999; white-space: nowrap;
     }
     #tooltip.show { opacity: 1; }
+
+    /* ── Badge + Timer unified row ── */
+    .badge-timer-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+    .badge-timer-row .round-badge { flex: 1; }
+
+    /* Desktop 2-col: badge-timer spans full width (overridden in grid via JS col placement) */
+    @media (min-width: 1025px) {
+      .badge-timer-row { grid-column: 1 / -1; }
+    }
 
     /* ── Fact banner ── */
     .fact-banner {
@@ -570,15 +717,13 @@
       <div class="progress-bar" id="g-progress" style="width:0%"></div>
     </div>
 
-    <!-- Round badge -->
-    <div class="round-badge" id="g-badge">
-      <span class="badge-icon" id="g-badge-icon">🏳️</span>
-      <span id="g-badge-text">Bandeira</span>
-      <span style="margin-left:auto; color:var(--text-dim); font-size:.75rem" id="g-round-num">1/10</span>
-    </div>
-
-    <!-- Timer -->
-    <div style="display:flex; align-items:center; justify-content:center; gap:12px">
+    <!-- Round badge + Timer row -->
+    <div class="badge-timer-row">
+      <div class="round-badge" id="g-badge">
+        <span class="badge-icon" id="g-badge-icon">🏳️</span>
+        <span id="g-badge-text">Bandeira</span>
+        <span style="margin-left:auto; color:var(--text-dim); font-size:.75rem" id="g-round-num">1/10</span>
+      </div>
       <div class="timer-wrap">
         <svg class="timer-svg" viewBox="0 0 52 52">
           <circle class="timer-track" cx="26" cy="26" r="23"/>
