@@ -1,37 +1,49 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Qual é o País? 🌍 – O Desafio das Nações</title>
-  <meta name="description" content="Teste seus conhecimentos geográficos! Identifique países por bandeiras, capitais, mapas e curiosidades. Desafie seus amigos!" />
+  <meta name="description"
+    content="Teste seus conhecimentos geográficos! Identifique países por bandeiras, capitais, mapas e curiosidades. Desafie seus amigos!" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
-
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1251593574340280"
+    crossorigin="anonymous"></script>
   <style>
     /* ── Reset & Tokens ─────────────────────────────────────── */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --bg-deep:    #06080f;
-      --bg-card:    #0d1220;
-      --bg-glass:   rgba(255,255,255,0.04);
-      --border:     rgba(255,255,255,0.07);
-      --gold:       #f5c842;
-      --gold-dim:   #a07a10;
-      --cyan:       #00e5ff;
-      --violet:     #7c3aed;
-      --green:      #22c55e;
-      --red:        #ef4444;
-      --text:       #e8eaf0;
-      --text-dim:   #7b82a0;
-      --radius-lg:  20px;
-      --radius-sm:  12px;
-      --shadow-glow: 0 0 40px rgba(0,229,255,0.12);
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
-    html, body {
+    :root {
+      --bg-deep: #06080f;
+      --bg-card: #0d1220;
+      --bg-glass: rgba(255, 255, 255, 0.04);
+      --border: rgba(255, 255, 255, 0.07);
+      --gold: #f5c842;
+      --gold-dim: #a07a10;
+      --cyan: #00e5ff;
+      --violet: #7c3aed;
+      --green: #22c55e;
+      --red: #ef4444;
+      --text: #e8eaf0;
+      --text-dim: #7b82a0;
+      --radius-lg: 20px;
+      --radius-sm: 12px;
+      --shadow-glow: 0 0 40px rgba(0, 229, 255, 0.12);
+    }
+
+    html,
+    body {
       height: 100%;
       background: var(--bg-deep);
       color: var(--text);
@@ -43,17 +55,21 @@
 
     /* ── Animated BG ────────────────────────────────────────── */
     #bg-canvas {
-      position: fixed; inset: 0;
+      position: fixed;
+      inset: 0;
       z-index: 0;
       pointer-events: none;
     }
 
     /* ── App Container ──────────────────────────────────────── */
     #app {
-      position: relative; z-index: 1;
+      position: relative;
+      z-index: 1;
       min-height: 100dvh;
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
       padding: clamp(12px, 4vw, 24px);
       padding-bottom: max(clamp(12px, 4vw, 24px), env(safe-area-inset-bottom));
     }
@@ -65,37 +81,98 @@
       max-width: min(560px, 100%);
       animation: fadeUp 0.4s ease both;
     }
-    .screen.active { display: flex; flex-direction: column; gap: clamp(10px, 2vh, 16px); }
+
+    .screen.active {
+      display: flex;
+      flex-direction: column;
+      gap: clamp(10px, 2vh, 16px);
+    }
 
     /* Desktop: wider screens get more room */
     @media (min-width: 641px) {
-      .screen { max-width: 600px; }
+      .screen {
+        max-width: 600px;
+      }
     }
 
     @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(24px); }
-      to   { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(24px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
+
     @keyframes popIn {
-      0%   { transform: scale(0.75); opacity: 0; }
-      60%  { transform: scale(1.08); }
-      100% { transform: scale(1);    opacity: 1; }
+      0% {
+        transform: scale(0.75);
+        opacity: 0;
+      }
+
+      60% {
+        transform: scale(1.08);
+      }
+
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
     }
+
     @keyframes shake {
-      0%,100% { transform: translateX(0); }
-      20%     { transform: translateX(-8px); }
-      40%     { transform: translateX(8px); }
-      60%     { transform: translateX(-6px); }
-      80%     { transform: translateX(6px); }
+
+      0%,
+      100% {
+        transform: translateX(0);
+      }
+
+      20% {
+        transform: translateX(-8px);
+      }
+
+      40% {
+        transform: translateX(8px);
+      }
+
+      60% {
+        transform: translateX(-6px);
+      }
+
+      80% {
+        transform: translateX(6px);
+      }
     }
+
     @keyframes pulse-ring {
-      0%   { transform: scale(1);    opacity: .7; }
-      100% { transform: scale(1.35); opacity: 0; }
+      0% {
+        transform: scale(1);
+        opacity: .7;
+      }
+
+      100% {
+        transform: scale(1.35);
+        opacity: 0;
+      }
     }
-    @keyframes spin { to { transform: rotate(360deg); } }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
     @keyframes countdownTick {
-      0%   { transform: scale(1.15); }
-      100% { transform: scale(1); }
+      0% {
+        transform: scale(1.15);
+      }
+
+      100% {
+        transform: scale(1);
+      }
     }
 
     /* ── Glass Card ─────────────────────────────────────────── */
@@ -109,13 +186,17 @@
 
     /* ── Buttons ─────────────────────────────────────────────── */
     .btn {
-      display: inline-flex; align-items: center; justify-content: center;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       gap: 8px;
       padding: clamp(12px, 2vh, 16px) clamp(20px, 4vw, 32px);
       border-radius: 50px;
       font-family: 'Outfit', sans-serif;
-      font-size: clamp(.9rem, 2.5vw, 1rem); font-weight: 700;
-      border: none; cursor: pointer;
+      font-size: clamp(.9rem, 2.5vw, 1rem);
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
       transition: transform .15s, box-shadow .2s, filter .15s;
       text-decoration: none;
       user-select: none;
@@ -124,40 +205,66 @@
       -webkit-tap-highlight-color: transparent;
       touch-action: manipulation;
     }
-    .btn:hover  { transform: translateY(-2px); filter: brightness(1.15); }
-    .btn:active { transform: scale(.96); }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.15);
+    }
+
+    .btn:active {
+      transform: scale(.96);
+    }
 
     .btn-primary {
       background: linear-gradient(135deg, #00c6ff, #7c3aed);
       color: #fff;
-      box-shadow: 0 4px 24px rgba(124,58,237,.45);
+      box-shadow: 0 4px 24px rgba(124, 58, 237, .45);
     }
+
     .btn-gold {
       background: linear-gradient(135deg, #f5c842, #e07b00);
       color: #111;
-      box-shadow: 0 4px 24px rgba(245,200,66,.35);
+      box-shadow: 0 4px 24px rgba(245, 200, 66, .35);
     }
+
     .btn-ghost {
       background: var(--bg-glass);
       border: 1px solid var(--border);
       color: var(--text);
     }
-    .btn-ghost:hover { background: rgba(255,255,255,.08); }
-    .btn-full { width: 100%; }
+
+    .btn-ghost:hover {
+      background: rgba(255, 255, 255, .08);
+    }
+
+    .btn-full {
+      width: 100%;
+    }
 
     /* ══════════════════════════════════════════════════════════
        SCREEN: HOME
     ══════════════════════════════════════════════════════════ */
-    #home-screen { align-items: center; text-align: center; }
+    #home-screen {
+      align-items: center;
+      text-align: center;
+    }
 
     .home-globe {
       font-size: 4.5rem;
       animation: floatGlobe 3s ease-in-out infinite;
       display: block;
     }
+
     @keyframes floatGlobe {
-      0%,100% { transform: translateY(0) rotate(-4deg); }
-      50%      { transform: translateY(-10px) rotate(4deg); }
+
+      0%,
+      100% {
+        transform: translateY(0) rotate(-4deg);
+      }
+
+      50% {
+        transform: translateY(-10px) rotate(4deg);
+      }
     }
 
     .home-title {
@@ -165,26 +272,42 @@
       font-weight: 900;
       line-height: 1.1;
       background: linear-gradient(135deg, #ffffff 0%, var(--cyan) 60%, var(--gold) 100%);
-      -webkit-background-clip: text; background-clip: text;
+      -webkit-background-clip: text;
+      background-clip: text;
       -webkit-text-fill-color: transparent;
     }
-    .home-subtitle { color: var(--text-dim); font-size: .95rem; line-height: 1.5; }
+
+    .home-subtitle {
+      color: var(--text-dim);
+      font-size: .95rem;
+      line-height: 1.5;
+    }
 
     .stats-row {
-      display: flex; gap: 12px; justify-content: center;
+      display: flex;
+      gap: 12px;
+      justify-content: center;
     }
+
     .stat-pill {
       padding: 8px 18px;
       border-radius: 50px;
       background: var(--bg-glass);
       border: 1px solid var(--border);
-      font-size: .85rem; color: var(--text-dim);
+      font-size: .85rem;
+      color: var(--text-dim);
     }
-    .stat-pill strong { color: var(--text); }
+
+    .stat-pill strong {
+      color: var(--text);
+    }
 
     .difficulty-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
     }
+
     .diff-card {
       padding: clamp(12px, 2vw, 18px) 10px;
       border-radius: var(--radius-sm);
@@ -196,87 +319,186 @@
       touch-action: manipulation;
       -webkit-tap-highlight-color: transparent;
     }
-    .diff-card:hover { transform: translateY(-3px); background: rgba(255,255,255,.07); }
-    .diff-card.selected { border-color: var(--cyan); background: rgba(0,229,255,.08); }
-    .diff-card .diff-icon { font-size: clamp(1.4rem, 4vw, 1.8rem); display: block; }
-    .diff-card .diff-name { font-weight: 700; font-size: clamp(.8rem, 2.5vw, .9rem); margin-top: 4px; }
-    .diff-card .diff-desc { font-size: clamp(.65rem, 2vw, .72rem); color: var(--text-dim); margin-top: 2px; }
+
+    .diff-card:hover {
+      transform: translateY(-3px);
+      background: rgba(255, 255, 255, .07);
+    }
+
+    .diff-card.selected {
+      border-color: var(--cyan);
+      background: rgba(0, 229, 255, .08);
+    }
+
+    .diff-card .diff-icon {
+      font-size: clamp(1.4rem, 4vw, 1.8rem);
+      display: block;
+    }
+
+    .diff-card .diff-name {
+      font-weight: 700;
+      font-size: clamp(.8rem, 2.5vw, .9rem);
+      margin-top: 4px;
+    }
+
+    .diff-card .diff-desc {
+      font-size: clamp(.65rem, 2vw, .72rem);
+      color: var(--text-dim);
+      margin-top: 2px;
+    }
 
     /* ══════════════════════════════════════════════════════════
        SCREEN: LOADING
     ══════════════════════════════════════════════════════════ */
-    #loading-screen { align-items: center; text-align: center; gap: 20px; }
+    #loading-screen {
+      align-items: center;
+      text-align: center;
+      gap: 20px;
+    }
 
     .spinner {
-      width: 56px; height: 56px;
+      width: 56px;
+      height: 56px;
       border: 3px solid var(--border);
       border-top-color: var(--cyan);
       border-radius: 50%;
       animation: spin .8s linear infinite;
     }
-    .loading-text { color: var(--text-dim); }
+
+    .loading-text {
+      color: var(--text-dim);
+    }
 
     /* ── Game Screen (mobile default: single column) ── */
-    #game-screen { gap: clamp(8px, 1.5vh, 14px); }
+    #game-screen {
+      gap: clamp(8px, 1.5vh, 14px);
+    }
 
     /* ── HUD ── */
     .hud {
-      display: flex; align-items: center; justify-content: space-between;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       gap: 8px;
     }
+
     .hud-score {
-      font-weight: 800; font-size: clamp(.95rem, 2.5vw, 1.1rem);
-      display: flex; align-items: center; gap: 5px;
+      font-weight: 800;
+      font-size: clamp(.95rem, 2.5vw, 1.1rem);
+      display: flex;
+      align-items: center;
+      gap: 5px;
     }
-    .hud-score .score-num { color: var(--gold); font-size: clamp(1.15rem, 3vw, 1.4rem); }
+
+    .hud-score .score-num {
+      color: var(--gold);
+      font-size: clamp(1.15rem, 3vw, 1.4rem);
+    }
+
     .hud-streak {
-      display: flex; align-items: center; gap: 4px;
-      font-size: clamp(.75rem, 2vw, .85rem); color: var(--text-dim);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: clamp(.75rem, 2vw, .85rem);
+      color: var(--text-dim);
     }
-    .hud-streak .streak-num { color: var(--cyan); font-weight: 700; }
+
+    .hud-streak .streak-num {
+      color: var(--cyan);
+      font-weight: 700;
+    }
 
     /* ── Timer ── */
-    .timer-wrap { position: relative; width: clamp(44px, 8vw, 52px); height: clamp(44px, 8vw, 52px); flex-shrink: 0; }
-    .timer-svg { position: absolute; inset: 0; transform: rotate(-90deg); }
-    .timer-track { fill: none; stroke: rgba(255,255,255,.08); stroke-width: 3.5; }
-    .timer-bar   { fill: none; stroke-width: 3.5; stroke-linecap: round;
-                   transition: stroke-dashoffset .9s linear, stroke .5s; }
+    .timer-wrap {
+      position: relative;
+      width: clamp(44px, 8vw, 52px);
+      height: clamp(44px, 8vw, 52px);
+      flex-shrink: 0;
+    }
+
+    .timer-svg {
+      position: absolute;
+      inset: 0;
+      transform: rotate(-90deg);
+    }
+
+    .timer-track {
+      fill: none;
+      stroke: rgba(255, 255, 255, .08);
+      stroke-width: 3.5;
+    }
+
+    .timer-bar {
+      fill: none;
+      stroke-width: 3.5;
+      stroke-linecap: round;
+      transition: stroke-dashoffset .9s linear, stroke .5s;
+    }
+
     .timer-num {
-      position: absolute; inset: 0;
-      display: flex; align-items: center; justify-content: center;
-      font-weight: 800; font-size: clamp(.85rem, 2.5vw, 1rem);
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: clamp(.85rem, 2.5vw, 1rem);
     }
 
     /* ── Progress ── */
-    .progress-wrap { position: relative; height: 4px; background: var(--border); border-radius: 99px; overflow: hidden; }
-    .progress-bar  { height: 100%; background: linear-gradient(90deg, var(--cyan), var(--violet)); border-radius: 99px; transition: width .4s ease; }
+    .progress-wrap {
+      position: relative;
+      height: 4px;
+      background: var(--border);
+      border-radius: 99px;
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, var(--cyan), var(--violet));
+      border-radius: 99px;
+      transition: width .4s ease;
+    }
 
     /* ── Round type badge ── */
     .round-badge {
-      display: inline-flex; align-items: center; gap: 6px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
       padding: 5px 12px;
       border-radius: 50px;
       background: var(--bg-glass);
       border: 1px solid var(--border);
-      font-size: clamp(.72rem, 2vw, .8rem); color: var(--text-dim);
+      font-size: clamp(.72rem, 2vw, .8rem);
+      color: var(--text-dim);
       align-self: flex-start;
     }
-    .round-badge .badge-icon { font-size: .95rem; }
+
+    .round-badge .badge-icon {
+      font-size: .95rem;
+    }
 
     /* ── Question card ── */
     .question-card {
       padding: clamp(16px, 3vw, 24px) 20px;
       border-radius: var(--radius-lg);
       min-height: clamp(160px, 28vh, 210px);
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
       gap: clamp(10px, 2vh, 14px);
       text-align: center;
-      position: relative; overflow: hidden;
+      position: relative;
+      overflow: hidden;
     }
+
     .question-card::before {
       content: '';
-      position: absolute; inset: 0;
-      background: radial-gradient(ellipse at 50% -10%, rgba(0,229,255,.12) 0%, transparent 65%);
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% -10%, rgba(0, 229, 255, .12) 0%, transparent 65%);
       pointer-events: none;
     }
 
@@ -286,23 +508,43 @@
       height: clamp(85px, 24vw, 130px);
       border-radius: 10px;
       object-fit: cover;
-      box-shadow: 0 8px 32px rgba(0,0,0,.6), 0 0 0 1px rgba(255,255,255,.08);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, .6), 0 0 0 1px rgba(255, 255, 255, .08);
       animation: popIn .4s ease both;
     }
+
     /* Text clue */
-    .clue-emoji { font-size: clamp(2.2rem, 7vw, 3rem); animation: popIn .4s ease both; }
-    .clue-text  {
-      font-size: clamp(1.2rem, 4vw, 1.5rem); font-weight: 700;
+    .clue-emoji {
+      font-size: clamp(2.2rem, 7vw, 3rem);
+      animation: popIn .4s ease both;
+    }
+
+    .clue-text {
+      font-size: clamp(1.2rem, 4vw, 1.5rem);
+      font-weight: 700;
       background: linear-gradient(135deg, #fff 0%, var(--cyan) 100%);
-      -webkit-background-clip: text; background-clip: text;
+      -webkit-background-clip: text;
+      background-clip: text;
       -webkit-text-fill-color: transparent;
       animation: popIn .4s ease both;
     }
-    .clue-sub   { font-size: clamp(.78rem, 2vw, .85rem); color: var(--text-dim); }
+
+    .clue-sub {
+      font-size: clamp(.78rem, 2vw, .85rem);
+      color: var(--text-dim);
+    }
 
     /* ── Answers grid ── */
-    .answers-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(7px, 1.5vw, 10px); }
-    @media (max-width: 380px) { .answers-grid { grid-template-columns: 1fr; } }
+    .answers-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(7px, 1.5vw, 10px);
+    }
+
+    @media (max-width: 380px) {
+      .answers-grid {
+        grid-template-columns: 1fr;
+      }
+    }
 
     .ans-btn {
       padding: clamp(11px, 2vh, 14px) 12px;
@@ -311,84 +553,154 @@
       border: 1.5px solid var(--border);
       color: var(--text);
       font-family: 'Outfit', sans-serif;
-      font-size: clamp(.82rem, 2.2vw, .9rem); font-weight: 600;
+      font-size: clamp(.82rem, 2.2vw, .9rem);
+      font-weight: 600;
       text-align: left;
       cursor: pointer;
       transition: border-color .15s, background .15s, transform .15s;
-      display: flex; align-items: center; gap: 9px;
-      position: relative; overflow: hidden;
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      position: relative;
+      overflow: hidden;
       min-height: 52px;
       touch-action: manipulation;
       -webkit-tap-highlight-color: transparent;
     }
+
     .ans-btn::before {
       content: '';
-      position: absolute; inset: 0;
-      background: linear-gradient(135deg, rgba(0,229,255,.06), transparent);
-      opacity: 0; transition: opacity .2s;
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(0, 229, 255, .06), transparent);
+      opacity: 0;
+      transition: opacity .2s;
     }
-    .ans-btn:hover:not(:disabled)::before { opacity: 1; }
-    .ans-btn:hover:not(:disabled) { border-color: rgba(0,229,255,.4); transform: translateY(-1px); }
-    .ans-btn:disabled { cursor: default; }
-    .ans-btn .ans-flag { font-size: 1.5rem; flex-shrink: 0; }
-    .ans-btn .ans-name { line-height: 1.2; }
-    .ans-btn .ans-name small { display: block; font-weight: 400; color: var(--text-dim); font-size: .75rem; }
+
+    .ans-btn:hover:not(:disabled)::before {
+      opacity: 1;
+    }
+
+    .ans-btn:hover:not(:disabled) {
+      border-color: rgba(0, 229, 255, .4);
+      transform: translateY(-1px);
+    }
+
+    .ans-btn:disabled {
+      cursor: default;
+    }
+
+    .ans-btn .ans-flag {
+      font-size: 1.5rem;
+      flex-shrink: 0;
+    }
+
+    .ans-btn .ans-name {
+      line-height: 1.2;
+    }
+
+    .ans-btn .ans-name small {
+      display: block;
+      font-weight: 400;
+      color: var(--text-dim);
+      font-size: .75rem;
+    }
 
     .ans-btn.correct {
-      background: rgba(34,197,94,.18);
+      background: rgba(34, 197, 94, .18);
       border-color: var(--green);
       animation: popIn .3s ease both;
     }
+
     .ans-btn.wrong {
-      background: rgba(239,68,68,.15);
+      background: rgba(239, 68, 68, .15);
       border-color: var(--red);
       animation: shake .35s ease both;
     }
-    .ans-btn.reveal { border-color: var(--green); opacity: .6; }
+
+    .ans-btn.reveal {
+      border-color: var(--green);
+      opacity: .6;
+    }
 
     /* correct tick / wrong x */
-    .ans-btn.correct::after { content: ' ✓'; color: var(--green); font-weight: 900; margin-left: auto; }
-    .ans-btn.wrong::after   { content: ' ✗'; color: var(--red);   font-weight: 900; margin-left: auto; }
+    .ans-btn.correct::after {
+      content: ' ✓';
+      color: var(--green);
+      font-weight: 900;
+      margin-left: auto;
+    }
+
+    .ans-btn.wrong::after {
+      content: ' ✗';
+      color: var(--red);
+      font-weight: 900;
+      margin-left: auto;
+    }
 
     /* ── Lives ── */
-    .lives-row { display: flex; gap: 6px; justify-content: center; }
-    .life { font-size: 1.2rem; transition: transform .2s, filter .2s; }
-    .life.lost { filter: grayscale(1); opacity: .3; transform: scale(.8); }
+    .lives-row {
+      display: flex;
+      gap: 6px;
+      justify-content: center;
+    }
+
+    .life {
+      font-size: 1.2rem;
+      transition: transform .2s, filter .2s;
+    }
+
+    .life.lost {
+      filter: grayscale(1);
+      opacity: .3;
+      transform: scale(.8);
+    }
 
     /* ── Combo notification ── */
     #combo-toast {
-      position: fixed; top: 80px; left: 50%;
+      position: fixed;
+      top: 80px;
+      left: 50%;
       transform: translateX(-50%) translateY(-20px);
       background: linear-gradient(135deg, var(--gold), #e07b00);
       color: #111;
       padding: 8px 22px;
       border-radius: 50px;
-      font-weight: 800; font-size: .95rem;
-      pointer-events: none; opacity: 0;
+      font-weight: 800;
+      font-size: .95rem;
+      pointer-events: none;
+      opacity: 0;
       transition: opacity .2s, transform .2s;
       z-index: 999;
       white-space: nowrap;
     }
+
     #combo-toast.show {
-      opacity: 1; transform: translateX(-50%) translateY(0);
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
     }
 
     /* ══════════════════════════════════════════════════════════
        SCREEN: RESULT
     ══════════════════════════════════════════════════════════ */
-    #result-screen { align-items: center; text-align: center; gap: 14px; }
+    #result-screen {
+      align-items: center;
+      text-align: center;
+      gap: 14px;
+    }
 
     .result-trophy {
       font-size: 4.5rem;
       animation: popIn .5s .1s ease both;
-      filter: drop-shadow(0 0 24px rgba(245,200,66,.4));
+      filter: drop-shadow(0 0 24px rgba(245, 200, 66, .4));
     }
 
     .result-title {
       font-size: clamp(1.6rem, 5vw, 2.4rem);
       font-weight: 900;
       background: linear-gradient(135deg, var(--gold) 0%, #fff 50%, var(--cyan) 100%);
-      -webkit-background-clip: text; background-clip: text;
+      -webkit-background-clip: text;
+      background-clip: text;
       -webkit-text-fill-color: transparent;
       letter-spacing: -.5px;
     }
@@ -397,42 +709,55 @@
     .result-card {
       width: 100%;
       padding: 24px 20px 20px;
-      position: relative; overflow: hidden;
+      position: relative;
+      overflow: hidden;
       background: linear-gradient(160deg,
-        rgba(124,58,237,.12) 0%,
-        rgba(0,229,255,.06) 50%,
-        rgba(245,200,66,.05) 100%);
-      border: 1px solid rgba(124,58,237,.3);
+          rgba(124, 58, 237, .12) 0%,
+          rgba(0, 229, 255, .06) 50%,
+          rgba(245, 200, 66, .05) 100%);
+      border: 1px solid rgba(124, 58, 237, .3);
     }
+
     .result-card::before {
       content: '';
-      position: absolute; inset: 0;
-      background: radial-gradient(ellipse at 50% -20%, rgba(0,229,255,.15) 0%, transparent 65%);
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% -20%, rgba(0, 229, 255, .15) 0%, transparent 65%);
       pointer-events: none;
     }
 
     .result-score-wrap {
       position: relative;
-      display: inline-flex; flex-direction: column; align-items: center;
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
       margin-bottom: 18px;
     }
+
     .result-score-ring {
-      position: absolute; inset: -12px;
+      position: absolute;
+      inset: -12px;
       border-radius: 50%;
-      background: conic-gradient(var(--gold) 0deg, rgba(245,200,66,.1) 0deg);
+      background: conic-gradient(var(--gold) 0deg, rgba(245, 200, 66, .1) 0deg);
       animation: none;
     }
+
     .result-big-num {
-      font-size: 4rem; font-weight: 900;
+      font-size: 4rem;
+      font-weight: 900;
       background: linear-gradient(135deg, #ffe066, var(--gold), #e07b00);
-      -webkit-background-clip: text; background-clip: text;
+      -webkit-background-clip: text;
+      background-clip: text;
       -webkit-text-fill-color: transparent;
       line-height: 1;
       position: relative;
     }
+
     .result-label {
-      color: var(--text-dim); font-size: .8rem;
-      letter-spacing: 2px; text-transform: uppercase;
+      color: var(--text-dim);
+      font-size: .8rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
       margin-top: 4px;
     }
 
@@ -443,30 +768,57 @@
     }
 
     .result-stats {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
     }
+
     .rs {
       text-align: center;
       padding: 12px 6px;
       border-radius: var(--radius-sm);
-      background: rgba(255,255,255,.04);
+      background: rgba(255, 255, 255, .04);
       border: 1px solid var(--border);
       transition: transform .2s;
     }
-    .rs:hover { transform: translateY(-2px); }
-    .rs-icon { font-size: 1.3rem; display: block; }
-    .rs-num { font-size: 1.35rem; font-weight: 800; line-height: 1.2; margin-top: 4px; }
-    .rs-lbl { font-size: .68rem; color: var(--text-dim); margin-top: 3px; letter-spacing: .5px; text-transform: uppercase; }
+
+    .rs:hover {
+      transform: translateY(-2px);
+    }
+
+    .rs-icon {
+      font-size: 1.3rem;
+      display: block;
+    }
+
+    .rs-num {
+      font-size: 1.35rem;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-top: 4px;
+    }
+
+    .rs-lbl {
+      font-size: .68rem;
+      color: var(--text-dim);
+      margin-top: 3px;
+      letter-spacing: .5px;
+      text-transform: uppercase;
+    }
 
     .rank-badge {
       width: 100%;
       padding: 12px 24px;
       border-radius: var(--radius-sm);
-      background: linear-gradient(135deg, rgba(124,58,237,.18), rgba(0,229,255,.12));
-      border: 1px solid rgba(124,58,237,.35);
-      font-size: .9rem; color: var(--text);
+      background: linear-gradient(135deg, rgba(124, 58, 237, .18), rgba(0, 229, 255, .12));
+      border: 1px solid rgba(124, 58, 237, .35);
+      font-size: .9rem;
+      color: var(--text);
       font-weight: 600;
-      display: flex; align-items: center; justify-content: center; gap: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
     }
 
     /* ── Card preview (canvas) ── */
@@ -478,16 +830,32 @@
       cursor: pointer;
       transition: transform .2s, box-shadow .2s;
     }
-    .share-preview-wrap:hover { transform: scale(1.02); box-shadow: 0 8px 32px rgba(0,229,255,.15); }
-    #share-canvas { display: block; width: 100%; height: auto; }
 
-    .result-actions { display: flex; flex-direction: column; gap: 10px; width: 100%; }
+    .share-preview-wrap:hover {
+      transform: scale(1.02);
+      box-shadow: 0 8px 32px rgba(0, 229, 255, .15);
+    }
+
+    #share-canvas {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .result-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      width: 100%;
+    }
 
     /* ══════════════════════════════════════════════════════════
        DESKTOP: 2-column layout for game screen (≥1025px)
     ══════════════════════════════════════════════════════════ */
     @media (min-width: 1025px) {
-      #app { padding: 24px 40px; }
+      #app {
+        padding: 24px 40px;
+      }
 
       /* Game screen goes wide */
       #game-screen {
@@ -500,11 +868,18 @@
       }
 
       /* HUD spans full width */
-      #game-screen .hud           { grid-column: 1 / -1; }
-      #game-screen .progress-wrap { grid-column: 1 / -1; }
+      #game-screen .hud {
+        grid-column: 1 / -1;
+      }
+
+      #game-screen .progress-wrap {
+        grid-column: 1 / -1;
+      }
 
       /* Badge + timer row spans full width */
-      #game-screen .badge-timer-row { grid-column: 1 / -1; }
+      #game-screen .badge-timer-row {
+        grid-column: 1 / -1;
+      }
 
       /* Question card — left column, 2 rows */
       #game-screen .question-card {
@@ -527,10 +902,15 @@
       }
 
       /* Wider flag */
-      .flag-display { width: 260px; height: 155px; }
+      .flag-display {
+        width: 260px;
+        height: 155px;
+      }
 
       /* Result screen wider */
-      #result-screen { max-width: 680px; }
+      #result-screen {
+        max-width: 680px;
+      }
 
       /* Result card 2-col */
       .result-card {
@@ -539,9 +919,19 @@
         gap: 0 28px;
         align-items: center;
       }
-      .result-score-wrap { margin-bottom: 0; }
-      .result-big-num { font-size: 5rem; }
-      .result-divider { display: none; }
+
+      .result-score-wrap {
+        margin-bottom: 0;
+      }
+
+      .result-big-num {
+        font-size: 5rem;
+      }
+
+      .result-divider {
+        display: none;
+      }
+
       .result-stats {
         grid-column: 2;
         grid-template-columns: repeat(3, 1fr);
@@ -549,69 +939,157 @@
       }
 
       /* Home screen wider */
-      #home-screen { max-width: 520px; }
+      #home-screen {
+        max-width: 520px;
+      }
 
-    /* Canvas wider on desktop */
-      #share-canvas { width: 100% !important; }
+      /* Canvas wider on desktop */
+      #share-canvas {
+        width: 100% !important;
+      }
     }
 
     /* ══════════════════════════════════════════════════════════
        MOBILE: portrait small phones (≤ 480px)
     ══════════════════════════════════════════════════════════ */
     @media (max-width: 480px) {
-      .home-globe { font-size: 3.5rem; }
-      .home-title { font-size: 1.8rem; }
+      .home-globe {
+        font-size: 3.5rem;
+      }
+
+      .home-title {
+        font-size: 1.8rem;
+      }
 
       /* Compact result screen so it fits one screen */
-      #result-screen { gap: 8px; }
-      .result-trophy { font-size: 3rem; }
-      .result-title  { font-size: 1.5rem; }
-      .result-big-num{ font-size: 2.8rem; }
-      .result-score-wrap { margin-bottom: 10px; }
-      .result-card { padding: 16px 14px 14px; }
+      #result-screen {
+        gap: 8px;
+      }
 
-      .rs { padding: 9px 4px; }
-      .rs-icon { font-size: 1.1rem; }
-      .rs-num { font-size: 1.1rem; }
-      .rs-lbl { font-size: .62rem; }
+      .result-trophy {
+        font-size: 3rem;
+      }
 
-      .rank-badge { padding: 9px 14px; font-size: .82rem; }
-      .result-actions { gap: 8px; }
-      .result-actions .btn { font-size: .88rem; padding: 11px 18px; min-height: 44px; }
+      .result-title {
+        font-size: 1.5rem;
+      }
+
+      .result-big-num {
+        font-size: 2.8rem;
+      }
+
+      .result-score-wrap {
+        margin-bottom: 10px;
+      }
+
+      .result-card {
+        padding: 16px 14px 14px;
+      }
+
+      .rs {
+        padding: 9px 4px;
+      }
+
+      .rs-icon {
+        font-size: 1.1rem;
+      }
+
+      .rs-num {
+        font-size: 1.1rem;
+      }
+
+      .rs-lbl {
+        font-size: .62rem;
+      }
+
+      .rank-badge {
+        padding: 9px 14px;
+        font-size: .82rem;
+      }
+
+      .result-actions {
+        gap: 8px;
+      }
+
+      .result-actions .btn {
+        font-size: .88rem;
+        padding: 11px 18px;
+        min-height: 44px;
+      }
 
       /* Canvas on mobile: use smaller canvas so it doesn't overflow */
-      .share-preview-wrap { display: none; } /* hide preview on very small screens */
+      .share-preview-wrap {
+        display: none;
+      }
+
+      /* hide preview on very small screens */
     }
 
     @media (max-width: 390px) {
-      .result-big-num { font-size: 2.4rem; }
+      .result-big-num {
+        font-size: 2.4rem;
+      }
     }
 
     /* ══════════════════════════════════════════════════════════
        LANDSCAPE MOBILE (short height)
     ══════════════════════════════════════════════════════════ */
     @media (max-height: 600px) and (orientation: landscape) {
-      #app { justify-content: flex-start; padding-top: 10px; }
-      .home-globe { font-size: 2.5rem; }
-      .result-trophy { font-size: 2.5rem; margin-top: 8px; }
-      .question-card { min-height: 140px; padding: 12px; }
-      .flag-display { width: 120px; height: 72px; }
-      #game-screen { gap: 7px; }
-      .screen.active { gap: 8px; }
+      #app {
+        justify-content: flex-start;
+        padding-top: 10px;
+      }
+
+      .home-globe {
+        font-size: 2.5rem;
+      }
+
+      .result-trophy {
+        font-size: 2.5rem;
+        margin-top: 8px;
+      }
+
+      .question-card {
+        min-height: 140px;
+        padding: 12px;
+      }
+
+      .flag-display {
+        width: 120px;
+        height: 72px;
+      }
+
+      #game-screen {
+        gap: 7px;
+      }
+
+      .screen.active {
+        gap: 8px;
+      }
     }
 
     /* ── Tooltip ── */
     #tooltip {
-      position: fixed; bottom: 20px; left: 50%;
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
       transform: translateX(-50%);
-      background: rgba(0,0,0,.85);
+      background: rgba(0, 0, 0, .85);
       backdrop-filter: blur(12px);
-      color: var(--text); padding: 10px 20px;
-      border-radius: 50px; font-size: .85rem;
-      pointer-events: none; opacity: 0; transition: opacity .25s;
-      z-index: 9999; white-space: nowrap;
+      color: var(--text);
+      padding: 10px 20px;
+      border-radius: 50px;
+      font-size: .85rem;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity .25s;
+      z-index: 9999;
+      white-space: nowrap;
     }
-    #tooltip.show { opacity: 1; }
+
+    #tooltip.show {
+      opacity: 1;
+    }
 
     /* ── Badge + Timer unified row ── */
     .badge-timer-row {
@@ -620,552 +1098,572 @@
       justify-content: space-between;
       gap: 8px;
     }
-    .badge-timer-row .round-badge { flex: 1; }
+
+    .badge-timer-row .round-badge {
+      flex: 1;
+    }
 
     /* Desktop 2-col: badge-timer spans full width (overridden in grid via JS col placement) */
     @media (min-width: 1025px) {
-      .badge-timer-row { grid-column: 1 / -1; }
+      .badge-timer-row {
+        grid-column: 1 / -1;
+      }
     }
 
     /* ── Fact banner ── */
     .fact-banner {
       padding: 12px 16px;
       border-radius: var(--radius-sm);
-      background: rgba(124,58,237,.12);
-      border: 1px solid rgba(124,58,237,.25);
+      background: rgba(124, 58, 237, .12);
+      border: 1px solid rgba(124, 58, 237, .25);
       font-size: .83rem;
       color: var(--text-dim);
       line-height: 1.5;
       text-align: left;
     }
-    .fact-banner strong { color: var(--violet); }
+
+    .fact-banner strong {
+      color: var(--violet);
+    }
 
     /* Scrollbar */
-    ::-webkit-scrollbar { width: 4px; }
-    ::-webkit-scrollbar-track { background: transparent; }
-    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+    ::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--border);
+      border-radius: 99px;
+    }
   </style>
 </head>
+
 <body>
-<canvas id="bg-canvas"></canvas>
+  <canvas id="bg-canvas"></canvas>
 
-<div id="app">
+  <div id="app">
 
-  <!-- ╔══════════════════ HOME ══════════════════╗ -->
-  <div id="home-screen" class="screen active">
-    <span class="home-globe">🌍</span>
-    <h1 class="home-title">Qual é o País?</h1>
-    <p class="home-subtitle">
-      Identifique países por bandeiras, capitais,<br>curiosidades e muito mais!
-    </p>
+    <!-- ╔══════════════════ HOME ══════════════════╗ -->
+    <div id="home-screen" class="screen active">
+      <span class="home-globe">🌍</span>
+      <h1 class="home-title">Qual é o País?</h1>
+      <p class="home-subtitle">
+        Identifique países por bandeiras, capitais,<br>curiosidades e muito mais!
+      </p>
 
-    <div class="stats-row" id="home-stats" style="display:none">
-      <span class="stat-pill">🏆 Recorde: <strong id="hs-best">0</strong></span>
-      <span class="stat-pill">🎮 Partidas: <strong id="hs-games">0</strong></span>
-    </div>
-
-    <div style="width:100%">
-      <p style="font-size:.85rem; color:var(--text-dim); margin-bottom:10px; text-align:center;">Escolha a dificuldade:</p>
-      <div class="difficulty-grid">
-        <div class="diff-card selected" data-diff="easy" id="diff-easy" onclick="selectDiff('easy')">
-          <span class="diff-icon">🌱</span>
-          <div class="diff-name">Fácil</div>
-          <div class="diff-desc">30s · 4 opções</div>
-        </div>
-        <div class="diff-card" data-diff="medium" id="diff-medium" onclick="selectDiff('medium')">
-          <span class="diff-icon">⚡</span>
-          <div class="diff-name">Médio</div>
-          <div class="diff-desc">20s · 4 opções</div>
-        </div>
-        <div class="diff-card" data-diff="hard" id="diff-hard" onclick="selectDiff('hard')">
-          <span class="diff-icon">🔥</span>
-          <div class="diff-name">Difícil</div>
-          <div class="diff-desc">12s · 6 opções</div>
-        </div>
+      <div class="stats-row" id="home-stats" style="display:none">
+        <span class="stat-pill">🏆 Recorde: <strong id="hs-best">0</strong></span>
+        <span class="stat-pill">🎮 Partidas: <strong id="hs-games">0</strong></span>
       </div>
-    </div>
 
-    <button class="btn btn-primary btn-full" id="btn-start" onclick="startGame()" style="font-size:1.15rem; padding:17px;">
-      🎮 Jogar Agora
-    </button>
-    <button class="btn btn-ghost btn-full" onclick="showHowTo()" style="font-size:.9rem;">
-      ❓ Como Jogar
-    </button>
-  </div>
-
-  <!-- ╔══════════════════ LOADING ══════════════════╗ -->
-  <div id="loading-screen" class="screen">
-    <div class="spinner"></div>
-    <p class="loading-text" id="loading-msg">Carregando países...</p>
-  </div>
-
-  <!-- ╔══════════════════ GAME ══════════════════╗ -->
-  <div id="game-screen" class="screen">
-    <!-- HUD -->
-    <div class="hud">
-      <div class="hud-score">
-        ⭐ <span class="score-num" id="g-score">0</span>
-      </div>
-      <div class="lives-row" id="g-lives"></div>
-      <div class="hud-streak">
-        🔥 <span class="streak-num" id="g-streak">0</span> seguidos
-      </div>
-    </div>
-
-    <!-- Progress -->
-    <div class="progress-wrap">
-      <div class="progress-bar" id="g-progress" style="width:0%"></div>
-    </div>
-
-    <!-- Round badge + Timer row -->
-    <div class="badge-timer-row">
-      <div class="round-badge" id="g-badge">
-        <span class="badge-icon" id="g-badge-icon">🏳️</span>
-        <span id="g-badge-text">Bandeira</span>
-        <span style="margin-left:auto; color:var(--text-dim); font-size:.75rem" id="g-round-num">1/10</span>
-      </div>
-      <div class="timer-wrap">
-        <svg class="timer-svg" viewBox="0 0 52 52">
-          <circle class="timer-track" cx="26" cy="26" r="23"/>
-          <circle class="timer-bar" id="timer-bar" cx="26" cy="26" r="23"
-                  stroke-dasharray="144.51" stroke-dashoffset="0" stroke="#00e5ff"/>
-        </svg>
-        <div class="timer-num" id="g-timer">30</div>
-      </div>
-    </div>
-
-    <!-- Question card -->
-    <div class="question-card card" id="g-question">
-      <div class="clue-emoji">⏳</div>
-      <div class="clue-text">Carregando...</div>
-    </div>
-
-    <!-- Answers -->
-    <div class="answers-grid" id="g-answers"></div>
-
-    <!-- Fact after answer -->
-    <div class="fact-banner" id="g-fact" style="display:none"></div>
-  </div>
-
-  <!-- ╔══════════════════ RESULT ══════════════════╗ -->
-  <div id="result-screen" class="screen">
-    <div class="result-trophy" id="r-trophy">🏆</div>
-    <h2 class="result-title" id="r-title">Fim de Jogo!</h2>
-
-    <div class="result-card card">
-      <div class="result-score-wrap">
-        <div class="result-big-num" id="r-score">0</div>
-        <div class="result-label">pontos</div>
-      </div>
-      <div class="result-divider"></div>
-      <div class="result-stats">
-        <div class="rs">
-          <span class="rs-icon">✅</span>
-          <div class="rs-num" id="r-correct">0</div>
-          <div class="rs-lbl">Acertos</div>
-        </div>
-        <div class="rs">
-          <span class="rs-icon">🔥</span>
-          <div class="rs-num" id="r-streak">0</div>
-          <div class="rs-lbl">Sequência</div>
-        </div>
-        <div class="rs">
-          <span class="rs-icon">🎯</span>
-          <div class="rs-num" id="r-accuracy">0%</div>
-          <div class="rs-lbl">Precisão</div>
+      <div style="width:100%">
+        <p style="font-size:.85rem; color:var(--text-dim); margin-bottom:10px; text-align:center;">Escolha a
+          dificuldade:</p>
+        <div class="difficulty-grid">
+          <div class="diff-card selected" data-diff="easy" id="diff-easy" onclick="selectDiff('easy')">
+            <span class="diff-icon">🌱</span>
+            <div class="diff-name">Fácil</div>
+            <div class="diff-desc">30s · 4 opções</div>
+          </div>
+          <div class="diff-card" data-diff="medium" id="diff-medium" onclick="selectDiff('medium')">
+            <span class="diff-icon">⚡</span>
+            <div class="diff-name">Médio</div>
+            <div class="diff-desc">20s · 4 opções</div>
+          </div>
+          <div class="diff-card" data-diff="hard" id="diff-hard" onclick="selectDiff('hard')">
+            <span class="diff-icon">🔥</span>
+            <div class="diff-name">Difícil</div>
+            <div class="diff-desc">12s · 6 opções</div>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="rank-badge" id="r-rank">🌎 Você está entre os melhores!</div>
-
-    <!-- Canvas preview do card de compartilhamento -->
-    <div class="share-preview-wrap" onclick="downloadResultImage()" title="Clique para baixar">
-      <canvas id="share-canvas" width="560" height="300"></canvas>
-    </div>
-
-    <div class="result-actions">
-      <button class="btn btn-primary btn-full" onclick="downloadResultImage()" id="btn-download">
-        📥 Baixar Imagem
+      <button class="btn btn-primary btn-full" id="btn-start" onclick="startGame()"
+        style="font-size:1.15rem; padding:17px;">
+        🎮 Jogar Agora
       </button>
-      <button class="btn btn-gold btn-full" onclick="startGame()">
-        🔄 Jogar Novamente
-      </button>
-      <button class="btn btn-ghost btn-full" onclick="showScreen('home-screen')">
-        🏠 Menu Principal
+      <button class="btn btn-ghost btn-full" onclick="showHowTo()" style="font-size:.9rem;">
+        ❓ Como Jogar
       </button>
     </div>
+
+    <!-- ╔══════════════════ LOADING ══════════════════╗ -->
+    <div id="loading-screen" class="screen">
+      <div class="spinner"></div>
+      <p class="loading-text" id="loading-msg">Carregando países...</p>
+    </div>
+
+    <!-- ╔══════════════════ GAME ══════════════════╗ -->
+    <div id="game-screen" class="screen">
+      <!-- HUD -->
+      <div class="hud">
+        <div class="hud-score">
+          ⭐ <span class="score-num" id="g-score">0</span>
+        </div>
+        <div class="lives-row" id="g-lives"></div>
+        <div class="hud-streak">
+          🔥 <span class="streak-num" id="g-streak">0</span> seguidos
+        </div>
+      </div>
+
+      <!-- Progress -->
+      <div class="progress-wrap">
+        <div class="progress-bar" id="g-progress" style="width:0%"></div>
+      </div>
+
+      <!-- Round badge + Timer row -->
+      <div class="badge-timer-row">
+        <div class="round-badge" id="g-badge">
+          <span class="badge-icon" id="g-badge-icon">🏳️</span>
+          <span id="g-badge-text">Bandeira</span>
+          <span style="margin-left:auto; color:var(--text-dim); font-size:.75rem" id="g-round-num">1/10</span>
+        </div>
+        <div class="timer-wrap">
+          <svg class="timer-svg" viewBox="0 0 52 52">
+            <circle class="timer-track" cx="26" cy="26" r="23" />
+            <circle class="timer-bar" id="timer-bar" cx="26" cy="26" r="23" stroke-dasharray="144.51"
+              stroke-dashoffset="0" stroke="#00e5ff" />
+          </svg>
+          <div class="timer-num" id="g-timer">30</div>
+        </div>
+      </div>
+
+      <!-- Question card -->
+      <div class="question-card card" id="g-question">
+        <div class="clue-emoji">⏳</div>
+        <div class="clue-text">Carregando...</div>
+      </div>
+
+      <!-- Answers -->
+      <div class="answers-grid" id="g-answers"></div>
+
+      <!-- Fact after answer -->
+      <div class="fact-banner" id="g-fact" style="display:none"></div>
+    </div>
+
+    <!-- ╔══════════════════ RESULT ══════════════════╗ -->
+    <div id="result-screen" class="screen">
+      <div class="result-trophy" id="r-trophy">🏆</div>
+      <h2 class="result-title" id="r-title">Fim de Jogo!</h2>
+
+      <div class="result-card card">
+        <div class="result-score-wrap">
+          <div class="result-big-num" id="r-score">0</div>
+          <div class="result-label">pontos</div>
+        </div>
+        <div class="result-divider"></div>
+        <div class="result-stats">
+          <div class="rs">
+            <span class="rs-icon">✅</span>
+            <div class="rs-num" id="r-correct">0</div>
+            <div class="rs-lbl">Acertos</div>
+          </div>
+          <div class="rs">
+            <span class="rs-icon">🔥</span>
+            <div class="rs-num" id="r-streak">0</div>
+            <div class="rs-lbl">Sequência</div>
+          </div>
+          <div class="rs">
+            <span class="rs-icon">🎯</span>
+            <div class="rs-num" id="r-accuracy">0%</div>
+            <div class="rs-lbl">Precisão</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="rank-badge" id="r-rank">🌎 Você está entre os melhores!</div>
+
+      <!-- Canvas preview do card de compartilhamento -->
+      <div class="share-preview-wrap" onclick="downloadResultImage()" title="Clique para baixar">
+        <canvas id="share-canvas" width="560" height="300"></canvas>
+      </div>
+
+      <div class="result-actions">
+        <button class="btn btn-primary btn-full" onclick="downloadResultImage()" id="btn-download">
+          📥 Baixar Imagem
+        </button>
+        <button class="btn btn-gold btn-full" onclick="startGame()">
+          🔄 Jogar Novamente
+        </button>
+        <button class="btn btn-ghost btn-full" onclick="showScreen('home-screen')">
+          🏠 Menu Principal
+        </button>
+      </div>
+    </div>
+
   </div>
 
-</div>
+  <!-- Overlay notifications -->
+  <div id="combo-toast">🔥 COMBO x<span id="combo-num">2</span>!</div>
+  <div id="tooltip"></div>
 
-<!-- Overlay notifications -->
-<div id="combo-toast">🔥 COMBO x<span id="combo-num">2</span>!</div>
-<div id="tooltip"></div>
+  <script>
+    /* ══════════════════════════════════════════════════════════
+       BACKGROUND CANVAS
+    ══════════════════════════════════════════════════════════ */
+    (function () {
+      const canvas = document.getElementById('bg-canvas');
+      const ctx = canvas.getContext('2d');
+      const stars = [];
+      function resize() { canvas.width = innerWidth; canvas.height = innerHeight; }
+      resize(); window.addEventListener('resize', resize);
 
-<script>
-/* ══════════════════════════════════════════════════════════
-   BACKGROUND CANVAS
-══════════════════════════════════════════════════════════ */
-(function() {
-  const canvas = document.getElementById('bg-canvas');
-  const ctx = canvas.getContext('2d');
-  const stars = [];
-  function resize() { canvas.width = innerWidth; canvas.height = innerHeight; }
-  resize(); window.addEventListener('resize', resize);
+      for (let i = 0; i < 120; i++) {
+        stars.push({
+          x: Math.random(), y: Math.random(),
+          r: Math.random() * 1.2 + .3,
+          a: Math.random(),
+          speed: Math.random() * .0003 + .0001,
+          phase: Math.random() * Math.PI * 2
+        });
+      }
 
-  for (let i = 0; i < 120; i++) {
-    stars.push({
-      x: Math.random(), y: Math.random(),
-      r: Math.random() * 1.2 + .3,
-      a: Math.random(),
-      speed: Math.random() * .0003 + .0001,
-      phase: Math.random() * Math.PI * 2
-    });
-  }
+      // Floating orbs
+      const orbs = [
+        { x: .2, y: .3, r: 180, color: 'rgba(0,229,255,.04)', speed: .0002, phase: 0 },
+        { x: .8, y: .7, r: 220, color: 'rgba(124,58,237,.05)', speed: .0003, phase: 1.5 },
+        { x: .5, y: .9, r: 150, color: 'rgba(245,200,66,.03)', speed: .00025, phase: 3 },
+      ];
 
-  // Floating orbs
-  const orbs = [
-    { x:.2, y:.3, r:180, color:'rgba(0,229,255,.04)', speed:.0002, phase:0 },
-    { x:.8, y:.7, r:220, color:'rgba(124,58,237,.05)', speed:.0003, phase:1.5 },
-    { x:.5, y:.9, r:150, color:'rgba(245,200,66,.03)', speed:.00025, phase:3 },
-  ];
+      let t = 0;
+      function draw() {
+        t += 1;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-  let t = 0;
-  function draw() {
-    t += 1;
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+        // Draw gradient bg
+        const grad = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+        grad.addColorStop(0, '#06080f');
+        grad.addColorStop(1, '#0a0c1a');
+        ctx.fillStyle = grad;
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    // Draw gradient bg
-    const grad = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
-    grad.addColorStop(0, '#06080f');
-    grad.addColorStop(1, '#0a0c1a');
-    ctx.fillStyle = grad;
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
+        // Draw orbs
+        orbs.forEach(o => {
+          const x = (o.x + Math.sin(t * o.speed + o.phase) * .05) * canvas.width;
+          const y = (o.y + Math.cos(t * o.speed + o.phase) * .04) * canvas.height;
+          const g = ctx.createRadialGradient(x, y, 0, x, y, o.r);
+          g.addColorStop(0, o.color);
+          g.addColorStop(1, 'transparent');
+          ctx.fillStyle = g;
+          ctx.beginPath(); ctx.arc(x, y, o.r, 0, Math.PI * 2); ctx.fill();
+        });
 
-    // Draw orbs
-    orbs.forEach(o => {
-      const x = (o.x + Math.sin(t * o.speed + o.phase) * .05) * canvas.width;
-      const y = (o.y + Math.cos(t * o.speed + o.phase) * .04) * canvas.height;
-      const g = ctx.createRadialGradient(x, y, 0, x, y, o.r);
-      g.addColorStop(0, o.color);
-      g.addColorStop(1, 'transparent');
-      ctx.fillStyle = g;
-      ctx.beginPath(); ctx.arc(x, y, o.r, 0, Math.PI*2); ctx.fill();
-    });
+        // Draw stars
+        stars.forEach(s => {
+          const alpha = s.a * (.4 + .6 * Math.sin(t * s.speed * 200 + s.phase));
+          ctx.fillStyle = `rgba(255,255,255,${alpha})`;
+          ctx.beginPath();
+          ctx.arc(s.x * canvas.width, s.y * canvas.height, s.r, 0, Math.PI * 2);
+          ctx.fill();
+        });
 
-    // Draw stars
-    stars.forEach(s => {
-      const alpha = s.a * (.4 + .6 * Math.sin(t * s.speed * 200 + s.phase));
-      ctx.fillStyle = `rgba(255,255,255,${alpha})`;
-      ctx.beginPath();
-      ctx.arc(s.x * canvas.width, s.y * canvas.height, s.r, 0, Math.PI*2);
-      ctx.fill();
-    });
+        requestAnimationFrame(draw);
+      }
+      draw();
+    })();
 
-    requestAnimationFrame(draw);
-  }
-  draw();
-})();
+    /* ══════════════════════════════════════════════════════════
+       COUNTRIES DATA  — inline curated dataset
+    ══════════════════════════════════════════════════════════ */
 
-/* ══════════════════════════════════════════════════════════
-   COUNTRIES DATA  — inline curated dataset
-══════════════════════════════════════════════════════════ */
+    let allCountries = [];
+    let gameCountries = []; // pool for the session
+    let filteredPool = []; // difficulty-based pool
 
-let allCountries = [];
-let gameCountries = []; // pool for the session
-let filteredPool  = []; // difficulty-based pool
+    /* ══════════════════════════════════════════════════════════
+       GAME STATE
+    ══════════════════════════════════════════════════════════ */
+    const DIFFICULTIES = {
+      easy: { time: 30, options: 4, lives: 3, rounds: 10, pool: 'all', bonus: 1 },
+      medium: { time: 20, options: 4, lives: 3, rounds: 12, pool: 'pop', bonus: 1.5 },
+      hard: { time: 12, options: 6, lives: 2, rounds: 15, pool: 'hard', bonus: 2.5 },
+    };
 
-/* ══════════════════════════════════════════════════════════
-   GAME STATE
-══════════════════════════════════════════════════════════ */
-const DIFFICULTIES = {
-  easy:   { time: 30, options: 4, lives: 3, rounds: 10, pool: 'all',  bonus: 1 },
-  medium: { time: 20, options: 4, lives: 3, rounds: 12, pool: 'pop',  bonus: 1.5 },
-  hard:   { time: 12, options: 6, lives: 2, rounds: 15, pool: 'hard', bonus: 2.5 },
-};
+    const ROUND_TYPES = [
+      { id: 'flag', label: 'Identifique a Bandeira', icon: '🏳️', weight: 35 },
+      { id: 'capital', label: 'Adivinhe pela Capital', icon: '🏛️', weight: 30 },
+      { id: 'currency', label: 'Adivinhe pela Moeda', icon: '💰', weight: 15 },
+      { id: 'region', label: 'Adivinhe pela Região', icon: '🗺️', weight: 10 },
+      { id: 'language', label: 'Adivinhe pelo Idioma', icon: '🗣️', weight: 10 },
+    ];
 
-const ROUND_TYPES = [
-  { id: 'flag',     label: 'Identifique a Bandeira', icon: '🏳️',  weight: 35 },
-  { id: 'capital',  label: 'Adivinhe pela Capital',   icon: '🏛️',  weight: 30 },
-  { id: 'currency', label: 'Adivinhe pela Moeda',     icon: '💰',  weight: 15 },
-  { id: 'region',   label: 'Adivinhe pela Região',    icon: '🗺️',  weight: 10 },
-  { id: 'language', label: 'Adivinhe pelo Idioma',    icon: '🗣️',  weight: 10 },
-];
+    let state = {
+      diff: 'easy',
+      score: 0,
+      streak: 0, maxStreak: 0,
+      lives: 3,
+      round: 0,
+      totalRounds: 10,
+      correct: 0,
+      answered: 0,
+      currentCountry: null,
+      options: [],
+      timerInterval: null,
+      timeLeft: 30,
+      maxTime: 30,
+      answered_this: false,
+      sessionHistory: [],
+    };
 
-let state = {
-  diff: 'easy',
-  score: 0,
-  streak: 0, maxStreak: 0,
-  lives: 3,
-  round: 0,
-  totalRounds: 10,
-  correct: 0,
-  answered: 0,
-  currentCountry: null,
-  options: [],
-  timerInterval: null,
-  timeLeft: 30,
-  maxTime: 30,
-  answered_this: false,
-  sessionHistory: [],
-};
+    let highScore = parseInt(localStorage.getItem('qep_hs') || '0');
+    let gamesPlayed = parseInt(localStorage.getItem('qep_games') || '0');
 
-let highScore = parseInt(localStorage.getItem('qep_hs') || '0');
-let gamesPlayed = parseInt(localStorage.getItem('qep_games') || '0');
+    /* ══════════════════════════════════════════════════════════
+       UTILITY
+    ══════════════════════════════════════════════════════════ */
+    function shuffle(arr) {
+      const a = [...arr];
+      for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+      }
+      return a;
+    }
+    function pick(arr, n) { return shuffle(arr).slice(0, n); }
+    function rand(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+    function weightedRand(types) {
+      const total = types.reduce((s, t) => s + t.weight, 0);
+      let r = Math.random() * total;
+      for (const t of types) { r -= t.weight; if (r <= 0) return t; }
+      return types[0];
+    }
 
-/* ══════════════════════════════════════════════════════════
-   UTILITY
-══════════════════════════════════════════════════════════ */
-function shuffle(arr) {
-  const a = [...arr];
-  for (let i = a.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [a[i], a[j]] = [a[j], a[i]];
-  }
-  return a;
-}
-function pick(arr, n) { return shuffle(arr).slice(0, n); }
-function rand(arr)    { return arr[Math.floor(Math.random() * arr.length)]; }
-function weightedRand(types) {
-  const total = types.reduce((s, t) => s + t.weight, 0);
-  let r = Math.random() * total;
-  for (const t of types) { r -= t.weight; if (r <= 0) return t; }
-  return types[0];
-}
+    function showScreen(id) {
+      document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+      const el = document.getElementById(id);
+      el.classList.add('active');
+      // re-trigger animation
+      el.style.animation = 'none';
+      requestAnimationFrame(() => el.style.animation = '');
+    }
 
-function showScreen(id) {
-  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-  const el = document.getElementById(id);
-  el.classList.add('active');
-  // re-trigger animation
-  el.style.animation = 'none';
-  requestAnimationFrame(() => el.style.animation = '');
-}
+    function tooltip(msg, ms = 1800) {
+      const el = document.getElementById('tooltip');
+      el.textContent = msg;
+      el.classList.add('show');
+      clearTimeout(tooltip._t);
+      tooltip._t = setTimeout(() => el.classList.remove('show'), ms);
+    }
 
-function tooltip(msg, ms = 1800) {
-  const el = document.getElementById('tooltip');
-  el.textContent = msg;
-  el.classList.add('show');
-  clearTimeout(tooltip._t);
-  tooltip._t = setTimeout(() => el.classList.remove('show'), ms);
-}
+    function comboToast(n) {
+      const el = document.getElementById('combo-toast');
+      document.getElementById('combo-num').textContent = n;
+      el.classList.add('show');
+      setTimeout(() => el.classList.remove('show'), 1400);
+    }
 
-function comboToast(n) {
-  const el = document.getElementById('combo-toast');
-  document.getElementById('combo-num').textContent = n;
-  el.classList.add('show');
-  setTimeout(() => el.classList.remove('show'), 1400);
-}
+    /* ══════════════════════════════════════════════════════════
+       DATA LOADING
+    ══════════════════════════════════════════════════════════ */
+    function loadCountries() {
+      allCountries = FALLBACK_COUNTRIES;
+      refreshHomeStats();
+    }
 
-/* ══════════════════════════════════════════════════════════
-   DATA LOADING
-══════════════════════════════════════════════════════════ */
-function loadCountries() {
-  allCountries = FALLBACK_COUNTRIES;
-  refreshHomeStats();
-}
+    function refreshHomeStats() {
+      if (highScore > 0 || gamesPlayed > 0) {
+        document.getElementById('home-stats').style.display = 'flex';
+        document.getElementById('hs-best').textContent = highScore;
+        document.getElementById('hs-games').textContent = gamesPlayed;
+      }
+    }
 
-function refreshHomeStats() {
-  if (highScore > 0 || gamesPlayed > 0) {
-    document.getElementById('home-stats').style.display = 'flex';
-    document.getElementById('hs-best').textContent = highScore;
-    document.getElementById('hs-games').textContent = gamesPlayed;
-  }
-}
+    /* ══════════════════════════════════════════════════════════
+       DIFFICULTY SELECT
+    ══════════════════════════════════════════════════════════ */
+    let selectedDiff = 'easy';
+    function selectDiff(d) {
+      selectedDiff = d;
+      document.querySelectorAll('.diff-card').forEach(el =>
+        el.classList.toggle('selected', el.dataset.diff === d)
+      );
+    }
 
-/* ══════════════════════════════════════════════════════════
-   DIFFICULTY SELECT
-══════════════════════════════════════════════════════════ */
-let selectedDiff = 'easy';
-function selectDiff(d) {
-  selectedDiff = d;
-  document.querySelectorAll('.diff-card').forEach(el =>
-    el.classList.toggle('selected', el.dataset.diff === d)
-  );
-}
+    /* ══════════════════════════════════════════════════════════
+       GAME START
+    ══════════════════════════════════════════════════════════ */
+    function startGame() {
+      if (allCountries.length === 0) { loadCountries(); return; }
 
-/* ══════════════════════════════════════════════════════════
-   GAME START
-══════════════════════════════════════════════════════════ */
-function startGame() {
-  if (allCountries.length === 0) { loadCountries(); return; }
+      const cfg = DIFFICULTIES[selectedDiff];
 
-  const cfg = DIFFICULTIES[selectedDiff];
+      // Build pool based on difficulty
+      let pool = [...allCountries];
+      if (selectedDiff === 'medium') {
+        pool = allCountries.filter(c => c.population > 1000000);
+      } else if (selectedDiff === 'hard') {
+        // Include less-known countries
+        pool = allCountries.filter(c => c.population < 5000000 || Math.random() > .5);
+      }
+      filteredPool = shuffle(pool);
+      gameCountries = filteredPool.slice(0, cfg.rounds + cfg.options * 2);
 
-  // Build pool based on difficulty
-  let pool = [...allCountries];
-  if (selectedDiff === 'medium') {
-    pool = allCountries.filter(c => c.population > 1000000);
-  } else if (selectedDiff === 'hard') {
-    // Include less-known countries
-    pool = allCountries.filter(c => c.population < 5000000 || Math.random() > .5);
-  }
-  filteredPool = shuffle(pool);
-  gameCountries = filteredPool.slice(0, cfg.rounds + cfg.options * 2);
+      state = {
+        diff: selectedDiff,
+        score: 0,
+        streak: 0, maxStreak: 0,
+        lives: cfg.lives,
+        round: 0,
+        totalRounds: cfg.rounds,
+        correct: 0,
+        answered: 0,
+        currentCountry: null,
+        options: [],
+        timerInterval: null,
+        timeLeft: cfg.time,
+        maxTime: cfg.time,
+        answered_this: false,
+        sessionHistory: [],
+        cfg,
+      };
 
-  state = {
-    diff:       selectedDiff,
-    score:      0,
-    streak:     0, maxStreak: 0,
-    lives:      cfg.lives,
-    round:      0,
-    totalRounds:cfg.rounds,
-    correct:    0,
-    answered:   0,
-    currentCountry: null,
-    options:    [],
-    timerInterval: null,
-    timeLeft:   cfg.time,
-    maxTime:    cfg.time,
-    answered_this: false,
-    sessionHistory: [],
-    cfg,
-  };
+      showScreen('game-screen');
+      renderLives();
+      nextRound();
+    }
 
-  showScreen('game-screen');
-  renderLives();
-  nextRound();
-}
+    /* ══════════════════════════════════════════════════════════
+       LIVES
+    ══════════════════════════════════════════════════════════ */
+    function renderLives() {
+      const el = document.getElementById('g-lives');
+      const icons = state.cfg.lives === 2 ? ['❤️', '❤️'] : ['❤️', '❤️', '❤️'];
+      el.innerHTML = icons.map((ic, i) =>
+        `<span class="life ${i >= state.lives ? 'lost' : ''}">${ic}</span>`
+      ).join('');
+    }
 
-/* ══════════════════════════════════════════════════════════
-   LIVES
-══════════════════════════════════════════════════════════ */
-function renderLives() {
-  const el = document.getElementById('g-lives');
-  const icons = state.cfg.lives === 2 ? ['❤️','❤️'] : ['❤️','❤️','❤️'];
-  el.innerHTML = icons.map((ic, i) =>
-    `<span class="life ${i >= state.lives ? 'lost' : ''}">${ic}</span>`
-  ).join('');
-}
+    /* ══════════════════════════════════════════════════════════
+       NEXT ROUND
+    ══════════════════════════════════════════════════════════ */
+    function nextRound() {
+      state.round++;
+      if (state.round > state.totalRounds || state.lives <= 0) {
+        endGame(); return;
+      }
 
-/* ══════════════════════════════════════════════════════════
-   NEXT ROUND
-══════════════════════════════════════════════════════════ */
-function nextRound() {
-  state.round++;
-  if (state.round > state.totalRounds || state.lives <= 0) {
-    endGame(); return;
-  }
+      clearInterval(state.timerInterval);
+      state.answered_this = false;
 
-  clearInterval(state.timerInterval);
-  state.answered_this = false;
+      // Pick a country not recently used
+      const used = state.sessionHistory.map(h => h.name);
+      const available = filteredPool.filter(c => !used.includes(c.name));
+      state.currentCountry = rand(available.length > 0 ? available : filteredPool);
 
-  // Pick a country not recently used
-  const used = state.sessionHistory.map(h => h.name);
-  const available = filteredPool.filter(c => !used.includes(c.name));
-  state.currentCountry = rand(available.length > 0 ? available : filteredPool);
+      // Pick round type
+      const availableTypes = ROUND_TYPES.filter(t => {
+        if (t.id === 'currency' && !state.currentCountry.currency) return false;
+        if (t.id === 'language' && !state.currentCountry.languages.length) return false;
+        if (t.id === 'capital' && state.currentCountry.capital === '—') return false;
+        return true;
+      });
+      const roundType = weightedRand(availableTypes);
 
-  // Pick round type
-  const availableTypes = ROUND_TYPES.filter(t => {
-    if (t.id === 'currency' && !state.currentCountry.currency) return false;
-    if (t.id === 'language' && !state.currentCountry.languages.length) return false;
-    if (t.id === 'capital' && state.currentCountry.capital === '—') return false;
-    return true;
-  });
-  const roundType = weightedRand(availableTypes);
+      // Generate wrong options from same region for more challenge
+      const sameRegion = filteredPool.filter(c =>
+        c.name !== state.currentCountry.name &&
+        c.region === state.currentCountry.region
+      );
+      const otherRegion = filteredPool.filter(c =>
+        c.name !== state.currentCountry.name &&
+        c.region !== state.currentCountry.region
+      );
+      const wrongPool = sameRegion.length >= 2
+        ? [...sameRegion, ...otherRegion]
+        : filteredPool.filter(c => c.name !== state.currentCountry.name);
 
-  // Generate wrong options from same region for more challenge
-  const sameRegion = filteredPool.filter(c =>
-    c.name !== state.currentCountry.name &&
-    c.region === state.currentCountry.region
-  );
-  const otherRegion = filteredPool.filter(c =>
-    c.name !== state.currentCountry.name &&
-    c.region !== state.currentCountry.region
-  );
-  const wrongPool = sameRegion.length >= 2
-    ? [...sameRegion, ...otherRegion]
-    : filteredPool.filter(c => c.name !== state.currentCountry.name);
+      const numOptions = state.cfg.options;
+      const wrongs = pick(wrongPool, numOptions - 1);
+      state.options = shuffle([state.currentCountry, ...wrongs]);
 
-  const numOptions = state.cfg.options;
-  const wrongs = pick(wrongPool, numOptions - 1);
-  state.options = shuffle([state.currentCountry, ...wrongs]);
+      // Update HUD
+      document.getElementById('g-score').textContent = state.score;
+      document.getElementById('g-streak').textContent = state.streak;
+      document.getElementById('g-round-num').textContent = `${state.round}/${state.totalRounds}`;
+      document.getElementById('g-progress').style.width = `${(state.round / state.totalRounds) * 100}%`;
+      document.getElementById('g-fact').style.display = 'none';
 
-  // Update HUD
-  document.getElementById('g-score').textContent   = state.score;
-  document.getElementById('g-streak').textContent  = state.streak;
-  document.getElementById('g-round-num').textContent = `${state.round}/${state.totalRounds}`;
-  document.getElementById('g-progress').style.width = `${(state.round / state.totalRounds) * 100}%`;
-  document.getElementById('g-fact').style.display = 'none';
+      // Round badge
+      document.getElementById('g-badge-icon').textContent = roundType.icon;
+      document.getElementById('g-badge-text').textContent = roundType.label;
 
-  // Round badge
-  document.getElementById('g-badge-icon').textContent = roundType.icon;
-  document.getElementById('g-badge-text').textContent = roundType.label;
+      // Render question
+      renderQuestion(roundType, state.currentCountry);
 
-  // Render question
-  renderQuestion(roundType, state.currentCountry);
+      // Render answers
+      renderAnswers(roundType, state.options, state.currentCountry);
 
-  // Render answers
-  renderAnswers(roundType, state.options, state.currentCountry);
+      // Start timer
+      startTimer(state.cfg.time);
+    }
 
-  // Start timer
-  startTimer(state.cfg.time);
-}
+    /* ══════════════════════════════════════════════════════════
+       RENDER QUESTION
+    ══════════════════════════════════════════════════════════ */
+    function renderQuestion(type, country) {
+      const el = document.getElementById('g-question');
 
-/* ══════════════════════════════════════════════════════════
-   RENDER QUESTION
-══════════════════════════════════════════════════════════ */
-function renderQuestion(type, country) {
-  const el = document.getElementById('g-question');
-
-  if (type.id === 'flag') {
-    el.innerHTML = `
+      if (type.id === 'flag') {
+        el.innerHTML = `
       <div class="clue-sub">Qual país tem esta bandeira?</div>
       <img class="flag-display" src="${country.flag}" alt="Bandeira" loading="eager"
            onerror="this.src='https://flagcdn.com/w320/${country.cca2}.png'">
     `;
-  } else if (type.id === 'capital') {
-    el.innerHTML = `
+      } else if (type.id === 'capital') {
+        el.innerHTML = `
       <div class="clue-sub">Qual país tem esta capital?</div>
       <div class="clue-emoji">🏛️</div>
       <div class="clue-text">${country.capital}</div>
     `;
-  } else if (type.id === 'currency') {
-    el.innerHTML = `
+      } else if (type.id === 'currency') {
+        el.innerHTML = `
       <div class="clue-sub">Qual país usa esta moeda?</div>
       <div class="clue-emoji">💰</div>
       <div class="clue-text">${country.currency}</div>
     `;
-  } else if (type.id === 'region') {
-    el.innerHTML = `
+      } else if (type.id === 'region') {
+        el.innerHTML = `
       <div class="clue-sub">Qual destes países fica na:</div>
       <div class="clue-emoji">🗺️</div>
       <div class="clue-text">${country.subregion || country.region}</div>
     `;
-  } else if (type.id === 'language') {
-    const lang = rand(country.languages) || country.languages[0];
-    el.innerHTML = `
+      } else if (type.id === 'language') {
+        const lang = rand(country.languages) || country.languages[0];
+        el.innerHTML = `
       <div class="clue-sub">Qual país fala oficialmente:</div>
       <div class="clue-emoji">🗣️</div>
       <div class="clue-text">${lang}</div>
     `;
-  }
-}
-
-/* ══════════════════════════════════════════════════════════
-   RENDER ANSWERS
-══════════════════════════════════════════════════════════ */
-function renderAnswers(type, options, correct) {
-  const grid = document.getElementById('g-answers');
-  const cols = options.length <= 4 ? 2 : 3;
-  grid.style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
-
-  grid.innerHTML = options.map((c, i) => {
-    let label = c.namePt || c.name;
-    let sub   = '';
-
-    if (type.id === 'flag') {
-      // When asking about the flag, show country name (they pick the name)
-      label = c.namePt || c.name;
-      sub   = c.capital !== '—' ? c.capital : '';
-    } else {
-      // For non-flag types, show the flag as a visual cue + country name
-      label = c.namePt || c.name;
-      sub   = `${c.flagEmoji}`;
+      }
     }
 
-    return `
+    /* ══════════════════════════════════════════════════════════
+       RENDER ANSWERS
+    ══════════════════════════════════════════════════════════ */
+    function renderAnswers(type, options, correct) {
+      const grid = document.getElementById('g-answers');
+      const cols = options.length <= 4 ? 2 : 3;
+      grid.style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
+
+      grid.innerHTML = options.map((c, i) => {
+        let label = c.namePt || c.name;
+        let sub = '';
+
+        if (type.id === 'flag') {
+          // When asking about the flag, show country name (they pick the name)
+          label = c.namePt || c.name;
+          sub = c.capital !== '—' ? c.capital : '';
+        } else {
+          // For non-flag types, show the flag as a visual cue + country name
+          label = c.namePt || c.name;
+          sub = `${c.flagEmoji}`;
+        }
+
+        return `
       <button class="ans-btn" id="ans-${i}" onclick="selectAnswer(${i})">
         ${type.id !== 'flag' ? `<span class="ans-flag">${c.flagEmoji}</span>` : ''}
         <span class="ans-name">
@@ -1173,495 +1671,496 @@ function renderAnswers(type, options, correct) {
           ${sub ? `<small>${sub}</small>` : ''}
         </span>
       </button>`;
-  }).join('');
-}
-
-/* ══════════════════════════════════════════════════════════
-   ANSWER SELECTION
-══════════════════════════════════════════════════════════ */
-function selectAnswer(idx) {
-  if (state.answered_this) return;
-  state.answered_this = true;
-  clearInterval(state.timerInterval);
-
-  const chosen  = state.options[idx];
-  const correct = state.currentCountry;
-  const isRight = chosen.name === correct.name;
-
-  state.answered++;
-  state.sessionHistory.push({ name: correct.name, correct: isRight });
-
-  // Disable all buttons
-  state.options.forEach((_, i) => {
-    const btn = document.getElementById(`ans-${i}`);
-    if (btn) btn.disabled = true;
-  });
-
-  const chosenBtn  = document.getElementById(`ans-${idx}`);
-  const correctIdx = state.options.findIndex(o => o.name === correct.name);
-  const correctBtn = document.getElementById(`ans-${correctIdx}`);
-
-  if (isRight) {
-    chosenBtn.classList.add('correct');
-    state.correct++;
-    state.streak++;
-    if (state.streak > state.maxStreak) state.maxStreak = state.streak;
-
-    // Score: base 100 + time bonus + streak bonus
-    const timeBonus   = Math.round(state.timeLeft / state.cfg.time * 50);
-    const streakBonus = Math.min(state.streak - 1, 5) * 10;
-    const pts = Math.round((100 + timeBonus + streakBonus) * state.cfg.bonus);
-    state.score += pts;
-
-    document.getElementById('g-score').textContent = state.score;
-    document.getElementById('g-streak').textContent = state.streak;
-
-    if (state.streak >= 3) comboToast(state.streak);
-
-    showFact(correct, true);
-  } else {
-    chosenBtn.classList.add('wrong');
-    correctBtn.classList.add('reveal');
-    state.streak = 0;
-    state.lives--;
-    renderLives();
-    document.getElementById('g-streak').textContent = 0;
-    showFact(correct, false);
-  }
-
-  // Advance after short delay
-  setTimeout(() => {
-    if (state.lives <= 0) { endGame(); return; }
-    nextRound();
-  }, 1800);
-}
-
-/* ══════════════════════════════════════════════════════════
-   FACT DISPLAY
-══════════════════════════════════════════════════════════ */
-function showFact(country, correct) {
-  const el = document.getElementById('g-fact');
-  const icon = correct ? '✅' : '❌';
-  const facts = [];
-  if (country.capital && country.capital !== '—') facts.push(`Capital: <strong>${country.capital}</strong>`);
-  if (country.currency)         facts.push(`Moeda: <strong>${country.currency}</strong>`);
-  if (country.languages?.length) facts.push(`Idioma oficial: <strong>${country.languages[0]}</strong>`);
-  if (country.subregion || country.region) facts.push(`Região: <strong>${country.subregion || country.region}</strong>`);
-
-  const fact = rand(facts);
-  el.innerHTML = `${icon} <strong>${country.flagEmoji} ${country.namePt || country.name}</strong> — ${fact}`;
-  el.style.display = 'block';
-}
-
-/* ══════════════════════════════════════════════════════════
-   TIMER
-══════════════════════════════════════════════════════════ */
-const CIRC = 144.51; // 2 * pi * 23
-function startTimer(seconds) {
-  state.timeLeft = seconds;
-  const bar = document.getElementById('timer-bar');
-  const num = document.getElementById('g-timer');
-
-  function update() {
-    const pct = state.timeLeft / state.cfg.time;
-    bar.style.strokeDashoffset = CIRC * (1 - pct);
-
-    // Color transitions
-    const col = pct > .5
-      ? '#00e5ff'
-      : pct > .25
-        ? `hsl(${pct * 200}, 100%, 60%)`
-        : '#ef4444';
-    bar.style.stroke = col;
-    num.style.color  = pct <= .25 ? '#ef4444' : 'inherit';
-    num.textContent  = Math.ceil(state.timeLeft);
-
-    if (state.timeLeft <= 0) {
-      clearInterval(state.timerInterval);
-      timeUp();
+      }).join('');
     }
-  }
 
-  update();
-  state.timerInterval = setInterval(() => {
-    state.timeLeft = Math.max(0, state.timeLeft - 1);
-    update();
-  }, 1000);
-}
+    /* ══════════════════════════════════════════════════════════
+       ANSWER SELECTION
+    ══════════════════════════════════════════════════════════ */
+    function selectAnswer(idx) {
+      if (state.answered_this) return;
+      state.answered_this = true;
+      clearInterval(state.timerInterval);
 
-function timeUp() {
-  if (state.answered_this) return;
-  state.answered_this = true;
-  state.lives--;
-  state.streak = 0;
-  state.answered++;
-  renderLives();
+      const chosen = state.options[idx];
+      const correct = state.currentCountry;
+      const isRight = chosen.name === correct.name;
 
-  // Reveal correct answer
-  const correctIdx = state.options.findIndex(o => o.name === state.currentCountry.name);
-  const btn = document.getElementById(`ans-${correctIdx}`);
-  if (btn) btn.classList.add('reveal');
-  state.options.forEach((_, i) => {
-    const b = document.getElementById(`ans-${i}`);
-    if (b) b.disabled = true;
-  });
+      state.answered++;
+      state.sessionHistory.push({ name: correct.name, correct: isRight });
 
-  showFact(state.currentCountry, false);
-  tooltip('⏱️ Tempo esgotado!');
-  document.getElementById('g-streak').textContent = 0;
+      // Disable all buttons
+      state.options.forEach((_, i) => {
+        const btn = document.getElementById(`ans-${i}`);
+        if (btn) btn.disabled = true;
+      });
 
-  setTimeout(() => {
-    if (state.lives <= 0) { endGame(); return; }
-    nextRound();
-  }, 1800);
-}
+      const chosenBtn = document.getElementById(`ans-${idx}`);
+      const correctIdx = state.options.findIndex(o => o.name === correct.name);
+      const correctBtn = document.getElementById(`ans-${correctIdx}`);
 
-/* ══════════════════════════════════════════════════════════
-   END GAME
-══════════════════════════════════════════════════════════ */
-function endGame() {
-  clearInterval(state.timerInterval);
+      if (isRight) {
+        chosenBtn.classList.add('correct');
+        state.correct++;
+        state.streak++;
+        if (state.streak > state.maxStreak) state.maxStreak = state.streak;
 
-  const accuracy = state.answered > 0
-    ? Math.round(state.correct / state.answered * 100)
-    : 0;
+        // Score: base 100 + time bonus + streak bonus
+        const timeBonus = Math.round(state.timeLeft / state.cfg.time * 50);
+        const streakBonus = Math.min(state.streak - 1, 5) * 10;
+        const pts = Math.round((100 + timeBonus + streakBonus) * state.cfg.bonus);
+        state.score += pts;
 
-  // Save stats
-  gamesPlayed++;
-  if (state.score > highScore) highScore = state.score;
-  localStorage.setItem('qep_hs', highScore);
-  localStorage.setItem('qep_games', gamesPlayed);
-  refreshHomeStats();
+        document.getElementById('g-score').textContent = state.score;
+        document.getElementById('g-streak').textContent = state.streak;
 
-  // Trophy
-  let trophy, title;
-  if (state.correct === state.totalRounds) {
-    trophy = '🏆'; title = 'Perfeito!';
-  } else if (accuracy >= 80) {
-    trophy = '🥇'; title = 'Excelente!';
-  } else if (accuracy >= 60) {
-    trophy = '🥈'; title = 'Muito Bom!';
-  } else if (accuracy >= 40) {
-    trophy = '🥉'; title = 'Bom esforço!';
-  } else {
-    trophy = '🌍'; title = 'Continue tentando!';
-  }
+        if (state.streak >= 3) comboToast(state.streak);
 
-  document.getElementById('r-trophy').textContent   = trophy;
-  document.getElementById('r-title').textContent    = title;
-  document.getElementById('r-score').textContent    = state.score;
-  document.getElementById('r-correct').textContent  = state.correct;
-  document.getElementById('r-streak').textContent   = state.maxStreak;
-  document.getElementById('r-accuracy').textContent = accuracy + '%';
+        showFact(correct, true);
+      } else {
+        chosenBtn.classList.add('wrong');
+        correctBtn.classList.add('reveal');
+        state.streak = 0;
+        state.lives--;
+        renderLives();
+        document.getElementById('g-streak').textContent = 0;
+        showFact(correct, false);
+      }
 
-  // Rank
-  let rank;
-  if (accuracy === 100)       rank = '🌟 Você está entre os <strong>1% melhores</strong> jogadores!';
-  else if (accuracy >= 80)    rank = '🏆 Você está entre os <strong>5% melhores</strong> jogadores!';
-  else if (accuracy >= 60)    rank = '🌎 Você está entre os <strong>20% melhores</strong> jogadores!';
-  else if (accuracy >= 40)    rank = '⭐ Você superou <strong>50% dos jogadores</strong>!';
-  else                        rank = '🎯 Continue praticando para melhorar!';
-  document.getElementById('r-rank').innerHTML = rank;
+      // Advance after short delay
+      setTimeout(() => {
+        if (state.lives <= 0) { endGame(); return; }
+        nextRound();
+      }, 1800);
+    }
 
-  // Store result data for canvas rendering
-  window._resultData = {
-    trophy, title,
-    score: state.score,
-    correct: state.correct,
-    answered: state.answered,
-    maxStreak: state.maxStreak,
-    accuracy,
-    diff: state.diff,
-  };
+    /* ══════════════════════════════════════════════════════════
+       FACT DISPLAY
+    ══════════════════════════════════════════════════════════ */
+    function showFact(country, correct) {
+      const el = document.getElementById('g-fact');
+      const icon = correct ? '✅' : '❌';
+      const facts = [];
+      if (country.capital && country.capital !== '—') facts.push(`Capital: <strong>${country.capital}</strong>`);
+      if (country.currency) facts.push(`Moeda: <strong>${country.currency}</strong>`);
+      if (country.languages?.length) facts.push(`Idioma oficial: <strong>${country.languages[0]}</strong>`);
+      if (country.subregion || country.region) facts.push(`Região: <strong>${country.subregion || country.region}</strong>`);
 
-  showScreen('result-screen');
+      const fact = rand(facts);
+      el.innerHTML = `${icon} <strong>${country.flagEmoji} ${country.namePt || country.name}</strong> — ${fact}`;
+      el.style.display = 'block';
+    }
 
-  // Render preview canvas after screen transition
-  requestAnimationFrame(() => requestAnimationFrame(() => buildShareCanvas()));
-}
+    /* ══════════════════════════════════════════════════════════
+       TIMER
+    ══════════════════════════════════════════════════════════ */
+    const CIRC = 144.51; // 2 * pi * 23
+    function startTimer(seconds) {
+      state.timeLeft = seconds;
+      const bar = document.getElementById('timer-bar');
+      const num = document.getElementById('g-timer');
 
-/* ══════════════════════════════════════════════════════════
-   SHARE CARD CANVAS
-══════════════════════════════════════════════════════════ */
-function buildShareCanvas() {
-  const canvas = document.getElementById('share-canvas');
-  const W = 560, H = 300;
-  canvas.width = W * 2; canvas.height = H * 2; // retina
-  canvas.style.width  = W + 'px';
-  canvas.style.height = H + 'px';
-  const ctx = canvas.getContext('2d');
-  ctx.scale(2, 2); // retina scale
+      function update() {
+        const pct = state.timeLeft / state.cfg.time;
+        bar.style.strokeDashoffset = CIRC * (1 - pct);
 
-  const data = window._resultData || {};
-  const { trophy='🏆', title='Fim de Jogo!', score=0, correct=0, answered=0, maxStreak=0, accuracy=0, diff='easy' } = data;
-  const diffEmoji = { easy:'🌱', medium:'⚡', hard:'🔥' }[diff] || '🌱';
+        // Color transitions
+        const col = pct > .5
+          ? '#00e5ff'
+          : pct > .25
+            ? `hsl(${pct * 200}, 100%, 60%)`
+            : '#ef4444';
+        bar.style.stroke = col;
+        num.style.color = pct <= .25 ? '#ef4444' : 'inherit';
+        num.textContent = Math.ceil(state.timeLeft);
 
-  // ── Background deep space ──────────────────────────
-  const bg = ctx.createLinearGradient(0, 0, W, H);
-  bg.addColorStop(0, '#06080f');
-  bg.addColorStop(1, '#0d1220');
-  ctx.fillStyle = bg; ctx.fillRect(0, 0, W, H);
+        if (state.timeLeft <= 0) {
+          clearInterval(state.timerInterval);
+          timeUp();
+        }
+      }
 
-  // Subtle radial glow top-left
-  const g1 = ctx.createRadialGradient(W*.15, H*.1, 0, W*.15, H*.1, 180);
-  g1.addColorStop(0, 'rgba(124,58,237,.22)'); g1.addColorStop(1, 'transparent');
-  ctx.fillStyle = g1; ctx.fillRect(0, 0, W, H);
+      update();
+      state.timerInterval = setInterval(() => {
+        state.timeLeft = Math.max(0, state.timeLeft - 1);
+        update();
+      }, 1000);
+    }
 
-  // Subtle radial glow bottom-right
-  const g2 = ctx.createRadialGradient(W*.85, H*.9, 0, W*.85, H*.9, 160);
-  g2.addColorStop(0, 'rgba(0,229,255,.14)'); g2.addColorStop(1, 'transparent');
-  ctx.fillStyle = g2; ctx.fillRect(0, 0, W, H);
+    function timeUp() {
+      if (state.answered_this) return;
+      state.answered_this = true;
+      state.lives--;
+      state.streak = 0;
+      state.answered++;
+      renderLives();
 
-  // Stars sprinkle
-  ctx.save();
-  for (let i = 0; i < 60; i++) {
-    const sx = Math.sin(i * 137.5) * W * .5 + W * .5;
-    const sy = Math.cos(i * 97.3) * H * .5 + H * .5;
-    const sr = Math.random() * .9 + .3;
-    ctx.globalAlpha = Math.random() * .5 + .15;
-    ctx.fillStyle = '#fff';
-    ctx.beginPath(); ctx.arc(sx, sy, sr, 0, Math.PI*2); ctx.fill();
-  }
-  ctx.restore();
+      // Reveal correct answer
+      const correctIdx = state.options.findIndex(o => o.name === state.currentCountry.name);
+      const btn = document.getElementById(`ans-${correctIdx}`);
+      if (btn) btn.classList.add('reveal');
+      state.options.forEach((_, i) => {
+        const b = document.getElementById(`ans-${i}`);
+        if (b) b.disabled = true;
+      });
 
-  // ── Border frame ──────────────────────────────────
-  const borderGrad = ctx.createLinearGradient(0, 0, W, H);
-  borderGrad.addColorStop(0,   'rgba(124,58,237,.6)');
-  borderGrad.addColorStop(.5,  'rgba(0,229,255,.4)');
-  borderGrad.addColorStop(1,   'rgba(245,200,66,.3)');
-  ctx.strokeStyle = borderGrad;
-  ctx.lineWidth = 1.5;
-  roundRect(ctx, 1, 1, W-2, H-2, 18);
-  ctx.stroke();
+      showFact(state.currentCountry, false);
+      tooltip('⏱️ Tempo esgotado!');
+      document.getElementById('g-streak').textContent = 0;
 
-  // ── Inner glass panel (center) ─────────────────────
-  ctx.save();
-  ctx.globalAlpha = .07;
-  ctx.fillStyle = '#fff';
-  roundRect(ctx, 14, 14, W-28, H-28, 12);
-  ctx.fill();
-  ctx.restore();
+      setTimeout(() => {
+        if (state.lives <= 0) { endGame(); return; }
+        nextRound();
+      }, 1800);
+    }
 
-  // ── Trophy + Title ─────────────────────────────────
-  ctx.font = '38px serif';
-  ctx.textAlign = 'left';
-  ctx.fillText(trophy, 28, 58);
+    /* ══════════════════════════════════════════════════════════
+       END GAME
+    ══════════════════════════════════════════════════════════ */
+    function endGame() {
+      clearInterval(state.timerInterval);
 
-  // Title
-  const titleGrad = ctx.createLinearGradient(72, 0, 320, 0);
-  titleGrad.addColorStop(0, '#f5c842');
-  titleGrad.addColorStop(.5, '#ffffff');
-  titleGrad.addColorStop(1, '#00e5ff');
-  ctx.fillStyle = titleGrad;
-  ctx.font = 'bold 26px Outfit, sans-serif';
-  ctx.textAlign = 'left';
-  ctx.fillText(title, 76, 50);
+      const accuracy = state.answered > 0
+        ? Math.round(state.correct / state.answered * 100)
+        : 0;
 
-  // Game name + diff
-  ctx.fillStyle = 'rgba(255,255,255,.38)';
-  ctx.font = '12px Outfit, sans-serif';
-  ctx.fillText('🌍 Qual é o País?  ' + diffEmoji, 76, 68);
+      // Save stats
+      gamesPlayed++;
+      if (state.score > highScore) highScore = state.score;
+      localStorage.setItem('qep_hs', highScore);
+      localStorage.setItem('qep_games', gamesPlayed);
+      refreshHomeStats();
 
-  // ── Divider line ─────────────────────────────────
-  const dvGrad = ctx.createLinearGradient(28, 0, W-28, 0);
-  dvGrad.addColorStop(0, 'transparent');
-  dvGrad.addColorStop(.3, 'rgba(255,255,255,.15)');
-  dvGrad.addColorStop(.7, 'rgba(255,255,255,.15)');
-  dvGrad.addColorStop(1, 'transparent');
-  ctx.strokeStyle = dvGrad; ctx.lineWidth = 1;
-  ctx.beginPath(); ctx.moveTo(28, 82); ctx.lineTo(W-28, 82); ctx.stroke();
+      // Trophy
+      let trophy, title;
+      if (state.correct === state.totalRounds) {
+        trophy = '🏆'; title = 'Perfeito!';
+      } else if (accuracy >= 80) {
+        trophy = '🥇'; title = 'Excelente!';
+      } else if (accuracy >= 60) {
+        trophy = '🥈'; title = 'Muito Bom!';
+      } else if (accuracy >= 40) {
+        trophy = '🥉'; title = 'Bom esforço!';
+      } else {
+        trophy = '🌍'; title = 'Continue tentando!';
+      }
 
-  // ── Score (big center-left) ───────────────────────
-  const scoreGrad = ctx.createLinearGradient(28, 90, 28, 150);
-  scoreGrad.addColorStop(0, '#ffe566');
-  scoreGrad.addColorStop(1, '#e07b00');
-  ctx.fillStyle = scoreGrad;
-  ctx.font = 'bold 62px Outfit, sans-serif';
-  ctx.textAlign = 'left';
-  ctx.fillText(score, 28, 152);
+      document.getElementById('r-trophy').textContent = trophy;
+      document.getElementById('r-title').textContent = title;
+      document.getElementById('r-score').textContent = state.score;
+      document.getElementById('r-correct').textContent = state.correct;
+      document.getElementById('r-streak').textContent = state.maxStreak;
+      document.getElementById('r-accuracy').textContent = accuracy + '%';
 
-  // pts label
-  ctx.fillStyle = 'rgba(255,255,255,.4)';
-  ctx.font = '13px Outfit, sans-serif';
-  ctx.fillText('PONTOS', 32, 170);
+      // Rank
+      let rank;
+      if (accuracy === 100) rank = '🌟 Você está entre os <strong>1% melhores</strong> jogadores!';
+      else if (accuracy >= 80) rank = '🏆 Você está entre os <strong>5% melhores</strong> jogadores!';
+      else if (accuracy >= 60) rank = '🌎 Você está entre os <strong>20% melhores</strong> jogadores!';
+      else if (accuracy >= 40) rank = '⭐ Você superou <strong>50% dos jogadores</strong>!';
+      else rank = '🎯 Continue praticando para melhorar!';
+      document.getElementById('r-rank').innerHTML = rank;
 
-  // ── Stats boxes (right side) ──────────────────────
-  const stats = [
-    { icon: '✅', val: correct + '/' + answered, lbl: 'Acertos' },
-    { icon: '🔥', val: maxStreak,                lbl: 'Sequência' },
-    { icon: '🎯', val: accuracy + '%',           lbl: 'Precisão'  },
-  ];
+      // Store result data for canvas rendering
+      window._resultData = {
+        trophy, title,
+        score: state.score,
+        correct: state.correct,
+        answered: state.answered,
+        maxStreak: state.maxStreak,
+        accuracy,
+        diff: state.diff,
+      };
 
-  const bx = W - 260, bw = 76, bh = 72, gap = 10, by = 92;
-  stats.forEach((s, i) => {
-    const x = bx + i * (bw + gap);
-    // Box bg
-    ctx.save();
-    ctx.globalAlpha = .12;
-    ctx.fillStyle = '#fff';
-    roundRect(ctx, x, by, bw, bh, 10);
-    ctx.fill();
-    ctx.restore();
-    // Border
-    ctx.strokeStyle = 'rgba(255,255,255,.08)';
-    ctx.lineWidth = 1;
-    roundRect(ctx, x, by, bw, bh, 10);
-    ctx.stroke();
-    // Icon
-    ctx.font = '20px serif';
-    ctx.textAlign = 'center';
-    ctx.fillText(s.icon, x + bw/2, by + 22);
-    // Value
-    ctx.fillStyle = '#fff';
-    ctx.font = 'bold 16px Outfit, sans-serif';
-    ctx.fillText(s.val, x + bw/2, by + 44);
-    // Label
-    ctx.fillStyle = 'rgba(255,255,255,.4)';
-    ctx.font = '9.5px Outfit, sans-serif';
-    ctx.fillText(s.lbl.toUpperCase(), x + bw/2, by + 59);
-  });
+      showScreen('result-screen');
 
-  // ── Rank message ──────────────────────────────────
-  const rankEl = document.getElementById('r-rank');
-  const rankText = rankEl ? rankEl.textContent.replace(/[<>]/g,'') : '';
+      // Render preview canvas after screen transition
+      requestAnimationFrame(() => requestAnimationFrame(() => buildShareCanvas()));
+    }
 
-  // Pill background
-  const rankX = bx, rankY = by + bh + 10, rankW = (bw*3+gap*2), rankH = 28;
-  const pillGrad = ctx.createLinearGradient(rankX, 0, rankX + rankW, 0);
-  pillGrad.addColorStop(0, 'rgba(124,58,237,.25)');
-  pillGrad.addColorStop(1, 'rgba(0,229,255,.18)');
-  ctx.fillStyle = pillGrad;
-  ctx.strokeStyle = 'rgba(124,58,237,.4)'; ctx.lineWidth = 1;
-  roundRect(ctx, rankX, rankY, rankW, rankH, 8);
-  ctx.fill(); ctx.stroke();
+    /* ══════════════════════════════════════════════════════════
+       SHARE CARD CANVAS
+    ══════════════════════════════════════════════════════════ */
+    function buildShareCanvas() {
+      const canvas = document.getElementById('share-canvas');
+      const W = 560, H = 300;
+      canvas.width = W * 2; canvas.height = H * 2; // retina
+      canvas.style.width = W + 'px';
+      canvas.style.height = H + 'px';
+      const ctx = canvas.getContext('2d');
+      ctx.scale(2, 2); // retina scale
 
-  ctx.fillStyle = '#00e5ff';
-  ctx.font = '11px Outfit, sans-serif';
-  ctx.textAlign = 'center';
-  ctx.fillText(rankText, rankX + rankW/2, rankY + 18);
+      const data = window._resultData || {};
+      const { trophy = '🏆', title = 'Fim de Jogo!', score = 0, correct = 0, answered = 0, maxStreak = 0, accuracy = 0, diff = 'easy' } = data;
+      const diffEmoji = { easy: '🌱', medium: '⚡', hard: '🔥' }[diff] || '🌱';
 
-  // ── Bottom CTA ─────────────────────────────────────
-  ctx.fillStyle = 'rgba(255,255,255,.2)';
-  ctx.font = '11px Outfit, sans-serif';
-  ctx.textAlign = 'left';
-  ctx.fillText('Você consegue me superar? 👉 qualopaís.com', 28, H - 16);
+      // ── Background deep space ──────────────────────────
+      const bg = ctx.createLinearGradient(0, 0, W, H);
+      bg.addColorStop(0, '#06080f');
+      bg.addColorStop(1, '#0d1220');
+      ctx.fillStyle = bg; ctx.fillRect(0, 0, W, H);
 
-  return canvas;
-}
+      // Subtle radial glow top-left
+      const g1 = ctx.createRadialGradient(W * .15, H * .1, 0, W * .15, H * .1, 180);
+      g1.addColorStop(0, 'rgba(124,58,237,.22)'); g1.addColorStop(1, 'transparent');
+      ctx.fillStyle = g1; ctx.fillRect(0, 0, W, H);
 
-function roundRect(ctx, x, y, w, h, r) {
-  ctx.beginPath();
-  ctx.moveTo(x + r, y);
-  ctx.lineTo(x + w - r, y);
-  ctx.arcTo(x + w, y, x + w, y + r, r);
-  ctx.lineTo(x + w, y + h - r);
-  ctx.arcTo(x + w, y + h, x + w - r, y + h, r);
-  ctx.lineTo(x + r, y + h);
-  ctx.arcTo(x, y + h, x, y + h - r, r);
-  ctx.lineTo(x, y + r);
-  ctx.arcTo(x, y, x + r, y, r);
-  ctx.closePath();
-}
+      // Subtle radial glow bottom-right
+      const g2 = ctx.createRadialGradient(W * .85, H * .9, 0, W * .85, H * .9, 160);
+      g2.addColorStop(0, 'rgba(0,229,255,.14)'); g2.addColorStop(1, 'transparent');
+      ctx.fillStyle = g2; ctx.fillRect(0, 0, W, H);
 
-function downloadResultImage() {
-  const canvas = buildShareCanvas();
-  const link = document.createElement('a');
-  link.download = 'qual-e-o-pais-resultado.png';
-  link.href = canvas.toDataURL('image/png');
-  link.click();
-  tooltip('✅ Imagem salva!');
-}
+      // Stars sprinkle
+      ctx.save();
+      for (let i = 0; i < 60; i++) {
+        const sx = Math.sin(i * 137.5) * W * .5 + W * .5;
+        const sy = Math.cos(i * 97.3) * H * .5 + H * .5;
+        const sr = Math.random() * .9 + .3;
+        ctx.globalAlpha = Math.random() * .5 + .15;
+        ctx.fillStyle = '#fff';
+        ctx.beginPath(); ctx.arc(sx, sy, sr, 0, Math.PI * 2); ctx.fill();
+      }
+      ctx.restore();
 
-/* ══════════════════════════════════════════════════════════
-   HOW TO PLAY
-══════════════════════════════════════════════════════════ */
-function showHowTo() {
-  tooltip('🏳️ Identifique o país pelas dicas! Cada rodada tem um tipo diferente de pergunta.', 3500);
-}
+      // ── Border frame ──────────────────────────────────
+      const borderGrad = ctx.createLinearGradient(0, 0, W, H);
+      borderGrad.addColorStop(0, 'rgba(124,58,237,.6)');
+      borderGrad.addColorStop(.5, 'rgba(0,229,255,.4)');
+      borderGrad.addColorStop(1, 'rgba(245,200,66,.3)');
+      ctx.strokeStyle = borderGrad;
+      ctx.lineWidth = 1.5;
+      roundRect(ctx, 1, 1, W - 2, H - 2, 18);
+      ctx.stroke();
 
-/* ══════════════════════════════════════════════════════════
-   FALLBACK DATASET (used if API fails)
-══════════════════════════════════════════════════════════ */
-const FALLBACK_COUNTRIES = [
-  { name:'Brazil',       namePt:'Brasil',          flag:'https://flagcdn.com/w320/br.png', flagEmoji:'🇧🇷', capital:'Brasília',         cca2:'br', region:'Americas', subregion:'América do Sul',   population:215e6,  currency:'Real brasileiro',        languages:['Português'] },
-  { name:'Japan',        namePt:'Japão',            flag:'https://flagcdn.com/w320/jp.png', flagEmoji:'🇯🇵', capital:'Tóquio',            cca2:'jp', region:'Asia',    subregion:'Ásia Oriental',    population:125e6,  currency:'Iene japonês',           languages:['Japonês'] },
-  { name:'France',       namePt:'França',           flag:'https://flagcdn.com/w320/fr.png', flagEmoji:'🇫🇷', capital:'Paris',             cca2:'fr', region:'Europe',  subregion:'Europa Ocidental', population:67e6,   currency:'Euro',                   languages:['Francês'] },
-  { name:'Germany',      namePt:'Alemanha',         flag:'https://flagcdn.com/w320/de.png', flagEmoji:'🇩🇪', capital:'Berlim',            cca2:'de', region:'Europe',  subregion:'Europa Ocidental', population:83e6,   currency:'Euro',                   languages:['Alemão'] },
-  { name:'United States',namePt:'Estados Unidos',   flag:'https://flagcdn.com/w320/us.png', flagEmoji:'🇺🇸', capital:'Washington D.C.',   cca2:'us', region:'Americas',subregion:'América do Norte', population:332e6,  currency:'Dólar americano',        languages:['Inglês'] },
-  { name:'Canada',       namePt:'Canadá',           flag:'https://flagcdn.com/w320/ca.png', flagEmoji:'🇨🇦', capital:'Ottawa',            cca2:'ca', region:'Americas',subregion:'América do Norte', population:38e6,   currency:'Dólar canadense',        languages:['Inglês','Francês'] },
-  { name:'Australia',    namePt:'Austrália',        flag:'https://flagcdn.com/w320/au.png', flagEmoji:'🇦🇺', capital:'Canberra',          cca2:'au', region:'Oceania', subregion:'Oceania',          population:26e6,   currency:'Dólar australiano',      languages:['Inglês'] },
-  { name:'India',        namePt:'Índia',            flag:'https://flagcdn.com/w320/in.png', flagEmoji:'🇮🇳', capital:'Nova Délhi',        cca2:'in', region:'Asia',    subregion:'Ásia Meridional',  population:1.4e9,  currency:'Rupia indiana',          languages:['Hindi','Inglês'] },
-  { name:'China',        namePt:'China',            flag:'https://flagcdn.com/w320/cn.png', flagEmoji:'🇨🇳', capital:'Pequim',            cca2:'cn', region:'Asia',    subregion:'Ásia Oriental',    population:1.4e9,  currency:'Renminbi (Yuan)',         languages:['Mandarim'] },
-  { name:'Russia',       namePt:'Rússia',           flag:'https://flagcdn.com/w320/ru.png', flagEmoji:'🇷🇺', capital:'Moscou',            cca2:'ru', region:'Europe',  subregion:'Europa Oriental',  population:144e6,  currency:'Rublo russo',            languages:['Russo'] },
-  { name:'United Kingdom',namePt:'Reino Unido',     flag:'https://flagcdn.com/w320/gb.png', flagEmoji:'🇬🇧', capital:'Londres',           cca2:'gb', region:'Europe',  subregion:'Europa do Norte',  population:67e6,   currency:'Libra esterlina',        languages:['Inglês'] },
-  { name:'Italy',        namePt:'Itália',           flag:'https://flagcdn.com/w320/it.png', flagEmoji:'🇮🇹', capital:'Roma',              cca2:'it', region:'Europe',  subregion:'Europa do Sul',    population:60e6,   currency:'Euro',                   languages:['Italiano'] },
-  { name:'Spain',        namePt:'Espanha',          flag:'https://flagcdn.com/w320/es.png', flagEmoji:'🇪🇸', capital:'Madri',             cca2:'es', region:'Europe',  subregion:'Europa do Sul',    population:47e6,   currency:'Euro',                   languages:['Espanhol'] },
-  { name:'Mexico',       namePt:'México',           flag:'https://flagcdn.com/w320/mx.png', flagEmoji:'🇲🇽', capital:'Cidade do México',  cca2:'mx', region:'Americas',subregion:'América do Norte', population:130e6,  currency:'Peso mexicano',          languages:['Espanhol'] },
-  { name:'Argentina',    namePt:'Argentina',        flag:'https://flagcdn.com/w320/ar.png', flagEmoji:'🇦🇷', capital:'Buenos Aires',      cca2:'ar', region:'Americas',subregion:'América do Sul',   population:46e6,   currency:'Peso argentino',         languages:['Espanhol'] },
-  { name:'South Korea',  namePt:'Coreia do Sul',    flag:'https://flagcdn.com/w320/kr.png', flagEmoji:'🇰🇷', capital:'Seul',              cca2:'kr', region:'Asia',    subregion:'Ásia Oriental',    population:51e6,   currency:'Won sul-coreano',        languages:['Coreano'] },
-  { name:'Portugal',     namePt:'Portugal',         flag:'https://flagcdn.com/w320/pt.png', flagEmoji:'🇵🇹', capital:'Lisboa',            cca2:'pt', region:'Europe',  subregion:'Europa do Sul',    population:10e6,   currency:'Euro',                   languages:['Português'] },
-  { name:'Netherlands',  namePt:'Países Baixos',    flag:'https://flagcdn.com/w320/nl.png', flagEmoji:'🇳🇱', capital:'Amsterdã',          cca2:'nl', region:'Europe',  subregion:'Europa Ocidental', population:17e6,   currency:'Euro',                   languages:['Holandês'] },
-  { name:'Turkey',       namePt:'Turquia',          flag:'https://flagcdn.com/w320/tr.png', flagEmoji:'🇹🇷', capital:'Ancara',            cca2:'tr', region:'Asia',    subregion:'Ásia Ocidental',   population:85e6,   currency:'Lira turca',             languages:['Turco'] },
-  { name:'Saudi Arabia', namePt:'Arábia Saudita',   flag:'https://flagcdn.com/w320/sa.png', flagEmoji:'🇸🇦', capital:'Riade',             cca2:'sa', region:'Asia',    subregion:'Ásia Ocidental',   population:35e6,   currency:'Riyal saudita',          languages:['Árabe'] },
-  { name:'Egypt',        namePt:'Egito',            flag:'https://flagcdn.com/w320/eg.png', flagEmoji:'🇪🇬', capital:'Cairo',             cca2:'eg', region:'Africa',  subregion:'Norte da África',  population:104e6,  currency:'Libra egípcia',          languages:['Árabe'] },
-  { name:'Nigeria',      namePt:'Nigéria',          flag:'https://flagcdn.com/w320/ng.png', flagEmoji:'🇳🇬', capital:'Abuja',             cca2:'ng', region:'Africa',  subregion:'África Ocidental', population:218e6,  currency:'Naira nigeriana',        languages:['Inglês'] },
-  { name:'South Africa', namePt:'África do Sul',    flag:'https://flagcdn.com/w320/za.png', flagEmoji:'🇿🇦', capital:'Pretória',          cca2:'za', region:'Africa',  subregion:'África Austral',   population:60e6,   currency:'Rand sul-africano',      languages:['Zulu','Inglês'] },
-  { name:'Kenya',        namePt:'Quênia',           flag:'https://flagcdn.com/w320/ke.png', flagEmoji:'🇰🇪', capital:'Nairóbi',           cca2:'ke', region:'Africa',  subregion:'África Oriental',  population:55e6,   currency:'Xelim queniano',         languages:['Suaíli','Inglês'] },
-  { name:'Indonesia',    namePt:'Indonésia',        flag:'https://flagcdn.com/w320/id.png', flagEmoji:'🇮🇩', capital:'Jacarta',           cca2:'id', region:'Asia',    subregion:'Ásia do Sudeste',  population:277e6,  currency:'Rúpia indonésia',        languages:['Indonésio'] },
-  { name:'Thailand',     namePt:'Tailândia',        flag:'https://flagcdn.com/w320/th.png', flagEmoji:'🇹🇭', capital:'Bangcoc',           cca2:'th', region:'Asia',    subregion:'Ásia do Sudeste',  population:72e6,   currency:'Baht tailandês',         languages:['Tailandês'] },
-  { name:'Vietnam',      namePt:'Vietnã',           flag:'https://flagcdn.com/w320/vn.png', flagEmoji:'🇻🇳', capital:'Hanói',             cca2:'vn', region:'Asia',    subregion:'Ásia do Sudeste',  population:98e6,   currency:'Dong vietnamita',        languages:['Vietnamita'] },
-  { name:'Pakistan',     namePt:'Paquistão',        flag:'https://flagcdn.com/w320/pk.png', flagEmoji:'🇵🇰', capital:'Islamabade',        cca2:'pk', region:'Asia',    subregion:'Ásia Meridional',  population:230e6,  currency:'Rupia paquistanesa',     languages:['Urdu','Inglês'] },
-  { name:'Colombia',     namePt:'Colômbia',         flag:'https://flagcdn.com/w320/co.png', flagEmoji:'🇨🇴', capital:'Bogotá',            cca2:'co', region:'Americas',subregion:'América do Sul',   population:52e6,   currency:'Peso colombiano',        languages:['Espanhol'] },
-  { name:'Chile',        namePt:'Chile',            flag:'https://flagcdn.com/w320/cl.png', flagEmoji:'🇨🇱', capital:'Santiago',          cca2:'cl', region:'Americas',subregion:'América do Sul',   population:19e6,   currency:'Peso chileno',           languages:['Espanhol'] },
-  { name:'Peru',         namePt:'Peru',             flag:'https://flagcdn.com/w320/pe.png', flagEmoji:'🇵🇪', capital:'Lima',              cca2:'pe', region:'Americas',subregion:'América do Sul',   population:33e6,   currency:'Sol peruano',            languages:['Espanhol'] },
-  { name:'Venezuela',    namePt:'Venezuela',        flag:'https://flagcdn.com/w320/ve.png', flagEmoji:'🇻🇪', capital:'Caracas',           cca2:'ve', region:'Americas',subregion:'América do Sul',   population:29e6,   currency:'Bolívar venezuelano',    languages:['Espanhol'] },
-  { name:'Sweden',       namePt:'Suécia',           flag:'https://flagcdn.com/w320/se.png', flagEmoji:'🇸🇪', capital:'Estocolmo',         cca2:'se', region:'Europe',  subregion:'Europa do Norte',  population:10e6,   currency:'Coroa sueca',            languages:['Sueco'] },
-  { name:'Norway',       namePt:'Noruega',          flag:'https://flagcdn.com/w320/no.png', flagEmoji:'🇳🇴', capital:'Oslo',              cca2:'no', region:'Europe',  subregion:'Europa do Norte',  population:5e6,    currency:'Coroa norueguesa',       languages:['Norueguês'] },
-  { name:'Denmark',      namePt:'Dinamarca',        flag:'https://flagcdn.com/w320/dk.png', flagEmoji:'🇩🇰', capital:'Copenhague',        cca2:'dk', region:'Europe',  subregion:'Europa do Norte',  population:6e6,    currency:'Coroa dinamarquesa',     languages:['Dinamarquês'] },
-  { name:'Finland',      namePt:'Finlândia',        flag:'https://flagcdn.com/w320/fi.png', flagEmoji:'🇫🇮', capital:'Helsinque',         cca2:'fi', region:'Europe',  subregion:'Europa do Norte',  population:5.5e6,  currency:'Euro',                   languages:['Finlandês','Sueco'] },
-  { name:'Poland',       namePt:'Polônia',          flag:'https://flagcdn.com/w320/pl.png', flagEmoji:'🇵🇱', capital:'Varsóvia',          cca2:'pl', region:'Europe',  subregion:'Europa Oriental',  population:38e6,   currency:'Zloty polonês',          languages:['Polonês'] },
-  { name:'Ukraine',      namePt:'Ucrânia',          flag:'https://flagcdn.com/w320/ua.png', flagEmoji:'🇺🇦', capital:'Kiev',              cca2:'ua', region:'Europe',  subregion:'Europa Oriental',  population:44e6,   currency:'Hryvnia ucraniana',      languages:['Ucraniano'] },
-  { name:'Greece',       namePt:'Grécia',           flag:'https://flagcdn.com/w320/gr.png', flagEmoji:'🇬🇷', capital:'Atenas',            cca2:'gr', region:'Europe',  subregion:'Europa do Sul',    population:10e6,   currency:'Euro',                   languages:['Grego'] },
-  { name:'Morocco',      namePt:'Marrocos',         flag:'https://flagcdn.com/w320/ma.png', flagEmoji:'🇲🇦', capital:'Rabat',             cca2:'ma', region:'Africa',  subregion:'Norte da África',  population:37e6,   currency:'Dirham marroquino',      languages:['Árabe','Berbere'] },
-  { name:'Ethiopia',     namePt:'Etiópia',          flag:'https://flagcdn.com/w320/et.png', flagEmoji:'🇪🇹', capital:'Adis Abeba',        cca2:'et', region:'Africa',  subregion:'África Oriental',  population:120e6,  currency:'Birr etíope',            languages:['Amárico'] },
-  { name:'Ghana',        namePt:'Gana',             flag:'https://flagcdn.com/w320/gh.png', flagEmoji:'🇬🇭', capital:'Acra',              cca2:'gh', region:'Africa',  subregion:'África Ocidental', population:33e6,   currency:'Cedi ganês',             languages:['Inglês'] },
-  { name:'Cuba',         namePt:'Cuba',             flag:'https://flagcdn.com/w320/cu.png', flagEmoji:'🇨🇺', capital:'Havana',            cca2:'cu', region:'Americas',subregion:'Caribe',           population:11e6,   currency:'Peso cubano',            languages:['Espanhol'] },
-  { name:'Philippines',  namePt:'Filipinas',        flag:'https://flagcdn.com/w320/ph.png', flagEmoji:'🇵🇭', capital:'Manila',            cca2:'ph', region:'Asia',    subregion:'Ásia do Sudeste',  population:114e6,  currency:'Peso filipino',          languages:['Filipino','Inglês'] },
-  { name:'New Zealand',  namePt:'Nova Zelândia',    flag:'https://flagcdn.com/w320/nz.png', flagEmoji:'🇳🇿', capital:'Wellington',        cca2:'nz', region:'Oceania', subregion:'Oceania',          population:5e6,    currency:'Dólar neozelandês',      languages:['Inglês','Maori'] },
-  { name:'Switzerland',  namePt:'Suíça',            flag:'https://flagcdn.com/w320/ch.png', flagEmoji:'🇨🇭', capital:'Berna',             cca2:'ch', region:'Europe',  subregion:'Europa Ocidental', population:8.6e6,  currency:'Franco suíço',           languages:['Alemão','Francês','Italiano'] },
-  { name:'Austria',      namePt:'Áustria',          flag:'https://flagcdn.com/w320/at.png', flagEmoji:'🇦🇹', capital:'Viena',             cca2:'at', region:'Europe',  subregion:'Europa Ocidental', population:9e6,    currency:'Euro',                   languages:['Alemão'] },
-  { name:'Belgium',      namePt:'Bélgica',          flag:'https://flagcdn.com/w320/be.png', flagEmoji:'🇧🇪', capital:'Bruxelas',          cca2:'be', region:'Europe',  subregion:'Europa Ocidental', population:11e6,   currency:'Euro',                   languages:['Holandês','Francês','Alemão'] },
-  { name:'Iran',         namePt:'Irã',              flag:'https://flagcdn.com/w320/ir.png', flagEmoji:'🇮🇷', capital:'Teerã',             cca2:'ir', region:'Asia',    subregion:'Ásia Ocidental',   population:85e6,   currency:'Rial iraniano',          languages:['Persa'] },
-  { name:'Iraq',         namePt:'Iraque',           flag:'https://flagcdn.com/w320/iq.png', flagEmoji:'🇮🇶', capital:'Bagdá',             cca2:'iq', region:'Asia',    subregion:'Ásia Ocidental',   population:42e6,   currency:'Dinar iraquiano',        languages:['Árabe','Curdo'] },
-  { name:'Israel',       namePt:'Israel',           flag:'https://flagcdn.com/w320/il.png', flagEmoji:'🇮🇱', capital:'Jerusalém',         cca2:'il', region:'Asia',    subregion:'Ásia Ocidental',   population:9e6,    currency:'Shekel israelense',      languages:['Hebraico','Árabe'] },
-  { name:'Hungary',      namePt:'Hungria',          flag:'https://flagcdn.com/w320/hu.png', flagEmoji:'🇭🇺', capital:'Budapeste',         cca2:'hu', region:'Europe',  subregion:'Europa Central',   population:10e6,   currency:'Florim húngaro',         languages:['Húngaro'] },
-  { name:'Czech Republic',namePt:'República Tcheca',flag:'https://flagcdn.com/w320/cz.png', flagEmoji:'🇨🇿', capital:'Praga',            cca2:'cz', region:'Europe',  subregion:'Europa Central',   population:10.9e6, currency:'Coroa tcheca',           languages:['Tcheco'] },
-  { name:'Romania',      namePt:'Romênia',          flag:'https://flagcdn.com/w320/ro.png', flagEmoji:'🇷🇴', capital:'Bucareste',         cca2:'ro', region:'Europe',  subregion:'Europa Oriental',  population:19e6,   currency:'Leu romeno',             languages:['Romeno'] },
-  { name:'Kazakhstan',   namePt:'Cazaquistão',      flag:'https://flagcdn.com/w320/kz.png', flagEmoji:'🇰🇿', capital:'Astana',            cca2:'kz', region:'Asia',    subregion:'Ásia Central',     population:19e6,   currency:'Tenge cazaque',          languages:['Cazaque','Russo'] },
-  { name:'Algeria',      namePt:'Argélia',          flag:'https://flagcdn.com/w320/dz.png', flagEmoji:'🇩🇿', capital:'Argel',             cca2:'dz', region:'Africa',  subregion:'Norte da África',  population:45e6,   currency:'Dinar argelino',         languages:['Árabe'] },
-  { name:'Angola',       namePt:'Angola',           flag:'https://flagcdn.com/w320/ao.png', flagEmoji:'🇦🇴', capital:'Luanda',            cca2:'ao', region:'Africa',  subregion:'África Central',   population:35e6,   currency:'Kwanza angolano',        languages:['Português'] },
-  { name:'Mozambique',   namePt:'Moçambique',       flag:'https://flagcdn.com/w320/mz.png', flagEmoji:'🇲🇿', capital:'Maputo',            cca2:'mz', region:'Africa',  subregion:'África Oriental',  population:33e6,   currency:'Metical moçambicano',    languages:['Português'] },
-  { name:'Singapore',    namePt:'Singapura',        flag:'https://flagcdn.com/w320/sg.png', flagEmoji:'🇸🇬', capital:'Singapura',         cca2:'sg', region:'Asia',    subregion:'Ásia do Sudeste',  population:5.9e6,  currency:'Dólar de Singapura',     languages:['Inglês','Malaio','Mandarim'] },
-  { name:'Uruguay',      namePt:'Uruguai',          flag:'https://flagcdn.com/w320/uy.png', flagEmoji:'🇺🇾', capital:'Montevidéu',        cca2:'uy', region:'Americas',subregion:'América do Sul',   population:3.5e6,  currency:'Peso uruguaio',          languages:['Espanhol'] },
-  { name:'Paraguay',     namePt:'Paraguai',         flag:'https://flagcdn.com/w320/py.png', flagEmoji:'🇵🇾', capital:'Assunção',          cca2:'py', region:'Americas',subregion:'América do Sul',   population:7.4e6,  currency:'Guarani paraguaio',      languages:['Espanhol','Guarani'] },
-  { name:'Bolivia',      namePt:'Bolívia',          flag:'https://flagcdn.com/w320/bo.png', flagEmoji:'🇧🇴', capital:'Sucre',             cca2:'bo', region:'Americas',subregion:'América do Sul',   population:12e6,   currency:'Boliviano',              languages:['Espanhol','Quechua'] },
-  { name:'Ecuador',      namePt:'Equador',          flag:'https://flagcdn.com/w320/ec.png', flagEmoji:'🇪🇨', capital:'Quito',             cca2:'ec', region:'Americas',subregion:'América do Sul',   population:18e6,   currency:'Dólar americano',        languages:['Espanhol'] },
-  { name:'Croatia',      namePt:'Croácia',          flag:'https://flagcdn.com/w320/hr.png', flagEmoji:'🇭🇷', capital:'Zagreb',            cca2:'hr', region:'Europe',  subregion:'Europa do Sul',    population:4e6,    currency:'Euro',                   languages:['Croata'] },
-  { name:'Serbia',       namePt:'Sérvia',           flag:'https://flagcdn.com/w320/rs.png', flagEmoji:'🇷🇸', capital:'Belgrado',          cca2:'rs', region:'Europe',  subregion:'Europa do Sul',    population:7e6,    currency:'Dinar sérvio',           languages:['Sérvio'] },
-  { name:'Bulgaria',     namePt:'Bulgária',         flag:'https://flagcdn.com/w320/bg.png', flagEmoji:'🇧🇬', capital:'Sófia',             cca2:'bg', region:'Europe',  subregion:'Europa Oriental',  population:6.5e6,  currency:'Lev búlgaro',            languages:['Búlgaro'] },
-  { name:'Malaysia',     namePt:'Malásia',          flag:'https://flagcdn.com/w320/my.png', flagEmoji:'🇲🇾', capital:'Kuala Lumpur',      cca2:'my', region:'Asia',    subregion:'Ásia do Sudeste',  population:33e6,   currency:'Ringgit malaio',         languages:['Malaio'] },
-  { name:'Bangladesh',   namePt:'Bangladesh',       flag:'https://flagcdn.com/w320/bd.png', flagEmoji:'🇧🇩', capital:'Dacca',             cca2:'bd', region:'Asia',    subregion:'Ásia Meridional',  population:170e6,  currency:'Taka bangladeshiano',    languages:['Bengali'] },
-  { name:'Tanzania',     namePt:'Tanzânia',         flag:'https://flagcdn.com/w320/tz.png', flagEmoji:'🇹🇿', capital:'Dodoma',            cca2:'tz', region:'Africa',  subregion:'África Oriental',  population:64e6,   currency:'Xelim tanzaniano',       languages:['Suaíli','Inglês'] },
-  { name:'Dominican Republic',namePt:'República Dominicana',flag:'https://flagcdn.com/w320/do.png',flagEmoji:'🇩🇴',capital:'Santo Domingo', cca2:'do', region:'Americas',subregion:'Caribe',  population:10e6,   currency:'Peso dominicano',        languages:['Espanhol'] },
-];
+      // ── Inner glass panel (center) ─────────────────────
+      ctx.save();
+      ctx.globalAlpha = .07;
+      ctx.fillStyle = '#fff';
+      roundRect(ctx, 14, 14, W - 28, H - 28, 12);
+      ctx.fill();
+      ctx.restore();
 
-/* ══════════════════════════════════════════════════════════
-   INIT
-══════════════════════════════════════════════════════════ */
-window.addEventListener('DOMContentLoaded', () => {
-  refreshHomeStats();
-  loadCountries();
-});
-</script>
+      // ── Trophy + Title ─────────────────────────────────
+      ctx.font = '38px serif';
+      ctx.textAlign = 'left';
+      ctx.fillText(trophy, 28, 58);
+
+      // Title
+      const titleGrad = ctx.createLinearGradient(72, 0, 320, 0);
+      titleGrad.addColorStop(0, '#f5c842');
+      titleGrad.addColorStop(.5, '#ffffff');
+      titleGrad.addColorStop(1, '#00e5ff');
+      ctx.fillStyle = titleGrad;
+      ctx.font = 'bold 26px Outfit, sans-serif';
+      ctx.textAlign = 'left';
+      ctx.fillText(title, 76, 50);
+
+      // Game name + diff
+      ctx.fillStyle = 'rgba(255,255,255,.38)';
+      ctx.font = '12px Outfit, sans-serif';
+      ctx.fillText('🌍 Qual é o País?  ' + diffEmoji, 76, 68);
+
+      // ── Divider line ─────────────────────────────────
+      const dvGrad = ctx.createLinearGradient(28, 0, W - 28, 0);
+      dvGrad.addColorStop(0, 'transparent');
+      dvGrad.addColorStop(.3, 'rgba(255,255,255,.15)');
+      dvGrad.addColorStop(.7, 'rgba(255,255,255,.15)');
+      dvGrad.addColorStop(1, 'transparent');
+      ctx.strokeStyle = dvGrad; ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.moveTo(28, 82); ctx.lineTo(W - 28, 82); ctx.stroke();
+
+      // ── Score (big center-left) ───────────────────────
+      const scoreGrad = ctx.createLinearGradient(28, 90, 28, 150);
+      scoreGrad.addColorStop(0, '#ffe566');
+      scoreGrad.addColorStop(1, '#e07b00');
+      ctx.fillStyle = scoreGrad;
+      ctx.font = 'bold 62px Outfit, sans-serif';
+      ctx.textAlign = 'left';
+      ctx.fillText(score, 28, 152);
+
+      // pts label
+      ctx.fillStyle = 'rgba(255,255,255,.4)';
+      ctx.font = '13px Outfit, sans-serif';
+      ctx.fillText('PONTOS', 32, 170);
+
+      // ── Stats boxes (right side) ──────────────────────
+      const stats = [
+        { icon: '✅', val: correct + '/' + answered, lbl: 'Acertos' },
+        { icon: '🔥', val: maxStreak, lbl: 'Sequência' },
+        { icon: '🎯', val: accuracy + '%', lbl: 'Precisão' },
+      ];
+
+      const bx = W - 260, bw = 76, bh = 72, gap = 10, by = 92;
+      stats.forEach((s, i) => {
+        const x = bx + i * (bw + gap);
+        // Box bg
+        ctx.save();
+        ctx.globalAlpha = .12;
+        ctx.fillStyle = '#fff';
+        roundRect(ctx, x, by, bw, bh, 10);
+        ctx.fill();
+        ctx.restore();
+        // Border
+        ctx.strokeStyle = 'rgba(255,255,255,.08)';
+        ctx.lineWidth = 1;
+        roundRect(ctx, x, by, bw, bh, 10);
+        ctx.stroke();
+        // Icon
+        ctx.font = '20px serif';
+        ctx.textAlign = 'center';
+        ctx.fillText(s.icon, x + bw / 2, by + 22);
+        // Value
+        ctx.fillStyle = '#fff';
+        ctx.font = 'bold 16px Outfit, sans-serif';
+        ctx.fillText(s.val, x + bw / 2, by + 44);
+        // Label
+        ctx.fillStyle = 'rgba(255,255,255,.4)';
+        ctx.font = '9.5px Outfit, sans-serif';
+        ctx.fillText(s.lbl.toUpperCase(), x + bw / 2, by + 59);
+      });
+
+      // ── Rank message ──────────────────────────────────
+      const rankEl = document.getElementById('r-rank');
+      const rankText = rankEl ? rankEl.textContent.replace(/[<>]/g, '') : '';
+
+      // Pill background
+      const rankX = bx, rankY = by + bh + 10, rankW = (bw * 3 + gap * 2), rankH = 28;
+      const pillGrad = ctx.createLinearGradient(rankX, 0, rankX + rankW, 0);
+      pillGrad.addColorStop(0, 'rgba(124,58,237,.25)');
+      pillGrad.addColorStop(1, 'rgba(0,229,255,.18)');
+      ctx.fillStyle = pillGrad;
+      ctx.strokeStyle = 'rgba(124,58,237,.4)'; ctx.lineWidth = 1;
+      roundRect(ctx, rankX, rankY, rankW, rankH, 8);
+      ctx.fill(); ctx.stroke();
+
+      ctx.fillStyle = '#00e5ff';
+      ctx.font = '11px Outfit, sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText(rankText, rankX + rankW / 2, rankY + 18);
+
+      // ── Bottom CTA ─────────────────────────────────────
+      ctx.fillStyle = 'rgba(255,255,255,.2)';
+      ctx.font = '11px Outfit, sans-serif';
+      ctx.textAlign = 'left';
+      ctx.fillText('Você consegue me superar? 👉 qualopaís.com', 28, H - 16);
+
+      return canvas;
+    }
+
+    function roundRect(ctx, x, y, w, h, r) {
+      ctx.beginPath();
+      ctx.moveTo(x + r, y);
+      ctx.lineTo(x + w - r, y);
+      ctx.arcTo(x + w, y, x + w, y + r, r);
+      ctx.lineTo(x + w, y + h - r);
+      ctx.arcTo(x + w, y + h, x + w - r, y + h, r);
+      ctx.lineTo(x + r, y + h);
+      ctx.arcTo(x, y + h, x, y + h - r, r);
+      ctx.lineTo(x, y + r);
+      ctx.arcTo(x, y, x + r, y, r);
+      ctx.closePath();
+    }
+
+    function downloadResultImage() {
+      const canvas = buildShareCanvas();
+      const link = document.createElement('a');
+      link.download = 'qual-e-o-pais-resultado.png';
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+      tooltip('✅ Imagem salva!');
+    }
+
+    /* ══════════════════════════════════════════════════════════
+       HOW TO PLAY
+    ══════════════════════════════════════════════════════════ */
+    function showHowTo() {
+      tooltip('🏳️ Identifique o país pelas dicas! Cada rodada tem um tipo diferente de pergunta.', 3500);
+    }
+
+    /* ══════════════════════════════════════════════════════════
+       FALLBACK DATASET (used if API fails)
+    ══════════════════════════════════════════════════════════ */
+    const FALLBACK_COUNTRIES = [
+      { name: 'Brazil', namePt: 'Brasil', flag: 'https://flagcdn.com/w320/br.png', flagEmoji: '🇧🇷', capital: 'Brasília', cca2: 'br', region: 'Americas', subregion: 'América do Sul', population: 215e6, currency: 'Real brasileiro', languages: ['Português'] },
+      { name: 'Japan', namePt: 'Japão', flag: 'https://flagcdn.com/w320/jp.png', flagEmoji: '🇯🇵', capital: 'Tóquio', cca2: 'jp', region: 'Asia', subregion: 'Ásia Oriental', population: 125e6, currency: 'Iene japonês', languages: ['Japonês'] },
+      { name: 'France', namePt: 'França', flag: 'https://flagcdn.com/w320/fr.png', flagEmoji: '🇫🇷', capital: 'Paris', cca2: 'fr', region: 'Europe', subregion: 'Europa Ocidental', population: 67e6, currency: 'Euro', languages: ['Francês'] },
+      { name: 'Germany', namePt: 'Alemanha', flag: 'https://flagcdn.com/w320/de.png', flagEmoji: '🇩🇪', capital: 'Berlim', cca2: 'de', region: 'Europe', subregion: 'Europa Ocidental', population: 83e6, currency: 'Euro', languages: ['Alemão'] },
+      { name: 'United States', namePt: 'Estados Unidos', flag: 'https://flagcdn.com/w320/us.png', flagEmoji: '🇺🇸', capital: 'Washington D.C.', cca2: 'us', region: 'Americas', subregion: 'América do Norte', population: 332e6, currency: 'Dólar americano', languages: ['Inglês'] },
+      { name: 'Canada', namePt: 'Canadá', flag: 'https://flagcdn.com/w320/ca.png', flagEmoji: '🇨🇦', capital: 'Ottawa', cca2: 'ca', region: 'Americas', subregion: 'América do Norte', population: 38e6, currency: 'Dólar canadense', languages: ['Inglês', 'Francês'] },
+      { name: 'Australia', namePt: 'Austrália', flag: 'https://flagcdn.com/w320/au.png', flagEmoji: '🇦🇺', capital: 'Canberra', cca2: 'au', region: 'Oceania', subregion: 'Oceania', population: 26e6, currency: 'Dólar australiano', languages: ['Inglês'] },
+      { name: 'India', namePt: 'Índia', flag: 'https://flagcdn.com/w320/in.png', flagEmoji: '🇮🇳', capital: 'Nova Délhi', cca2: 'in', region: 'Asia', subregion: 'Ásia Meridional', population: 1.4e9, currency: 'Rupia indiana', languages: ['Hindi', 'Inglês'] },
+      { name: 'China', namePt: 'China', flag: 'https://flagcdn.com/w320/cn.png', flagEmoji: '🇨🇳', capital: 'Pequim', cca2: 'cn', region: 'Asia', subregion: 'Ásia Oriental', population: 1.4e9, currency: 'Renminbi (Yuan)', languages: ['Mandarim'] },
+      { name: 'Russia', namePt: 'Rússia', flag: 'https://flagcdn.com/w320/ru.png', flagEmoji: '🇷🇺', capital: 'Moscou', cca2: 'ru', region: 'Europe', subregion: 'Europa Oriental', population: 144e6, currency: 'Rublo russo', languages: ['Russo'] },
+      { name: 'United Kingdom', namePt: 'Reino Unido', flag: 'https://flagcdn.com/w320/gb.png', flagEmoji: '🇬🇧', capital: 'Londres', cca2: 'gb', region: 'Europe', subregion: 'Europa do Norte', population: 67e6, currency: 'Libra esterlina', languages: ['Inglês'] },
+      { name: 'Italy', namePt: 'Itália', flag: 'https://flagcdn.com/w320/it.png', flagEmoji: '🇮🇹', capital: 'Roma', cca2: 'it', region: 'Europe', subregion: 'Europa do Sul', population: 60e6, currency: 'Euro', languages: ['Italiano'] },
+      { name: 'Spain', namePt: 'Espanha', flag: 'https://flagcdn.com/w320/es.png', flagEmoji: '🇪🇸', capital: 'Madri', cca2: 'es', region: 'Europe', subregion: 'Europa do Sul', population: 47e6, currency: 'Euro', languages: ['Espanhol'] },
+      { name: 'Mexico', namePt: 'México', flag: 'https://flagcdn.com/w320/mx.png', flagEmoji: '🇲🇽', capital: 'Cidade do México', cca2: 'mx', region: 'Americas', subregion: 'América do Norte', population: 130e6, currency: 'Peso mexicano', languages: ['Espanhol'] },
+      { name: 'Argentina', namePt: 'Argentina', flag: 'https://flagcdn.com/w320/ar.png', flagEmoji: '🇦🇷', capital: 'Buenos Aires', cca2: 'ar', region: 'Americas', subregion: 'América do Sul', population: 46e6, currency: 'Peso argentino', languages: ['Espanhol'] },
+      { name: 'South Korea', namePt: 'Coreia do Sul', flag: 'https://flagcdn.com/w320/kr.png', flagEmoji: '🇰🇷', capital: 'Seul', cca2: 'kr', region: 'Asia', subregion: 'Ásia Oriental', population: 51e6, currency: 'Won sul-coreano', languages: ['Coreano'] },
+      { name: 'Portugal', namePt: 'Portugal', flag: 'https://flagcdn.com/w320/pt.png', flagEmoji: '🇵🇹', capital: 'Lisboa', cca2: 'pt', region: 'Europe', subregion: 'Europa do Sul', population: 10e6, currency: 'Euro', languages: ['Português'] },
+      { name: 'Netherlands', namePt: 'Países Baixos', flag: 'https://flagcdn.com/w320/nl.png', flagEmoji: '🇳🇱', capital: 'Amsterdã', cca2: 'nl', region: 'Europe', subregion: 'Europa Ocidental', population: 17e6, currency: 'Euro', languages: ['Holandês'] },
+      { name: 'Turkey', namePt: 'Turquia', flag: 'https://flagcdn.com/w320/tr.png', flagEmoji: '🇹🇷', capital: 'Ancara', cca2: 'tr', region: 'Asia', subregion: 'Ásia Ocidental', population: 85e6, currency: 'Lira turca', languages: ['Turco'] },
+      { name: 'Saudi Arabia', namePt: 'Arábia Saudita', flag: 'https://flagcdn.com/w320/sa.png', flagEmoji: '🇸🇦', capital: 'Riade', cca2: 'sa', region: 'Asia', subregion: 'Ásia Ocidental', population: 35e6, currency: 'Riyal saudita', languages: ['Árabe'] },
+      { name: 'Egypt', namePt: 'Egito', flag: 'https://flagcdn.com/w320/eg.png', flagEmoji: '🇪🇬', capital: 'Cairo', cca2: 'eg', region: 'Africa', subregion: 'Norte da África', population: 104e6, currency: 'Libra egípcia', languages: ['Árabe'] },
+      { name: 'Nigeria', namePt: 'Nigéria', flag: 'https://flagcdn.com/w320/ng.png', flagEmoji: '🇳🇬', capital: 'Abuja', cca2: 'ng', region: 'Africa', subregion: 'África Ocidental', population: 218e6, currency: 'Naira nigeriana', languages: ['Inglês'] },
+      { name: 'South Africa', namePt: 'África do Sul', flag: 'https://flagcdn.com/w320/za.png', flagEmoji: '🇿🇦', capital: 'Pretória', cca2: 'za', region: 'Africa', subregion: 'África Austral', population: 60e6, currency: 'Rand sul-africano', languages: ['Zulu', 'Inglês'] },
+      { name: 'Kenya', namePt: 'Quênia', flag: 'https://flagcdn.com/w320/ke.png', flagEmoji: '🇰🇪', capital: 'Nairóbi', cca2: 'ke', region: 'Africa', subregion: 'África Oriental', population: 55e6, currency: 'Xelim queniano', languages: ['Suaíli', 'Inglês'] },
+      { name: 'Indonesia', namePt: 'Indonésia', flag: 'https://flagcdn.com/w320/id.png', flagEmoji: '🇮🇩', capital: 'Jacarta', cca2: 'id', region: 'Asia', subregion: 'Ásia do Sudeste', population: 277e6, currency: 'Rúpia indonésia', languages: ['Indonésio'] },
+      { name: 'Thailand', namePt: 'Tailândia', flag: 'https://flagcdn.com/w320/th.png', flagEmoji: '🇹🇭', capital: 'Bangcoc', cca2: 'th', region: 'Asia', subregion: 'Ásia do Sudeste', population: 72e6, currency: 'Baht tailandês', languages: ['Tailandês'] },
+      { name: 'Vietnam', namePt: 'Vietnã', flag: 'https://flagcdn.com/w320/vn.png', flagEmoji: '🇻🇳', capital: 'Hanói', cca2: 'vn', region: 'Asia', subregion: 'Ásia do Sudeste', population: 98e6, currency: 'Dong vietnamita', languages: ['Vietnamita'] },
+      { name: 'Pakistan', namePt: 'Paquistão', flag: 'https://flagcdn.com/w320/pk.png', flagEmoji: '🇵🇰', capital: 'Islamabade', cca2: 'pk', region: 'Asia', subregion: 'Ásia Meridional', population: 230e6, currency: 'Rupia paquistanesa', languages: ['Urdu', 'Inglês'] },
+      { name: 'Colombia', namePt: 'Colômbia', flag: 'https://flagcdn.com/w320/co.png', flagEmoji: '🇨🇴', capital: 'Bogotá', cca2: 'co', region: 'Americas', subregion: 'América do Sul', population: 52e6, currency: 'Peso colombiano', languages: ['Espanhol'] },
+      { name: 'Chile', namePt: 'Chile', flag: 'https://flagcdn.com/w320/cl.png', flagEmoji: '🇨🇱', capital: 'Santiago', cca2: 'cl', region: 'Americas', subregion: 'América do Sul', population: 19e6, currency: 'Peso chileno', languages: ['Espanhol'] },
+      { name: 'Peru', namePt: 'Peru', flag: 'https://flagcdn.com/w320/pe.png', flagEmoji: '🇵🇪', capital: 'Lima', cca2: 'pe', region: 'Americas', subregion: 'América do Sul', population: 33e6, currency: 'Sol peruano', languages: ['Espanhol'] },
+      { name: 'Venezuela', namePt: 'Venezuela', flag: 'https://flagcdn.com/w320/ve.png', flagEmoji: '🇻🇪', capital: 'Caracas', cca2: 've', region: 'Americas', subregion: 'América do Sul', population: 29e6, currency: 'Bolívar venezuelano', languages: ['Espanhol'] },
+      { name: 'Sweden', namePt: 'Suécia', flag: 'https://flagcdn.com/w320/se.png', flagEmoji: '🇸🇪', capital: 'Estocolmo', cca2: 'se', region: 'Europe', subregion: 'Europa do Norte', population: 10e6, currency: 'Coroa sueca', languages: ['Sueco'] },
+      { name: 'Norway', namePt: 'Noruega', flag: 'https://flagcdn.com/w320/no.png', flagEmoji: '🇳🇴', capital: 'Oslo', cca2: 'no', region: 'Europe', subregion: 'Europa do Norte', population: 5e6, currency: 'Coroa norueguesa', languages: ['Norueguês'] },
+      { name: 'Denmark', namePt: 'Dinamarca', flag: 'https://flagcdn.com/w320/dk.png', flagEmoji: '🇩🇰', capital: 'Copenhague', cca2: 'dk', region: 'Europe', subregion: 'Europa do Norte', population: 6e6, currency: 'Coroa dinamarquesa', languages: ['Dinamarquês'] },
+      { name: 'Finland', namePt: 'Finlândia', flag: 'https://flagcdn.com/w320/fi.png', flagEmoji: '🇫🇮', capital: 'Helsinque', cca2: 'fi', region: 'Europe', subregion: 'Europa do Norte', population: 5.5e6, currency: 'Euro', languages: ['Finlandês', 'Sueco'] },
+      { name: 'Poland', namePt: 'Polônia', flag: 'https://flagcdn.com/w320/pl.png', flagEmoji: '🇵🇱', capital: 'Varsóvia', cca2: 'pl', region: 'Europe', subregion: 'Europa Oriental', population: 38e6, currency: 'Zloty polonês', languages: ['Polonês'] },
+      { name: 'Ukraine', namePt: 'Ucrânia', flag: 'https://flagcdn.com/w320/ua.png', flagEmoji: '🇺🇦', capital: 'Kiev', cca2: 'ua', region: 'Europe', subregion: 'Europa Oriental', population: 44e6, currency: 'Hryvnia ucraniana', languages: ['Ucraniano'] },
+      { name: 'Greece', namePt: 'Grécia', flag: 'https://flagcdn.com/w320/gr.png', flagEmoji: '🇬🇷', capital: 'Atenas', cca2: 'gr', region: 'Europe', subregion: 'Europa do Sul', population: 10e6, currency: 'Euro', languages: ['Grego'] },
+      { name: 'Morocco', namePt: 'Marrocos', flag: 'https://flagcdn.com/w320/ma.png', flagEmoji: '🇲🇦', capital: 'Rabat', cca2: 'ma', region: 'Africa', subregion: 'Norte da África', population: 37e6, currency: 'Dirham marroquino', languages: ['Árabe', 'Berbere'] },
+      { name: 'Ethiopia', namePt: 'Etiópia', flag: 'https://flagcdn.com/w320/et.png', flagEmoji: '🇪🇹', capital: 'Adis Abeba', cca2: 'et', region: 'Africa', subregion: 'África Oriental', population: 120e6, currency: 'Birr etíope', languages: ['Amárico'] },
+      { name: 'Ghana', namePt: 'Gana', flag: 'https://flagcdn.com/w320/gh.png', flagEmoji: '🇬🇭', capital: 'Acra', cca2: 'gh', region: 'Africa', subregion: 'África Ocidental', population: 33e6, currency: 'Cedi ganês', languages: ['Inglês'] },
+      { name: 'Cuba', namePt: 'Cuba', flag: 'https://flagcdn.com/w320/cu.png', flagEmoji: '🇨🇺', capital: 'Havana', cca2: 'cu', region: 'Americas', subregion: 'Caribe', population: 11e6, currency: 'Peso cubano', languages: ['Espanhol'] },
+      { name: 'Philippines', namePt: 'Filipinas', flag: 'https://flagcdn.com/w320/ph.png', flagEmoji: '🇵🇭', capital: 'Manila', cca2: 'ph', region: 'Asia', subregion: 'Ásia do Sudeste', population: 114e6, currency: 'Peso filipino', languages: ['Filipino', 'Inglês'] },
+      { name: 'New Zealand', namePt: 'Nova Zelândia', flag: 'https://flagcdn.com/w320/nz.png', flagEmoji: '🇳🇿', capital: 'Wellington', cca2: 'nz', region: 'Oceania', subregion: 'Oceania', population: 5e6, currency: 'Dólar neozelandês', languages: ['Inglês', 'Maori'] },
+      { name: 'Switzerland', namePt: 'Suíça', flag: 'https://flagcdn.com/w320/ch.png', flagEmoji: '🇨🇭', capital: 'Berna', cca2: 'ch', region: 'Europe', subregion: 'Europa Ocidental', population: 8.6e6, currency: 'Franco suíço', languages: ['Alemão', 'Francês', 'Italiano'] },
+      { name: 'Austria', namePt: 'Áustria', flag: 'https://flagcdn.com/w320/at.png', flagEmoji: '🇦🇹', capital: 'Viena', cca2: 'at', region: 'Europe', subregion: 'Europa Ocidental', population: 9e6, currency: 'Euro', languages: ['Alemão'] },
+      { name: 'Belgium', namePt: 'Bélgica', flag: 'https://flagcdn.com/w320/be.png', flagEmoji: '🇧🇪', capital: 'Bruxelas', cca2: 'be', region: 'Europe', subregion: 'Europa Ocidental', population: 11e6, currency: 'Euro', languages: ['Holandês', 'Francês', 'Alemão'] },
+      { name: 'Iran', namePt: 'Irã', flag: 'https://flagcdn.com/w320/ir.png', flagEmoji: '🇮🇷', capital: 'Teerã', cca2: 'ir', region: 'Asia', subregion: 'Ásia Ocidental', population: 85e6, currency: 'Rial iraniano', languages: ['Persa'] },
+      { name: 'Iraq', namePt: 'Iraque', flag: 'https://flagcdn.com/w320/iq.png', flagEmoji: '🇮🇶', capital: 'Bagdá', cca2: 'iq', region: 'Asia', subregion: 'Ásia Ocidental', population: 42e6, currency: 'Dinar iraquiano', languages: ['Árabe', 'Curdo'] },
+      { name: 'Israel', namePt: 'Israel', flag: 'https://flagcdn.com/w320/il.png', flagEmoji: '🇮🇱', capital: 'Jerusalém', cca2: 'il', region: 'Asia', subregion: 'Ásia Ocidental', population: 9e6, currency: 'Shekel israelense', languages: ['Hebraico', 'Árabe'] },
+      { name: 'Hungary', namePt: 'Hungria', flag: 'https://flagcdn.com/w320/hu.png', flagEmoji: '🇭🇺', capital: 'Budapeste', cca2: 'hu', region: 'Europe', subregion: 'Europa Central', population: 10e6, currency: 'Florim húngaro', languages: ['Húngaro'] },
+      { name: 'Czech Republic', namePt: 'República Tcheca', flag: 'https://flagcdn.com/w320/cz.png', flagEmoji: '🇨🇿', capital: 'Praga', cca2: 'cz', region: 'Europe', subregion: 'Europa Central', population: 10.9e6, currency: 'Coroa tcheca', languages: ['Tcheco'] },
+      { name: 'Romania', namePt: 'Romênia', flag: 'https://flagcdn.com/w320/ro.png', flagEmoji: '🇷🇴', capital: 'Bucareste', cca2: 'ro', region: 'Europe', subregion: 'Europa Oriental', population: 19e6, currency: 'Leu romeno', languages: ['Romeno'] },
+      { name: 'Kazakhstan', namePt: 'Cazaquistão', flag: 'https://flagcdn.com/w320/kz.png', flagEmoji: '🇰🇿', capital: 'Astana', cca2: 'kz', region: 'Asia', subregion: 'Ásia Central', population: 19e6, currency: 'Tenge cazaque', languages: ['Cazaque', 'Russo'] },
+      { name: 'Algeria', namePt: 'Argélia', flag: 'https://flagcdn.com/w320/dz.png', flagEmoji: '🇩🇿', capital: 'Argel', cca2: 'dz', region: 'Africa', subregion: 'Norte da África', population: 45e6, currency: 'Dinar argelino', languages: ['Árabe'] },
+      { name: 'Angola', namePt: 'Angola', flag: 'https://flagcdn.com/w320/ao.png', flagEmoji: '🇦🇴', capital: 'Luanda', cca2: 'ao', region: 'Africa', subregion: 'África Central', population: 35e6, currency: 'Kwanza angolano', languages: ['Português'] },
+      { name: 'Mozambique', namePt: 'Moçambique', flag: 'https://flagcdn.com/w320/mz.png', flagEmoji: '🇲🇿', capital: 'Maputo', cca2: 'mz', region: 'Africa', subregion: 'África Oriental', population: 33e6, currency: 'Metical moçambicano', languages: ['Português'] },
+      { name: 'Singapore', namePt: 'Singapura', flag: 'https://flagcdn.com/w320/sg.png', flagEmoji: '🇸🇬', capital: 'Singapura', cca2: 'sg', region: 'Asia', subregion: 'Ásia do Sudeste', population: 5.9e6, currency: 'Dólar de Singapura', languages: ['Inglês', 'Malaio', 'Mandarim'] },
+      { name: 'Uruguay', namePt: 'Uruguai', flag: 'https://flagcdn.com/w320/uy.png', flagEmoji: '🇺🇾', capital: 'Montevidéu', cca2: 'uy', region: 'Americas', subregion: 'América do Sul', population: 3.5e6, currency: 'Peso uruguaio', languages: ['Espanhol'] },
+      { name: 'Paraguay', namePt: 'Paraguai', flag: 'https://flagcdn.com/w320/py.png', flagEmoji: '🇵🇾', capital: 'Assunção', cca2: 'py', region: 'Americas', subregion: 'América do Sul', population: 7.4e6, currency: 'Guarani paraguaio', languages: ['Espanhol', 'Guarani'] },
+      { name: 'Bolivia', namePt: 'Bolívia', flag: 'https://flagcdn.com/w320/bo.png', flagEmoji: '🇧🇴', capital: 'Sucre', cca2: 'bo', region: 'Americas', subregion: 'América do Sul', population: 12e6, currency: 'Boliviano', languages: ['Espanhol', 'Quechua'] },
+      { name: 'Ecuador', namePt: 'Equador', flag: 'https://flagcdn.com/w320/ec.png', flagEmoji: '🇪🇨', capital: 'Quito', cca2: 'ec', region: 'Americas', subregion: 'América do Sul', population: 18e6, currency: 'Dólar americano', languages: ['Espanhol'] },
+      { name: 'Croatia', namePt: 'Croácia', flag: 'https://flagcdn.com/w320/hr.png', flagEmoji: '🇭🇷', capital: 'Zagreb', cca2: 'hr', region: 'Europe', subregion: 'Europa do Sul', population: 4e6, currency: 'Euro', languages: ['Croata'] },
+      { name: 'Serbia', namePt: 'Sérvia', flag: 'https://flagcdn.com/w320/rs.png', flagEmoji: '🇷🇸', capital: 'Belgrado', cca2: 'rs', region: 'Europe', subregion: 'Europa do Sul', population: 7e6, currency: 'Dinar sérvio', languages: ['Sérvio'] },
+      { name: 'Bulgaria', namePt: 'Bulgária', flag: 'https://flagcdn.com/w320/bg.png', flagEmoji: '🇧🇬', capital: 'Sófia', cca2: 'bg', region: 'Europe', subregion: 'Europa Oriental', population: 6.5e6, currency: 'Lev búlgaro', languages: ['Búlgaro'] },
+      { name: 'Malaysia', namePt: 'Malásia', flag: 'https://flagcdn.com/w320/my.png', flagEmoji: '🇲🇾', capital: 'Kuala Lumpur', cca2: 'my', region: 'Asia', subregion: 'Ásia do Sudeste', population: 33e6, currency: 'Ringgit malaio', languages: ['Malaio'] },
+      { name: 'Bangladesh', namePt: 'Bangladesh', flag: 'https://flagcdn.com/w320/bd.png', flagEmoji: '🇧🇩', capital: 'Dacca', cca2: 'bd', region: 'Asia', subregion: 'Ásia Meridional', population: 170e6, currency: 'Taka bangladeshiano', languages: ['Bengali'] },
+      { name: 'Tanzania', namePt: 'Tanzânia', flag: 'https://flagcdn.com/w320/tz.png', flagEmoji: '🇹🇿', capital: 'Dodoma', cca2: 'tz', region: 'Africa', subregion: 'África Oriental', population: 64e6, currency: 'Xelim tanzaniano', languages: ['Suaíli', 'Inglês'] },
+      { name: 'Dominican Republic', namePt: 'República Dominicana', flag: 'https://flagcdn.com/w320/do.png', flagEmoji: '🇩🇴', capital: 'Santo Domingo', cca2: 'do', region: 'Americas', subregion: 'Caribe', population: 10e6, currency: 'Peso dominicano', languages: ['Espanhol'] },
+    ];
+
+    /* ══════════════════════════════════════════════════════════
+       INIT
+    ══════════════════════════════════════════════════════════ */
+    window.addEventListener('DOMContentLoaded', () => {
+      refreshHomeStats();
+      loadCountries();
+    });
+  </script>
 </body>
+
 </html>
