@@ -9,6 +9,7 @@
     content="Teste seus conhecimentos geográficos! Identifique países por bandeiras, capitais, mapas e curiosidades. Desafie seus amigos!" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="icon" href="favicon.ico">
   <link
     href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap"
     rel="stylesheet" />
@@ -1192,40 +1193,66 @@
   <canvas id="bg-canvas"></canvas>
 
   <!-- Left Ad -->
-  <div class="ad-container ad-left">
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1251593574340280"
-      crossorigin="anonymous"></script>
+  <div class="ad-container ad-left" id="ad-left">
     <!-- vertical -->
     <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1251593574340280" data-ad-slot="4601194758"
       data-ad-format="auto" data-full-width-responsive="true"></ins>
-    <script>
-      (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
   </div>
 
   <!-- Right Ad -->
-  <div class="ad-container ad-right">
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1251593574340280"
-      crossorigin="anonymous"></script>
+  <div class="ad-container ad-right" id="ad-right">
     <!-- vertical -->
     <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1251593574340280" data-ad-slot="4601194758"
       data-ad-format="auto" data-full-width-responsive="true"></ins>
-    <script>
-      (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
   </div>
 
   <!-- Mobile Bottom Ad -->
-  <div class="ad-container-mobile">
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1251593574340280"
-      crossorigin="anonymous"></script>
+  <div class="ad-container-mobile" id="ad-mobile">
     <!-- horizontal -->
     <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1251593574340280" data-ad-slot="2935779358"
       data-ad-format="auto" data-full-width-responsive="true"></ins>
-    <script>
-      (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
   </div>
+
+  <script>
+    // Lazy-init AdSense slots only when containers are actually visible (non-zero width).
+    // This prevents the "No slot size for availableWidth=0" TagError.
+    (function initAds() {
+      var pushed = {};
+
+      function tryPush(container) {
+        if (pushed[container.id]) return;
+        var rect = container.getBoundingClientRect();
+        if (rect.width > 0) {
+          pushed[container.id] = true;
+          var ins = container.querySelector('.adsbygoogle');
+          if (ins && !ins.dataset.adsbygoogleStatus) {
+            try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) { }
+          }
+        }
+      }
+
+      var containers = [
+        document.getElementById('ad-left'),
+        document.getElementById('ad-right'),
+        document.getElementById('ad-mobile')
+      ];
+
+      // Use ResizeObserver to detect when a container gains actual width
+      if (typeof ResizeObserver !== 'undefined') {
+        containers.forEach(function (c) {
+          if (!c) return;
+          var ro = new ResizeObserver(function () { tryPush(c); });
+          ro.observe(c);
+        });
+      } else {
+        // Fallback: poll briefly on load and on resize
+        function pollAds() { containers.forEach(function (c) { if (c) tryPush(c); }); }
+        window.addEventListener('load', pollAds);
+        window.addEventListener('resize', pollAds);
+        pollAds();
+      }
+    })();
+  </script>
 
   <div id="app">
 
