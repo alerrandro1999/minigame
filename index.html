@@ -1172,7 +1172,6 @@
       left: 0;
       width: 100%;
       z-index: 10;
-      background: var(--bg-deep);
       display: none;
       text-align: center;
     }
@@ -1184,6 +1183,322 @@
 
       #app {
         padding-bottom: calc(max(clamp(12px, 4vw, 24px), env(safe-area-inset-bottom)) + 100px) !important;
+      }
+    }
+
+    /* ══════════════════════════════════════════════════════════
+       EDITORIAL CONTENT SECTION
+    ══════════════════════════════════════════════════════════ */
+    #editorial-content {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: clamp(32px, 6vw, 64px) clamp(16px, 4vw, 32px) clamp(60px, 8vw, 100px);
+    }
+
+    .editorial-divider {
+      text-align: center;
+      margin-bottom: clamp(24px, 5vw, 48px);
+    }
+
+    .editorial-divider span {
+      display: inline-block;
+      font-size: clamp(.75rem, 2vw, .82rem);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      padding: 8px 20px;
+      border: 1px solid var(--border);
+      border-radius: 50px;
+      background: var(--bg-glass);
+    }
+
+    /* ── How To Play ─────────────────────────────────────── */
+    .howto-section {
+      margin-bottom: clamp(40px, 7vw, 72px);
+    }
+
+    .section-heading {
+      font-size: clamp(1.3rem, 3.5vw, 1.75rem);
+      font-weight: 800;
+      background: linear-gradient(135deg, #fff 0%, var(--cyan) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 8px;
+    }
+
+    .section-sub {
+      color: var(--text-dim);
+      font-size: .9rem;
+      margin-bottom: clamp(16px, 3vw, 28px);
+      line-height: 1.6;
+    }
+
+    .howto-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+    }
+
+    .howto-card {
+      padding: 20px 18px;
+      border-radius: var(--radius-sm);
+      background: var(--bg-glass);
+      border: 1px solid var(--border);
+      transition: transform .2s, border-color .2s;
+    }
+
+    .howto-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(0, 229, 255, .25);
+    }
+
+    .howto-icon {
+      font-size: 1.8rem;
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    .howto-card h3 {
+      font-size: .95rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+
+    .howto-card p {
+      font-size: .82rem;
+      color: var(--text-dim);
+      line-height: 1.55;
+    }
+
+    /* ── Curiosities ─────────────────────────────────────── */
+    .curiosities-section {
+      margin-bottom: clamp(40px, 7vw, 72px);
+    }
+
+    .curiosities-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 14px;
+    }
+
+    .curiosity-card {
+      padding: 20px 18px;
+      border-radius: var(--radius-sm);
+      background: var(--bg-glass);
+      border: 1px solid var(--border);
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      transition: transform .2s, border-color .2s;
+    }
+
+    .curiosity-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(124, 58, 237, .35);
+    }
+
+    .curiosity-flag {
+      font-size: 2rem;
+      flex-shrink: 0;
+      line-height: 1;
+    }
+
+    .curiosity-body h4 {
+      font-size: .9rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 5px;
+    }
+
+    .curiosity-body p {
+      font-size: .8rem;
+      color: var(--text-dim);
+      line-height: 1.55;
+    }
+
+    /* ── Benefits / Why Play ──────────────────────────────── */
+    .benefits-section {
+      margin-bottom: clamp(40px, 7vw, 72px);
+    }
+
+    .benefits-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 12px;
+    }
+
+    .benefit-item {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      padding: 16px;
+      border-radius: var(--radius-sm);
+      background: var(--bg-glass);
+      border: 1px solid var(--border);
+    }
+
+    .benefit-icon {
+      font-size: 1.4rem;
+      flex-shrink: 0;
+    }
+
+    .benefit-item h4 {
+      font-size: .88rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .benefit-item p {
+      font-size: .78rem;
+      color: var(--text-dim);
+      line-height: 1.5;
+    }
+
+    /* ── FAQ ─────────────────────────────────────────────── */
+    .faq-section {
+      margin-bottom: clamp(40px, 7vw, 72px);
+    }
+
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .faq-item {
+      border-radius: var(--radius-sm);
+      background: var(--bg-glass);
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+
+    .faq-question {
+      width: 100%;
+      background: none;
+      border: none;
+      color: var(--text);
+      font-family: 'Outfit', sans-serif;
+      font-size: .9rem;
+      font-weight: 600;
+      text-align: left;
+      padding: 16px 18px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      transition: color .2s;
+    }
+
+    .faq-question:hover {
+      color: var(--cyan);
+    }
+
+    .faq-chevron {
+      font-size: .75rem;
+      transition: transform .25s;
+      flex-shrink: 0;
+      color: var(--text-dim);
+    }
+
+    .faq-item.open .faq-chevron {
+      transform: rotate(180deg);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .3s ease, padding .3s ease;
+      font-size: .83rem;
+      color: var(--text-dim);
+      line-height: 1.6;
+    }
+
+    .faq-item.open .faq-answer {
+      max-height: 300px;
+      padding: 0 18px 16px;
+    }
+
+    /* ── Difficulty breakdown table ──────────────────────── */
+    .diff-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: .85rem;
+      margin-top: 12px;
+    }
+
+    .diff-table th,
+    .diff-table td {
+      padding: 11px 14px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .diff-table th {
+      color: var(--text-dim);
+      font-weight: 600;
+      font-size: .78rem;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+      background: rgba(255,255,255,.02);
+    }
+
+    .diff-table td {
+      color: var(--text);
+    }
+
+    .diff-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .diff-table .chip {
+      display: inline-block;
+      padding: 2px 10px;
+      border-radius: 50px;
+      font-size: .73rem;
+      font-weight: 700;
+    }
+
+    .chip-easy { background: rgba(34,197,94,.15); color: #22c55e; }
+    .chip-medium { background: rgba(245,200,66,.15); color: #f5c842; }
+    .chip-hard { background: rgba(239,68,68,.15); color: #ef4444; }
+
+    /* ── Footer note ──────────────────────────────────────── */
+    .editorial-footer {
+      text-align: center;
+      margin-top: clamp(32px, 5vw, 56px);
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+    }
+
+    .editorial-footer p {
+      color: var(--text-dim);
+      font-size: .78rem;
+      line-height: 1.6;
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    .editorial-footer a {
+      color: var(--cyan);
+      text-decoration: none;
+    }
+
+    .editorial-footer a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 480px) {
+      .howto-grid,
+      .curiosities-grid,
+      .benefits-list {
+        grid-template-columns: 1fr;
       }
     }
   </style>
@@ -2268,8 +2583,311 @@
     window.addEventListener('DOMContentLoaded', () => {
       refreshHomeStats();
       loadCountries();
+
+      // FAQ accordion
+      document.querySelectorAll('.faq-question').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const item = btn.closest('.faq-item');
+          const isOpen = item.classList.contains('open');
+          document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
+          if (!isOpen) item.classList.add('open');
+        });
+      });
     });
   </script>
+
+  <!-- ══════════════════════════════════════════════════════════
+       EDITORIAL CONTENT — Conteúdo de valor para o usuário
+  ══════════════════════════════════════════════════════════ -->
+  <section id="editorial-content" aria-label="Guia do jogo e curiosidades geográficas">
+
+    <div class="editorial-divider">
+      <span>🌍 Sobre o Jogo</span>
+    </div>
+
+    <!-- ── COMO JOGAR ──────────────────────────────────────── -->
+    <article class="howto-section">
+      <h2 class="section-heading">Como Jogar — Qual é o País?</h2>
+      <p class="section-sub">
+        <strong>Qual é o País?</strong> é um quiz de geografia interativo onde você testa seus conhecimentos sobre nações do mundo inteiro.
+        A cada rodada, o jogo apresenta uma pista — bandeira, capital, curiosidade ou silhueta do mapa — e você deve identificar o país correto entre as opções.
+        Quanto mais rápido e preciso você for, maior será sua pontuação!
+      </p>
+
+      <div class="howto-grid">
+        <div class="howto-card">
+          <span class="howto-icon">🏳️</span>
+          <h3>Identifique a Bandeira</h3>
+          <p>Observe a bandeira exibida e selecione o país correspondente. Bandeiras têm cores, símbolos e padrões únicos que representam a história e cultura de cada nação.</p>
+        </div>
+        <div class="howto-card">
+          <span class="howto-icon">🏙️</span>
+          <h3>Descubra pela Capital</h3>
+          <p>Uma capital é exibida e você deve associá-la ao país correto. Capitais famosas como Tóquio, Paris e Cairo são pontos de partida — mas cuidado com as pegadinhas!</p>
+        </div>
+        <div class="howto-card">
+          <span class="howto-icon">🗺️</span>
+          <h3>Leia as Curiosidades</h3>
+          <p>Cada país tem fatos únicos: população, idioma, moeda e região geográfica. Use essas pistas para afunilar sua resposta e ampliar seu conhecimento sobre o mundo.</p>
+        </div>
+        <div class="howto-card">
+          <span class="howto-icon">⏱️</span>
+          <h3>Corra Contra o Tempo</h3>
+          <p>Cada pergunta tem um cronômetro. Responder rápido dá mais pontos — mas errar custa uma vida. Equilibre velocidade e precisão para alcançar o maior placar!</p>
+        </div>
+        <div class="howto-card">
+          <span class="howto-icon">🔥</span>
+          <h3>Construa Combos</h3>
+          <p>Acertos consecutivos formam sequências (combos) que multiplicam seus pontos. Manter a sequência intacta é a chave para pontuações altíssimas no ranking.</p>
+        </div>
+        <div class="howto-card">
+          <span class="howto-icon">📥</span>
+          <h3>Compartilhe seus Resultados</h3>
+          <p>Ao fim de cada partida, gere uma imagem com sua pontuação e compartilhe com amigos. Desafie-os a superar seu recorde e veja quem conhece mais o mundo!</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- ── DIFICULDADES ──────────────────────────────────────── -->
+    <article class="howto-section">
+      <h2 class="section-heading">Modos de Dificuldade</h2>
+      <p class="section-sub">
+        O jogo oferece três níveis de dificuldade para desafiar tanto iniciantes quanto verdadeiros especialistas em geografia. Escolha o nível que melhor se adapta ao seu conhecimento.
+      </p>
+
+      <div class="card" style="padding: 4px 0; overflow: hidden; border-radius: var(--radius-sm);">
+        <table class="diff-table">
+          <thead>
+            <tr>
+              <th>Nível</th>
+              <th>Tempo por Pergunta</th>
+              <th>Opções de Resposta</th>
+              <th>Ideal Para</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="chip chip-easy">🌱 Fácil</span></td>
+              <td>30 segundos</td>
+              <td>4 opções</td>
+              <td>Iniciantes e quem está aprendendo sobre geografia mundial</td>
+            </tr>
+            <tr>
+              <td><span class="chip chip-medium">⚡ Médio</span></td>
+              <td>20 segundos</td>
+              <td>4 opções</td>
+              <td>Quem já tem boa base geográfica e quer um desafio moderado</td>
+            </tr>
+            <tr>
+              <td><span class="chip chip-hard">🔥 Difícil</span></td>
+              <td>12 segundos</td>
+              <td>6 opções</td>
+              <td>Especialistas em geografia que querem testar seus limites</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </article>
+
+    <!-- ── CURIOSIDADES ──────────────────────────────────────── -->
+    <article class="curiosities-section">
+      <h2 class="section-heading">Curiosidades Geográficas</h2>
+      <p class="section-sub">
+        O mundo é fascinante! Veja algumas das curiosidades sobre países que você pode encontrar durante o jogo. Cada nação tem sua própria história, cultura e recordes únicos.
+      </p>
+
+      <div class="curiosities-grid">
+        <div class="curiosity-card">
+          <span class="curiosity-flag">🇷🇺</span>
+          <div class="curiosity-body">
+            <h4>Rússia — O maior país do mundo</h4>
+            <p>A Rússia ocupa cerca de 17,1 milhões de km², abrangendo 11 fusos horários. É tão vasta que quando é manhã em Moscou, já é noite em Vladivostok.</p>
+          </div>
+        </div>
+        <div class="curiosity-card">
+          <span class="curiosity-flag">🇻🇦</span>
+          <div class="curiosity-body">
+            <h4>Vaticano — O menor país do mundo</h4>
+            <p>Com apenas 0,44 km², o Vaticano é o menor estado soberano do planeta. Mesmo assim, é o centro espiritual de mais de 1,3 bilhão de católicos no mundo.</p>
+          </div>
+        </div>
+        <div class="curiosity-card">
+          <span class="curiosity-flag">🇧🇷</span>
+          <div class="curiosity-body">
+            <h4>Brasil — Maior país da América do Sul</h4>
+            <p>O Brasil é o 5º maior país do mundo com 8,5 milhões de km². Abriga a maior floresta tropical do planeta — a Amazônia — e é o único país lusófono das Américas.</p>
+          </div>
+        </div>
+        <div class="curiosity-card">
+          <span class="curiosity-flag">🇨🇳</span>
+          <div class="curiosity-body">
+            <h4>China — Maior população do mundo</h4>
+            <p>Com mais de 1,4 bilhão de habitantes, a China é o país mais populoso. Tem fronteiras com 14 países — mais do que qualquer outra nação — e uma história de mais de 5 mil anos.</p>
+          </div>
+        </div>
+        <div class="curiosity-card">
+          <span class="curiosity-flag">🇦🇺</span>
+          <div class="curiosity-body">
+            <h4>Austrália — O único país-continente</h4>
+            <p>A Austrália é o único país que ocupa um continente inteiro. Abriga mais de 80% de espécies de flora e fauna exclusivas, incluindo o canguru e o coala.</p>
+          </div>
+        </div>
+        <div class="curiosity-card">
+          <span class="curiosity-flag">🇳🇴</span>
+          <div class="curiosity-body">
+            <h4>Noruega — Terra do Sol da Meia-Noite</h4>
+            <p>No verão, partes da Noruega ficam acima do Círculo Ártico e o sol nunca se põe — fenômeno chamado "sol da meia-noite". No inverno, a aurora boreal ilumina o céu.</p>
+          </div>
+        </div>
+        <div class="curiosity-card">
+          <span class="curiosity-flag">🇯🇵</span>
+          <div class="curiosity-body">
+            <h4>Japão — O arquipélago do Extremo Oriente</h4>
+            <p>O Japão é formado por 6.852 ilhas, das quais apenas 430 são habitadas. É um dos países mais tecnológicos do mundo e tem a 3ª maior economia global.</p>
+          </div>
+        </div>
+        <div class="curiosity-card">
+          <span class="curiosity-flag">🇿🇦</span>
+          <div class="curiosity-body">
+            <h4>África do Sul — Três capitais</h4>
+            <p>A África do Sul é o único país no mundo com três capitais: Pretória (executiva), Cidade do Cabo (legislativa) e Bloemfontein (judiciária).</p>
+          </div>
+        </div>
+        <div class="curiosity-card">
+          <span class="curiosity-flag">🇨🇦</span>
+          <div class="curiosity-body">
+            <h4>Canadá — O país com mais lagos</h4>
+            <p>O Canadá possui mais de 2 milhões de lagos, o que representa mais de 60% de todos os lagos de água doce do mundo. É o segundo maior país em área total.</p>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ── POR QUE JOGAR ──────────────────────────────────────── -->
+    <article class="benefits-section">
+      <h2 class="section-heading">Por que Jogar Quiz de Geografia?</h2>
+      <p class="section-sub">
+        Quizzes de geografia não são apenas divertidos — eles trazem benefícios reais para o seu aprendizado e desenvolvimento cognitivo.
+      </p>
+
+      <div class="benefits-list">
+        <div class="benefit-item">
+          <span class="benefit-icon">🧠</span>
+          <div>
+            <h4>Exercita a Memória</h4>
+            <p>Associar bandeiras, capitais e curiosidades a países estimula a memória de longo prazo e melhora a retenção de conhecimento geográfico.</p>
+          </div>
+        </div>
+        <div class="benefit-item">
+          <span class="benefit-icon">🌐</span>
+          <div>
+            <h4>Amplia Visão de Mundo</h4>
+            <p>Conhecer países, suas culturas, idiomas e posições no mapa desenvolve empatia e compreensão sobre as diversidades do nosso planeta.</p>
+          </div>
+        </div>
+        <div class="benefit-item">
+          <span class="benefit-icon">⚡</span>
+          <div>
+            <h4>Melhora o Raciocínio Rápido</h4>
+            <p>O cronômetro treinando você a tomar decisões rápidas e assertivas — habilidade valiosa na vida acadêmica e profissional.</p>
+          </div>
+        </div>
+        <div class="benefit-item">
+          <span class="benefit-icon">🎓</span>
+          <div>
+            <h4>Preparação para Provas</h4>
+            <p>Ideal para estudantes que precisam revisar geografia para vestibulares, concursos públicos, ENEM e olimpíadas do conhecimento.</p>
+          </div>
+        </div>
+        <div class="benefit-item">
+          <span class="benefit-icon">👨‍👩‍👧</span>
+          <div>
+            <h4>Diversão em Família</h4>
+            <p>Um jogo acessível para todas as idades. Perfeito para desafiar amigos, família ou colegas de escola em competições saudáveis de conhecimento.</p>
+          </div>
+        </div>
+        <div class="benefit-item">
+          <span class="benefit-icon">📈</span>
+          <div>
+            <h4>Progresso Visível</h4>
+            <p>O sistema de recorde pessoal e estatísticas de acerto permitem acompanhar sua evolução e motivam a cada sessão de jogo.</p>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ── FAQ ──────────────────────────────────────── -->
+    <article class="faq-section">
+      <h2 class="section-heading">Perguntas Frequentes (FAQ)</h2>
+      <p class="section-sub">Tire suas dúvidas sobre o jogo Qual é o País?</p>
+
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            Quantos países estão disponíveis no jogo?
+            <span class="faq-chevron">▼</span>
+          </button>
+          <div class="faq-answer">
+            O jogo conta com mais de 80 países de todos os continentes — Europa, Ásia, Américas, África e Oceania. A seleção abrange tanto as nações mais famosas quanto países menos conhecidos para variar o desafio a cada partida.
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            O jogo funciona em celular?
+            <span class="faq-chevron">▼</span>
+          </button>
+          <div class="faq-answer">
+            Sim! O Qual é o País? foi desenvolvido com design responsivo e funciona perfeitamente em smartphones, tablets e computadores. A interface se adapta automaticamente ao tamanho da sua tela.
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            Meu recorde é salvo automaticamente?
+            <span class="faq-chevron">▼</span>
+          </button>
+          <div class="faq-answer">
+            Sim! O jogo salva automaticamente seu melhor recorde e o número de partidas jogadas no armazenamento local do seu navegador (localStorage). Isso significa que seus dados ficam guardados mesmo após fechar o browser, enquanto você não limpar os dados do navegador.
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            Qual é a diferença entre os tipos de pista do jogo?
+            <span class="faq-chevron">▼</span>
+          </button>
+          <div class="faq-answer">
+            O jogo apresenta 4 tipos de perguntas: (1) Bandeira — identifique o país pela bandeira nacional; (2) Capital — associe a cidade capital ao seu país; (3) Curiosidade — uma informação sobre o país (idioma, moeda, população); (4) Continente + Região — identifique o país por sua localização geográfica. As perguntas são sorteadas aleatoriamente a cada rodada.
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            Como funciona o sistema de pontuação?
+            <span class="faq-chevron">▼</span>
+          </button>
+          <div class="faq-answer">
+            Cada resposta correta concede pontos base, com bônus pelo tempo restante no cronômetro. Acertos consecutivos formam "combos" que multiplicam os pontos ganhos. Errar uma resposta quebra o combo e custa uma vida — você começa com 3 vidas por partida.
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            O jogo precisa de conexão com a internet?
+            <span class="faq-chevron">▼</span>
+          </button>
+          <div class="faq-answer">
+            Sim, é necessária conexão com a internet para carregar as imagens das bandeiras dos países, que são servidas por uma CDN externa. O restante do jogo — lógica, pontuação e interface — funciona diretamente no seu navegador.
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <footer class="editorial-footer">
+      <p>
+        <strong>Qual é o País?</strong> é um projeto de entretenimento educativo, desenvolvido com carinho para amantes de geografia e curiosidades do mundo.
+        Jogue, aprenda e compartilhe com amigos! 🌍
+      </p>
+    </footer>
+
+  </section>
+
 </body>
 
 </html>
